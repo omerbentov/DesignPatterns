@@ -35,6 +35,12 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.UserNamePictureBox = new System.Windows.Forms.PictureBox();
             this.FeedBox = new System.Windows.Forms.ListBox();
+            this.FetchaAlbumsBtn = new System.Windows.Forms.Button();
+            this.FetchPostsBtn = new System.Windows.Forms.Button();
+            this.FetchAccountInfoBtn = new System.Windows.Forms.Button();
+            this.FetchEventsBtn = new System.Windows.Forms.Button();
+            this.Extra1 = new System.Windows.Forms.Button();
+            this.Extra2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.UserNamePictureBox)).BeginInit();
             this.SuspendLayout();
@@ -93,12 +99,76 @@
             this.FeedBox.Size = new System.Drawing.Size(582, 624);
             this.FeedBox.TabIndex = 6;
             // 
+            // FetchaAlbumsBtn
+            // 
+            this.FetchaAlbumsBtn.Location = new System.Drawing.Point(43, 96);
+            this.FetchaAlbumsBtn.Name = "FetchaAlbumsBtn";
+            this.FetchaAlbumsBtn.Size = new System.Drawing.Size(238, 45);
+            this.FetchaAlbumsBtn.TabIndex = 7;
+            this.FetchaAlbumsBtn.Text = "Albums";
+            this.FetchaAlbumsBtn.UseVisualStyleBackColor = true;
+            this.FetchaAlbumsBtn.Click += new System.EventHandler(this.FetchaAlbumsBtn_Click);
+            // 
+            // FetchPostsBtn
+            // 
+            this.FetchPostsBtn.Location = new System.Drawing.Point(43, 159);
+            this.FetchPostsBtn.Name = "FetchPostsBtn";
+            this.FetchPostsBtn.Size = new System.Drawing.Size(238, 47);
+            this.FetchPostsBtn.TabIndex = 8;
+            this.FetchPostsBtn.Text = "Posts";
+            this.FetchPostsBtn.UseVisualStyleBackColor = true;
+            this.FetchPostsBtn.Click += new System.EventHandler(this.FetchPostsBtn_Click);
+            // 
+            // FetchAccountInfoBtn
+            // 
+            this.FetchAccountInfoBtn.Location = new System.Drawing.Point(43, 230);
+            this.FetchAccountInfoBtn.Name = "FetchAccountInfoBtn";
+            this.FetchAccountInfoBtn.Size = new System.Drawing.Size(238, 47);
+            this.FetchAccountInfoBtn.TabIndex = 9;
+            this.FetchAccountInfoBtn.Text = "Account";
+            this.FetchAccountInfoBtn.UseVisualStyleBackColor = true;
+            this.FetchAccountInfoBtn.Click += new System.EventHandler(this.FetchAccountInfoBtn_Click);
+            // 
+            // FetchEventsBtn
+            // 
+            this.FetchEventsBtn.Location = new System.Drawing.Point(43, 298);
+            this.FetchEventsBtn.Name = "FetchEventsBtn";
+            this.FetchEventsBtn.Size = new System.Drawing.Size(238, 47);
+            this.FetchEventsBtn.TabIndex = 10;
+            this.FetchEventsBtn.Text = "Events";
+            this.FetchEventsBtn.UseVisualStyleBackColor = true;
+            this.FetchEventsBtn.Click += new System.EventHandler(this.FetchEventsBtn_Click);
+            // 
+            // Extra1
+            // 
+            this.Extra1.Location = new System.Drawing.Point(43, 369);
+            this.Extra1.Name = "Extra1";
+            this.Extra1.Size = new System.Drawing.Size(238, 47);
+            this.Extra1.TabIndex = 11;
+            this.Extra1.Text = "Extra";
+            this.Extra1.UseVisualStyleBackColor = true;
+            // 
+            // Extra2
+            // 
+            this.Extra2.Location = new System.Drawing.Point(43, 437);
+            this.Extra2.Name = "Extra2";
+            this.Extra2.Size = new System.Drawing.Size(238, 47);
+            this.Extra2.TabIndex = 12;
+            this.Extra2.Text = "Extra";
+            this.Extra2.UseVisualStyleBackColor = true;
+            // 
             // MainFeed
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(1303, 692);
+            this.Controls.Add(this.Extra2);
+            this.Controls.Add(this.Extra1);
+            this.Controls.Add(this.FetchEventsBtn);
+            this.Controls.Add(this.FetchAccountInfoBtn);
+            this.Controls.Add(this.FetchPostsBtn);
+            this.Controls.Add(this.FetchaAlbumsBtn);
             this.Controls.Add(this.FeedBox);
             this.Controls.Add(this.UserNamePictureBox);
             this.Controls.Add(this.pictureBox1);
@@ -121,5 +191,11 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox UserNamePictureBox;
         private System.Windows.Forms.ListBox FeedBox;
+        private System.Windows.Forms.Button FetchaAlbumsBtn;
+        private System.Windows.Forms.Button FetchPostsBtn;
+        private System.Windows.Forms.Button FetchAccountInfoBtn;
+        private System.Windows.Forms.Button FetchEventsBtn;
+        private System.Windows.Forms.Button Extra1;
+        private System.Windows.Forms.Button Extra2;
     }
 }
