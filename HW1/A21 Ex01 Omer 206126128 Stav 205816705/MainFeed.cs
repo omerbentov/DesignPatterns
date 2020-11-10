@@ -27,7 +27,6 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             FeedBox.Items.Add("Please click on a button");
         }
 
-<<<<<<< HEAD
         private void FetchaAlbumsBtn_Click(object sender, EventArgs e)
         {
             FeedBox.Items.Clear();
@@ -71,34 +70,6 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
                 FeedBox.Items.Add(event_.StartTime);
                 FeedBox.Items.Add("");
             }
-=======
-            int i = 0;
-            /*/   foreach(Post post in Global.User.Posts)
-               {
-
-                   PictureBox fromUserpicture = new PictureBox();
-                   fromUserpicture.Image = post.From.ImageSmall;
-
-                   Label fromUserName = new Label();
-                   fromUserName.Text = post.From.Name;
-
-                   Label ToUserName = new Label();
-                   fromUserName.Text = Global.User.Name;
-
-                   Label comment = new Label();
-                   comment.Text = post.Message;
-
-                   DateTime createdTime = (DateTime)post.CreatedTime;
-
-                   FeedBox.Items.Add(post.From.Name);
-
-                   i++;
-                   if(i > 1)
-                   {
-                       break;
-                   }
-               }/*/
->>>>>>> 00c62f557e4d9c71b6ce8de8947301986de16b0f
         }
     }
 }
