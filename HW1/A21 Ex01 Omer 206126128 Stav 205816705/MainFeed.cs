@@ -26,31 +26,31 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             UserNamePictureBox.Image = Global.User.ImageSmall;
 
             int i = 0;
-            foreach(Post post in Global.User.Posts)
-            {
+            /*/   foreach(Post post in Global.User.Posts)
+               {
 
-                PictureBox fromUserpicture = new PictureBox();
-                fromUserpicture.Image = post.From.ImageSmall;
+                   PictureBox fromUserpicture = new PictureBox();
+                   fromUserpicture.Image = post.From.ImageSmall;
 
-                Label fromUserName = new Label();
-                fromUserName.Text = post.From.Name;
+                   Label fromUserName = new Label();
+                   fromUserName.Text = post.From.Name;
 
-                Label ToUserName = new Label();
-                fromUserName.Text = Global.User.Name;
+                   Label ToUserName = new Label();
+                   fromUserName.Text = Global.User.Name;
 
-                Label comment = new Label();
-                comment.Text = post.Message;
+                   Label comment = new Label();
+                   comment.Text = post.Message;
 
-                DateTime createdTime = (DateTime)post.CreatedTime;
+                   DateTime createdTime = (DateTime)post.CreatedTime;
 
-                FeedBox.Items.Add(post.From.Name);
+                   FeedBox.Items.Add(post.From.Name);
 
-                i++;
-                if(i > 1)
-                {
-                    break;
-                }
-            }
+                   i++;
+                   if(i > 1)
+                   {
+                       break;
+                   }
+               }/*/
         }
     }
 }
