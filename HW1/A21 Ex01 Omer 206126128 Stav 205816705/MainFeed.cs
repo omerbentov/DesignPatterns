@@ -31,9 +31,21 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
         {
             FeedBox.Items.Clear();
             FacebookObjectCollection<Album> albums = Global.User.Albums;
+            int i = 0; 
             foreach (Album album in albums)
             {
+                PictureBox albumPicture = new PictureBox();
+                albumPicture.Location = new System.Drawing.Point(250,30+i);
+                albumPicture.Size = new System.Drawing.Size(75, 75);
+                albumPicture.SizeMode = PictureBoxSizeMode.StretchImage;
+                albumPicture.LoadAsync(album.PictureAlbumURL);
                 FeedBox.Items.Add(album.Name + "(" + album.Count + " Likes)");
+                FeedBox.Controls.Add(albumPicture);
+                FeedBox.Items.Add("------------------------------------------------------");
+                FeedBox.Items.Add("");
+                FeedBox.Items.Add("");
+                FeedBox.Items.Add("");
+                i += 100;
             }
         }
 
@@ -59,6 +71,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             FeedBox.Items.Add("Email : " + Global.User.Email);
             FeedBox.Items.Add("Birthday : " + Global.User.Birthday);
             FeedBox.Items.Add("Gender : " + Global.User.Gender);
+            FeedBox.Items.Add("Home Town:" + Global.User.Hometown);
         }
 
         private void FetchEventsBtn_Click(object sender, EventArgs e)

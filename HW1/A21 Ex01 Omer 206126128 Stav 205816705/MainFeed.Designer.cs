@@ -41,8 +41,12 @@
             this.FetchEventsBtn = new System.Windows.Forms.Button();
             this.Extra1 = new System.Windows.Forms.Button();
             this.Extra2 = new System.Windows.Forms.Button();
+            this.AlbumPic1 = new System.Windows.Forms.PictureBox();
+            this.AlbumPic2 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.UserNamePictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AlbumPic1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AlbumPic2)).BeginInit();
             this.SuspendLayout();
             // 
             // WelcomeUserNameLable
@@ -157,12 +161,32 @@
             this.Extra2.Text = "Extra";
             this.Extra2.UseVisualStyleBackColor = true;
             // 
+            // AlbumPic1
+            // 
+            this.AlbumPic1.Location = new System.Drawing.Point(803, 93);
+            this.AlbumPic1.Name = "AlbumPic1";
+            this.AlbumPic1.Size = new System.Drawing.Size(101, 82);
+            this.AlbumPic1.TabIndex = 13;
+            this.AlbumPic1.TabStop = false;
+            this.AlbumPic1.Visible = false;
+            // 
+            // AlbumPic2
+            // 
+            this.AlbumPic2.Location = new System.Drawing.Point(803, 195);
+            this.AlbumPic2.Name = "AlbumPic2";
+            this.AlbumPic2.Size = new System.Drawing.Size(101, 93);
+            this.AlbumPic2.TabIndex = 14;
+            this.AlbumPic2.TabStop = false;
+            this.AlbumPic2.Visible = false;
+            // 
             // MainFeed
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(1303, 692);
+            this.Controls.Add(this.AlbumPic2);
+            this.Controls.Add(this.AlbumPic1);
             this.Controls.Add(this.Extra2);
             this.Controls.Add(this.Extra1);
             this.Controls.Add(this.FetchEventsBtn);
@@ -178,6 +202,8 @@
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.UserNamePictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AlbumPic1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AlbumPic2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -197,5 +223,7 @@
         private System.Windows.Forms.Button FetchEventsBtn;
         private System.Windows.Forms.Button Extra1;
         private System.Windows.Forms.Button Extra2;
+        private System.Windows.Forms.PictureBox AlbumPic1;
+        private System.Windows.Forms.PictureBox AlbumPic2;
     }
 }

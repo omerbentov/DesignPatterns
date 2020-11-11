@@ -33,7 +33,17 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
 
         private void LogInBtn_Click(object sender, EventArgs e)
         {
-            LoginResult result = FacebookService.Login(Global.AppId, "user_photos", "email", "user_posts", "user_events");
+            LoginResult result = FacebookService.Login(Global.AppId, 
+                "user_photos", 
+                "email", 
+                "user_posts", 
+                "user_events", 
+                "user_birthday", 
+                "user_events", 
+                "user_hometown",
+                "user_gender",
+                "user_location",
+                "groups_access_member_info");
             Global.User = result.LoggedInUser;
             this.Hide();
             MainFeed mainFeed = new MainFeed();
