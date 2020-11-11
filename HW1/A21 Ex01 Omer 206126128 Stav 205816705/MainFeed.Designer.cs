@@ -31,9 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.WelcomeUserNameLable = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.UserNamePictureBox = new System.Windows.Forms.PictureBox();
             this.FetchaAlbumsBtn = new System.Windows.Forms.Button();
             this.FetchPostsBtn = new System.Windows.Forms.Button();
             this.FetchAccountInfoBtn = new System.Windows.Forms.Button();
@@ -45,8 +42,16 @@
             this.NewPost = new System.Windows.Forms.RichTextBox();
             this.FeedGroupBox = new System.Windows.Forms.GroupBox();
             this.posted = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.PanelDropDown = new System.Windows.Forms.Panel();
+            this.Account = new System.Windows.Forms.Button();
+            this.LogOut = new System.Windows.Forms.Button();
+            this.DropDownBar = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.UserNamePictureBox = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.PanelDropDown.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.UserNamePictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // WelcomeUserNameLable
@@ -70,35 +75,11 @@
             this.label1.Size = new System.Drawing.Size(1312, 78);
             this.label1.TabIndex = 1;
             // 
-            // imageList1
-            // 
-            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImage = global::A21_Ex01_Omer_206126128_Stav_205816705.Properties.Resources.FacebookIcom;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 9);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(54, 55);
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
-            // 
-            // UserNamePictureBox
-            // 
-            this.UserNamePictureBox.Location = new System.Drawing.Point(1198, 9);
-            this.UserNamePictureBox.Name = "UserNamePictureBox";
-            this.UserNamePictureBox.Size = new System.Drawing.Size(61, 55);
-            this.UserNamePictureBox.TabIndex = 4;
-            this.UserNamePictureBox.TabStop = false;
-            // 
             // FetchaAlbumsBtn
             // 
             this.FetchaAlbumsBtn.BackColor = System.Drawing.Color.RoyalBlue;
             this.FetchaAlbumsBtn.Font = new System.Drawing.Font("Britannic Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FetchaAlbumsBtn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.FetchaAlbumsBtn.ForeColor = System.Drawing.Color.White;
             this.FetchaAlbumsBtn.Location = new System.Drawing.Point(22, 256);
             this.FetchaAlbumsBtn.Name = "FetchaAlbumsBtn";
             this.FetchaAlbumsBtn.Size = new System.Drawing.Size(238, 45);
@@ -111,6 +92,7 @@
             // 
             this.FetchPostsBtn.BackColor = System.Drawing.Color.RoyalBlue;
             this.FetchPostsBtn.Font = new System.Drawing.Font("Britannic Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FetchPostsBtn.ForeColor = System.Drawing.Color.White;
             this.FetchPostsBtn.Location = new System.Drawing.Point(22, 150);
             this.FetchPostsBtn.Name = "FetchPostsBtn";
             this.FetchPostsBtn.Size = new System.Drawing.Size(238, 47);
@@ -123,6 +105,7 @@
             // 
             this.FetchAccountInfoBtn.BackColor = System.Drawing.Color.RoyalBlue;
             this.FetchAccountInfoBtn.Font = new System.Drawing.Font("Britannic Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FetchAccountInfoBtn.ForeColor = System.Drawing.Color.White;
             this.FetchAccountInfoBtn.Location = new System.Drawing.Point(22, 97);
             this.FetchAccountInfoBtn.Name = "FetchAccountInfoBtn";
             this.FetchAccountInfoBtn.Size = new System.Drawing.Size(238, 47);
@@ -135,6 +118,7 @@
             // 
             this.FetchEventsBtn.BackColor = System.Drawing.Color.RoyalBlue;
             this.FetchEventsBtn.Font = new System.Drawing.Font("Britannic Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FetchEventsBtn.ForeColor = System.Drawing.Color.White;
             this.FetchEventsBtn.Location = new System.Drawing.Point(22, 307);
             this.FetchEventsBtn.Name = "FetchEventsBtn";
             this.FetchEventsBtn.Size = new System.Drawing.Size(238, 47);
@@ -147,6 +131,7 @@
             // 
             this.Friends.BackColor = System.Drawing.Color.RoyalBlue;
             this.Friends.Font = new System.Drawing.Font("Britannic Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Friends.ForeColor = System.Drawing.Color.White;
             this.Friends.Location = new System.Drawing.Point(22, 203);
             this.Friends.Name = "Friends";
             this.Friends.Size = new System.Drawing.Size(238, 47);
@@ -158,6 +143,7 @@
             // 
             this.button1.BackColor = System.Drawing.Color.RoyalBlue;
             this.button1.Font = new System.Drawing.Font("Britannic Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Location = new System.Drawing.Point(22, 360);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(238, 47);
@@ -169,6 +155,7 @@
             // 
             this.button2.BackColor = System.Drawing.Color.RoyalBlue;
             this.button2.Font = new System.Drawing.Font("Britannic Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.Color.White;
             this.button2.Location = new System.Drawing.Point(22, 413);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(238, 47);
@@ -180,6 +167,7 @@
             // 
             this.button3.BackColor = System.Drawing.Color.RoyalBlue;
             this.button3.Font = new System.Drawing.Font("Britannic Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.ForeColor = System.Drawing.Color.White;
             this.button3.Location = new System.Drawing.Point(22, 466);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(238, 47);
@@ -204,14 +192,15 @@
             this.FeedGroupBox.Font = new System.Drawing.Font("Berlin Sans FB", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FeedGroupBox.Location = new System.Drawing.Point(276, 256);
             this.FeedGroupBox.Name = "FeedGroupBox";
-            this.FeedGroupBox.Size = new System.Drawing.Size(693, 411);
+            this.FeedGroupBox.Size = new System.Drawing.Size(693, 762);
             this.FeedGroupBox.TabIndex = 20;
             this.FeedGroupBox.TabStop = false;
             // 
             // posted
             // 
-            this.posted.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.posted.BackColor = System.Drawing.Color.RoyalBlue;
             this.posted.Font = new System.Drawing.Font("Britannic Bold", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.posted.ForeColor = System.Drawing.Color.White;
             this.posted.Location = new System.Drawing.Point(878, 215);
             this.posted.Name = "posted";
             this.posted.Size = new System.Drawing.Size(91, 35);
@@ -220,6 +209,74 @@
             this.posted.UseVisualStyleBackColor = false;
             this.posted.Visible = false;
             // 
+            // PanelDropDown
+            // 
+            this.PanelDropDown.Controls.Add(this.UserNamePictureBox);
+            this.PanelDropDown.Controls.Add(this.Account);
+            this.PanelDropDown.Controls.Add(this.LogOut);
+            this.PanelDropDown.Controls.Add(this.DropDownBar);
+            this.PanelDropDown.Location = new System.Drawing.Point(1155, 9);
+            this.PanelDropDown.MaximumSize = new System.Drawing.Size(139, 150);
+            this.PanelDropDown.MinimumSize = new System.Drawing.Size(139, 66);
+            this.PanelDropDown.Name = "PanelDropDown";
+            this.PanelDropDown.Size = new System.Drawing.Size(139, 66);
+            this.PanelDropDown.TabIndex = 22;
+            // 
+            // Account
+            // 
+            this.Account.BackColor = System.Drawing.Color.RoyalBlue;
+            this.Account.Location = new System.Drawing.Point(1, 62);
+            this.Account.Name = "Account";
+            this.Account.Size = new System.Drawing.Size(139, 44);
+            this.Account.TabIndex = 23;
+            this.Account.Text = "Account";
+            this.Account.UseVisualStyleBackColor = false;
+            // 
+            // LogOut
+            // 
+            this.LogOut.BackColor = System.Drawing.Color.RoyalBlue;
+            this.LogOut.Location = new System.Drawing.Point(0, 103);
+            this.LogOut.Name = "LogOut";
+            this.LogOut.Size = new System.Drawing.Size(139, 44);
+            this.LogOut.TabIndex = 23;
+            this.LogOut.Text = "Log out";
+            this.LogOut.UseVisualStyleBackColor = false;
+            // 
+            // DropDownBar
+            // 
+            this.DropDownBar.BackColor = System.Drawing.Color.RoyalBlue;
+            this.DropDownBar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.DropDownBar.Image = global::A21_Ex01_Omer_206126128_Stav_205816705.Properties.Resources.white_drop_down_arrow1;
+            this.DropDownBar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.DropDownBar.Location = new System.Drawing.Point(0, 0);
+            this.DropDownBar.Name = "DropDownBar";
+            this.DropDownBar.Size = new System.Drawing.Size(139, 66);
+            this.DropDownBar.TabIndex = 21;
+            this.DropDownBar.UseVisualStyleBackColor = false;
+            this.DropDownBar.Click += new System.EventHandler(this.DropDownBar_Click);
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 15;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // UserNamePictureBox
+            // 
+            this.UserNamePictureBox.Location = new System.Drawing.Point(16, 5);
+            this.UserNamePictureBox.Name = "UserNamePictureBox";
+            this.UserNamePictureBox.Size = new System.Drawing.Size(61, 55);
+            this.UserNamePictureBox.TabIndex = 4;
+            this.UserNamePictureBox.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox1.Location = new System.Drawing.Point(12, 9);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(54, 55);
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
+            // 
             // MainFeed
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
@@ -227,7 +284,8 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ClientSize = new System.Drawing.Size(1303, 692);
+            this.ClientSize = new System.Drawing.Size(1306, 1030);
+            this.Controls.Add(this.PanelDropDown);
             this.Controls.Add(this.FeedGroupBox);
             this.Controls.Add(this.posted);
             this.Controls.Add(this.NewPost);
@@ -239,15 +297,16 @@
             this.Controls.Add(this.FetchAccountInfoBtn);
             this.Controls.Add(this.FetchPostsBtn);
             this.Controls.Add(this.FetchaAlbumsBtn);
-            this.Controls.Add(this.UserNamePictureBox);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.WelcomeUserNameLable);
             this.Controls.Add(this.label1);
             this.Name = "MainFeed";
             this.Text = "newPost";
+            this.Load += new System.EventHandler(this.MainFeed_Load);
             this.Click += new System.EventHandler(this.FetchaAlbumsBtn_Click);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.PanelDropDown.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.UserNamePictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -257,9 +316,7 @@
 
         private System.Windows.Forms.Label WelcomeUserNameLable;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox UserNamePictureBox;
         private System.Windows.Forms.Button FetchaAlbumsBtn;
         private System.Windows.Forms.Button FetchPostsBtn;
         private System.Windows.Forms.Button FetchAccountInfoBtn;
@@ -271,5 +328,11 @@
         private System.Windows.Forms.RichTextBox NewPost;
         private System.Windows.Forms.GroupBox FeedGroupBox;
         private System.Windows.Forms.Button posted;
+        private System.Windows.Forms.PictureBox UserNamePictureBox;
+        private System.Windows.Forms.Button DropDownBar;
+        private System.Windows.Forms.Panel PanelDropDown;
+        private System.Windows.Forms.Button Account;
+        private System.Windows.Forms.Button LogOut;
+        private System.Windows.Forms.Timer timer1;
     }
 }

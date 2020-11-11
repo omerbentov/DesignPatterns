@@ -102,5 +102,8 @@
   <ItemGroup>
     <None Include="Assets\FacebookIcom.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\white-drop-down-arrow.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

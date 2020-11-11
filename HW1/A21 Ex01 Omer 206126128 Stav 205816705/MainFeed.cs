@@ -14,6 +14,13 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
 {
     public partial class MainFeed : Form
     {
+        private const int k_PostsMargin = 20;
+        private const int k_PostWidth = 500;
+        private const string k_DefaultFacebookPictureUrl = "./Assets/FacebookDefauleProfilePicture.PNG";
+        private const int k_PostProfilePictureSize = 55;
+
+        private bool m_IsCollapsed = false;
+
         public MainFeed()
         {
             InitializeComponent();
@@ -43,10 +50,14 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
                 FeedGroupBox.Controls.Add(albumPicture);
 
                 Label albumName = new Label();
-                albumName.Text = album.Name + "(" + album.Count + " Likes)";
+                albumName.Text = album.Name;
                 albumName.ForeColor = Color.Black;
                 albumName.Location = new Point(picLocation.X, picLocation.Y - albumName.Size.Height);
                 FeedGroupBox.Controls.Add(albumName);
+
+                Point countLabelPoint = new Point(picLocation.X, picLocation.Y + albumPicture.Height);
+                Label albumCount = createNewDefaultLabel(album.Count + " Photos", countLabelPoint);
+                FeedGroupBox.Controls.Add(albumCount);
 
                 picLocation = calculateNextAlbumCUverPhotoPosition(picLocation);
             }
@@ -69,49 +80,98 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
         private void FetchPostsBtn_Click(object sender, EventArgs e)
         {
             FeedGroupBox.Controls.Clear();
+            FeedGroupBox.Visible = true;
+            FeedGroupBox.BackColor = Color.Transparent;
+            FeedGroupBox.Width = NewPost.Width;
 
-            Point labelLocation = new Point(20, 10);
-            int Y_Offset;
+            Point groupBoxLocation = new Point();
+            Point baseLocation = new Point(20, 10);
+
             foreach (Post post in Global.User.Posts)
             {
-                Label postFromName = new Label();
-                postFromName.Text = post.From.Name;
-                postFromName.Location = labelLocation;
-                FeedGroupBox.Controls.Add(postFromName);
+                int Y_Offset = 1;
 
-                if (!postFromName.Text.Equals(Global.User.Name))
+                GroupBox singlePostGroupBox = createPostGroupPost(groupBoxLocation);
+
+                PictureBox defaultPic = createDefaultFacebookProfilePicture(singlePostGroupBox);
+
+                PictureBox myPic = new PictureBox();
+                myPic.Image = Global.User.ImageSmall;
+                myPic.MaximumSize = new Size(new Point(k_PostProfilePictureSize, k_PostProfilePictureSize));
+
+                if (post.From.Name != null)
                 {
-                    Label ToMyUser = new Label();
-                    ToMyUser.Text = "->" + Global.User.Name;
-                    ToMyUser.Location = new Point(labelLocation.X + postFromName.Width, labelLocation.Y);
-                    FeedGroupBox.Controls.Add(ToMyUser);
-                }
+                    Point labelLocation = baseLocation;
+                    labelLocation.X += defaultPic.Width;
+                    Label postFromName = createNewDefaultLabel(post.From.Name, labelLocation);
+                    singlePostGroupBox.Controls.Add(postFromName);
 
-                Y_Offset = 1;
-                if (post.Name != null)
-                {
-                    Label postName = new Label();
-                    postName.Text = post.Name;
-                    postName.Location = new Point(labelLocation.X, labelLocation.Y + Y_Offset * postFromName.Height);
-                    Y_Offset++;
-                    FeedGroupBox.Controls.Add(postName);
-                }
+                    if (!postFromName.Text.Equals(Global.User.Name))
+                    {
+                        Point location = new Point(postFromName.Location.X + postFromName.Width, postFromName.Location.Y);
+                        Label ToMyUser = createNewDefaultLabel("->" + Global.User.Name, location);
+                        singlePostGroupBox.Controls.Add(ToMyUser);
+                        singlePostGroupBox.Controls.Add(defaultPic);
+                    }
+                    else
+                    {
+                        singlePostGroupBox.Controls.Add(myPic);
+                    }
 
-                if (post.Message != null)
-                {
-                    Label postMessage = new Label();
-                    postMessage.Text = post.Message;
-                    postMessage.Location = new Point(labelLocation.X, labelLocation.Y + Y_Offset * postFromName.Height);
-                    FeedGroupBox.Controls.Add(postMessage);
-                }
+                    if (post.Name != null)
+                    {
+                        Point location = new Point(postFromName.Location.X, baseLocation.Y + Y_Offset * postFromName.Height);
+                        Label postName = createNewDefaultLabel(post.Name, location);
+                        Y_Offset++;
+                        singlePostGroupBox.Controls.Add(postName);
+                    }
 
-                labelLocation = calculateNextPostPosition(labelLocation);
+                    if (post.CreatedTime != null)
+                    {
+                        Point location = new Point(postFromName.Location.X, baseLocation.Y + Y_Offset * postFromName.Height);
+                        Label postDate = createNewDefaultLabel(post.CreatedTime.ToString(), location);
+                        singlePostGroupBox.Controls.Add(postDate);
+                    }
+
+                    if (post.Message != null)
+                    {
+                        Point location = new Point(defaultPic.Location.X, defaultPic.Location.Y + defaultPic.Height);
+                        Label postMessage = createNewDefaultLabel(post.Message, location);
+                        Y_Offset++;
+                        singlePostGroupBox.Controls.Add(postMessage);
+                    }
+
+                    FeedGroupBox.Controls.Add(singlePostGroupBox);
+                    groupBoxLocation = calculateNextPostPosition(groupBoxLocation, singlePostGroupBox.Height);
+                }
             }
         }
 
-        private Point calculateNextPostPosition(Point i_prevPoint)
+        private GroupBox createPostGroupPost(Point i_GroupBoxLoaction)
         {
-            return new Point(i_prevPoint.X, i_prevPoint.Y + 80);
+            GroupBox singlePostGroupBox = new GroupBox();
+            singlePostGroupBox.AutoSize = true;
+            singlePostGroupBox.BackColor = Color.White;
+            singlePostGroupBox.MaximumSize = new Size(FeedGroupBox.Width, int.MaxValue);
+            singlePostGroupBox.Width = NewPost.Width;
+            singlePostGroupBox.Location = i_GroupBoxLoaction;
+            singlePostGroupBox.Visible = true;
+
+            return singlePostGroupBox;
+        }
+
+        private PictureBox createDefaultFacebookProfilePicture(GroupBox i_SinglePostGroupBox)
+        {
+            PictureBox defaultPic = new PictureBox();
+            defaultPic.LoadAsync(k_DefaultFacebookPictureUrl);
+            defaultPic.MaximumSize = new Size(new Point(k_PostProfilePictureSize, k_PostProfilePictureSize));
+
+            return defaultPic;
+        }
+
+        private Point calculateNextPostPosition(Point i_prevPoint, int i_PrevGroupBoxHeight)
+        {
+            return new Point(i_prevPoint.X, i_prevPoint.Y + i_PrevGroupBoxHeight + k_PostsMargin);
         }
 
         private void FetchAccountInfoBtn_Click(object sender, EventArgs e)
@@ -144,5 +204,47 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             
         }
 
+        private Label createNewDefaultLabel(string i_text, Point i_Location)
+        {
+            Label tempLabel = new Label();
+            tempLabel.AutoSize = true;
+            tempLabel.MaximumSize = new Size(FeedGroupBox.Width, int.MaxValue);
+            tempLabel.Text = i_text;
+            tempLabel.Location = i_Location;
+
+            return tempLabel;
+        }
+
+        private void MainFeed_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (m_IsCollapsed)
+            {
+                PanelDropDown.Height += 10;
+                if (PanelDropDown.Size == PanelDropDown.MaximumSize)
+                {
+                    timer1.Stop();
+                    m_IsCollapsed = false;
+                }
+            }
+            else
+            {
+                PanelDropDown.Height -= 10;
+                if (PanelDropDown.Size == PanelDropDown.MinimumSize)
+                {
+                    timer1.Stop();
+                    m_IsCollapsed = true;
+                }
+            }
+        }
+
+        private void DropDownBar_Click(object sender, EventArgs e)
+        {
+            timer1.Start();
+        }
     }
 }
