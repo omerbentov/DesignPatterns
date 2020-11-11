@@ -11,3 +11,4 @@ C:\Users\Stav\Desktop\מדעי המחשב\שנה ג\Design Patterns\DesignPatter
 C:\Users\Stav\Desktop\מדעי המחשב\שנה ג\Design Patterns\DesignPatterns\HW1\A21 Ex01 Omer 206126128 Stav 205816705\obj\Debug\A21 Ex01 Omer 206126128 Stav 205816705.csproj.CopyComplete
 C:\Users\Stav\Desktop\מדעי המחשב\שנה ג\Design Patterns\DesignPatterns\HW1\A21 Ex01 Omer 206126128 Stav 205816705\obj\Debug\A21 Ex01 Omer 206126128 Stav 205816705.exe
 C:\Users\Stav\Desktop\מדעי המחשב\שנה ג\Design Patterns\DesignPatterns\HW1\A21 Ex01 Omer 206126128 Stav 205816705\obj\Debug\A21 Ex01 Omer 206126128 Stav 205816705.pdb
+C:\Users\Stav\Desktop\מדעי המחשב\שנה ג\Design Patterns\DesignPatterns\HW1\A21 Ex01 Omer 206126128 Stav 205816705\obj\Debug\A21 Ex01 Omer 206126128 Stav 205816705.csprojAssemblyReference.cache
