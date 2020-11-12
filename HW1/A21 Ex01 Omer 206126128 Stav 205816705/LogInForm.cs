@@ -42,8 +42,14 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
                 "user_events", 
                 "user_hometown",
                 "user_gender",
-                "user_location",
-                "groups_access_member_info");
+                "public_profile",
+                "user_age_range",
+                "user_link",
+                "user_tagged_places",
+                "user_videos",
+                "user_friends",
+                "user_likes");
+
             Global.User = result.LoggedInUser;
             this.Hide();
             MainFeed mainFeed = new MainFeed();

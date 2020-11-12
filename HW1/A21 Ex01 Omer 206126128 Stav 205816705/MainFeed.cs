@@ -174,16 +174,131 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             return new Point(i_prevPoint.X, i_prevPoint.Y + i_PrevGroupBoxHeight + k_PostsMargin);
         }
 
+        private Point calculateNextLabelPosition(Point i_prevPoint)
+        {
+            return new Point(i_prevPoint.X , i_prevPoint.Y + 50);
+        }
+
         private void FetchAccountInfoBtn_Click(object sender, EventArgs e)
         {
-            /*
-            FeedBox.Items.Clear();
-            FeedBox.Items.Add("Name : " + Global.User.Name);
-            FeedBox.Items.Add("Email : " + Global.User.Email);
-            FeedBox.Items.Add("Birthday : " + Global.User.Birthday);
-            FeedBox.Items.Add("Gender : " + Global.User.Gender);
-            FeedBox.Items.Add("Home Town:" + Global.User.Hometown);
-            */
+            FeedGroupBox.Controls.Clear();
+            FeedGroupBox.Visible = true;
+            Label top = new Label();
+            top.Text = "Information About Your Account" ;
+            FeedGroupBox.Controls.Add(top);
+            Label line = new Label();
+            line.Text = "----------------------------------------------------------";
+            line.Width = 500;
+            line.Location = new Point(0,30);
+            FeedGroupBox.Controls.Add(line);
+            Point LabelLocation = new Point(10,10);
+            Point baseLocation = new Point(10, 10);
+            
+            if (Global.User.Name == null)
+            {
+                CreateAddingButton("Name :", LabelLocation);
+            }
+            else
+            {
+                CreateInformationLabel("Name :", Global.User.Name, baseLocation);
+            }
+
+            LabelLocation = new Point(LabelLocation.X, LabelLocation.Y + 50);
+
+            if (Global.User.Email == null)
+            {
+                CreateAddingButton("Email :", LabelLocation);
+            }
+            else
+            {
+                CreateInformationLabel("Email :", Global.User.Email, LabelLocation);
+            }
+
+            LabelLocation = new Point(LabelLocation.X, LabelLocation.Y + 50);
+
+            if (Global.User.Birthday == null)
+            {
+                CreateAddingButton("Birthday :", LabelLocation);
+            }
+            else
+            {
+                CreateInformationLabel("Birthday :", Global.User.Birthday, LabelLocation);
+            }
+
+            LabelLocation = new Point(LabelLocation.X, LabelLocation.Y + 50);
+
+            if (Global.User.Gender == null)
+            {
+                CreateAddingButton("Gender :", LabelLocation);
+            }
+            else
+            {
+                CreateInformationLabel("Gender :", Global.User.Gender.ToString(), LabelLocation);
+            }
+
+            LabelLocation = new Point(LabelLocation.X, LabelLocation.Y + 50);
+
+            if (Global.User.Hometown == null)
+            {
+                CreateAddingButton("Home Town :", LabelLocation);
+            }
+            else
+            {
+                CreateInformationLabel("Home Town :", Global.User.Hometown.ToString(), LabelLocation);
+            }
+
+            LabelLocation = new Point(LabelLocation.X, LabelLocation.Y + 50);
+
+            if (Global.User.Educations == null)
+            {
+                CreateAddingButton("Education :", LabelLocation);
+            }
+            else
+            {
+                CreateInformationLabel("Education :", Global.User.Educations.ToString(), LabelLocation);
+            }
+
+            LabelLocation = new Point(LabelLocation.X, LabelLocation.Y + 50);
+
+            if (Global.User.RelationshipStatus == null)
+            {
+                CreateAddingButton("RelationshipStatus :", LabelLocation);
+            }
+            else
+            {
+                CreateInformationLabel("RelationshipStatus  :", Global.User.RelationshipStatus.ToString(), LabelLocation);
+            }
+
+        }
+
+        private void CreateInformationLabel(String i_type, String i_user, Point i_prevPoint)
+        {
+            Label tempLabel = new Label();
+            tempLabel.Text = i_type + i_user;
+            tempLabel.Location = calculateNextLabelPosition(i_prevPoint);
+            tempLabel.Width = 200;
+            FeedGroupBox.Controls.Add(tempLabel);
+        }
+
+        private Point calculateNextButtonPosition(Point i_prevPoint, int i_labelWidth)
+        {
+            return new Point(i_labelWidth + 10 , i_prevPoint.Y + 50);
+        }
+
+        private void CreateAddingButton(String i_type, Point i_prevPoint)
+        {
+            Button addingButton = new Button();
+            addingButton.Text = "Add Information";
+            addingButton.BackColor = Color.White;
+            addingButton.Visible = true;
+            addingButton.AutoSize = true;
+            Label tempLabel = new Label();
+            tempLabel.Text = i_type;
+            tempLabel.Width = 200;
+            tempLabel.Location = calculateNextLabelPosition(i_prevPoint);
+            addingButton.Location = calculateNextButtonPosition(i_prevPoint, tempLabel.Width);
+            FeedGroupBox.Controls.Add(tempLabel);
+            FeedGroupBox.Controls.Add(addingButton);
         }
 
         private void FetchEventsBtn_Click(object sender, EventArgs e)

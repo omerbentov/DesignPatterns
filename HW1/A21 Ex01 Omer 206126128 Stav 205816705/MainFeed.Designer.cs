@@ -43,11 +43,11 @@
             this.FeedGroupBox = new System.Windows.Forms.GroupBox();
             this.posted = new System.Windows.Forms.Button();
             this.PanelDropDown = new System.Windows.Forms.Panel();
+            this.UserNamePictureBox = new System.Windows.Forms.PictureBox();
             this.Account = new System.Windows.Forms.Button();
             this.LogOut = new System.Windows.Forms.Button();
             this.DropDownBar = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.UserNamePictureBox = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.PanelDropDown.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.UserNamePictureBox)).BeginInit();
@@ -222,6 +222,14 @@
             this.PanelDropDown.Size = new System.Drawing.Size(139, 66);
             this.PanelDropDown.TabIndex = 22;
             // 
+            // UserNamePictureBox
+            // 
+            this.UserNamePictureBox.Location = new System.Drawing.Point(16, 5);
+            this.UserNamePictureBox.Name = "UserNamePictureBox";
+            this.UserNamePictureBox.Size = new System.Drawing.Size(61, 55);
+            this.UserNamePictureBox.TabIndex = 4;
+            this.UserNamePictureBox.TabStop = false;
+            // 
             // Account
             // 
             this.Account.BackColor = System.Drawing.Color.RoyalBlue;
@@ -259,14 +267,6 @@
             // 
             this.timer1.Interval = 15;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // UserNamePictureBox
-            // 
-            this.UserNamePictureBox.Location = new System.Drawing.Point(16, 5);
-            this.UserNamePictureBox.Name = "UserNamePictureBox";
-            this.UserNamePictureBox.Size = new System.Drawing.Size(61, 55);
-            this.UserNamePictureBox.TabIndex = 4;
-            this.UserNamePictureBox.TabStop = false;
             // 
             // pictureBox1
             // 
