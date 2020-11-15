@@ -35,7 +35,7 @@
             this.FetchPostsBtn = new System.Windows.Forms.Button();
             this.FetchEventsBtn = new System.Windows.Forms.Button();
             this.Friends = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.GamesBtn = new System.Windows.Forms.Button();
             this.HomeBtn = new System.Windows.Forms.Button();
             this.NewPost = new System.Windows.Forms.RichTextBox();
             this.FeedGroupBox = new System.Windows.Forms.GroupBox();
@@ -130,17 +130,18 @@
             this.Friends.Text = "Friends";
             this.Friends.UseVisualStyleBackColor = false;
             // 
-            // button2
+            // GamesBtn
             // 
-            this.button2.BackColor = System.Drawing.Color.RoyalBlue;
-            this.button2.Font = new System.Drawing.Font("Britannic Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(22, 360);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(238, 47);
-            this.button2.TabIndex = 14;
-            this.button2.Text = "Chat";
-            this.button2.UseVisualStyleBackColor = false;
+            this.GamesBtn.BackColor = System.Drawing.Color.RoyalBlue;
+            this.GamesBtn.Font = new System.Drawing.Font("Britannic Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GamesBtn.ForeColor = System.Drawing.Color.White;
+            this.GamesBtn.Location = new System.Drawing.Point(22, 360);
+            this.GamesBtn.Name = "GamesBtn";
+            this.GamesBtn.Size = new System.Drawing.Size(238, 47);
+            this.GamesBtn.TabIndex = 14;
+            this.GamesBtn.Text = "Games";
+            this.GamesBtn.UseVisualStyleBackColor = false;
+            this.GamesBtn.Click += new System.EventHandler(this.GamesBtn_Click);
             // 
             // HomeBtn
             // 
@@ -316,7 +317,7 @@
             this.Controls.Add(this.posted);
             this.Controls.Add(this.NewPost);
             this.Controls.Add(this.HomeBtn);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.GamesBtn);
             this.Controls.Add(this.Friends);
             this.Controls.Add(this.FetchEventsBtn);
             this.Controls.Add(this.FetchPostsBtn);
@@ -348,7 +349,7 @@
         private System.Windows.Forms.Button FetchPostsBtn;
         private System.Windows.Forms.Button FetchEventsBtn;
         private System.Windows.Forms.Button Friends;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button GamesBtn;
         private System.Windows.Forms.Button HomeBtn;
         private System.Windows.Forms.RichTextBox NewPost;
         private System.Windows.Forms.GroupBox FeedGroupBox;

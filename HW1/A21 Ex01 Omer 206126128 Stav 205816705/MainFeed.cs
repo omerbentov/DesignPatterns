@@ -21,6 +21,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
         private const int k_NumOfAlbumsInHomePage = 4;
 
         private bool m_IsCollapsed = false;
+        private List<Button> m_AllGames = new List<Button>();
 
         public MainFeed()
         {
@@ -416,6 +417,105 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             Point nextPosition = addPosts(groupBoxLocation, baseLocation, k_NumOfPostsInHomePage);
             nextPosition.Y += k_PostsMargin;
             addAlbums(nextPosition, k_NumOfAlbumsInHomePage);
+        }
+
+        // Games
+        private void GamesBtn_Click(object sender, EventArgs e)
+        {
+            NewPost.Hide();
+            FeedGroupBox.Hide();
+
+            Label Header = createNewDefaultLabel("Games", NewPost.Location);
+            Controls.Add(Header);
+
+            Button guessingGameBtn = new Button();
+            guessingGameBtn.Text = "Guessing game";
+            guessingGameBtn.Click += BirthdaysGameBtn_Click;
+            guessingGameBtn.Location = new Point(NewPost.Location.X, NewPost.Location.Y + k_PostsMargin);
+            m_AllGames.Add(guessingGameBtn);
+
+            Button g = new Button();
+            g.Text = "G";
+            g.Click += BirthdaysGameBtn_Click;
+            g.Location = new Point(NewPost.Location.X, guessingGameBtn.Location.Y + guessingGameBtn.Height + k_PostsMargin);
+            m_AllGames.Add(g);
+
+            addAllButtunsToConstorls(m_AllGames);
+        }
+
+        void addAllButtunsToConstorls(List<Button> i_Buttons)
+        {
+            foreach(Button button in i_Buttons)
+            {
+                Controls.Add(button);
+            }
+        }
+
+        private void removeAllButtunsFromConstorls(List<Button> i_Buttons)
+        {
+            foreach (Button button in i_Buttons)
+            {
+                Controls.Remove(button);
+            }
+
+        }
+
+        private void BirthdaysGameBtn_Click(object sender, EventArgs e)
+        {
+            removeAllButtunsFromConstorls(m_AllGames);
+
+            Random rnd = new Random();
+            int typeOfQuestions = rnd.Next(0, 2);
+
+            switch(typeOfQuestions)
+            {
+                case 0:
+                    // In this case we need to ranomize a friend and get his birthday - but permission denied
+                    // newQuestion(sender, "How old is <RandomUserFriend()FullName>?", new Point(NewPost.Location.X, NewPost.Location.X + k_PostsMargin));
+                    newQuestion(sender, "How old is Guy Ronen?", new Point(NewPost.Location.X, NewPost.Location.X + k_PostsMargin));
+                    break;
+                case 1:
+
+                    break;
+            }
+        }
+
+        private void newQuestion(object sender, string i_Question, Point i_BaseLOaction)
+        {
+            Label QuestionLabel = createNewDefaultLabel(i_Question, i_BaseLOaction);
+            Controls.Add(QuestionLabel);
+
+            TextBox answerTextBox = new TextBox();
+            answerTextBox.Location = new Point(QuestionLabel.Location.X + QuestionLabel.Width + k_PostsMargin, QuestionLabel.Location.Y);
+            Controls.Add(answerTextBox);
+
+            Button SubmitBtn = new Button();
+            SubmitBtn.Text = "Submit";
+            SubmitBtn.Location = new Point(answerTextBox.Location.X + answerTextBox.Width + k_PostsMargin, QuestionLabel.Location.Y);
+            SubmitBtn.Click += (sender_, EventArgs) => {
+                buttonNext_Click(
+                    sender,
+                    EventArgs,
+                    answerTextBox.Text.Equals("45"),
+                    new Point(QuestionLabel.Location.X, QuestionLabel.Location.Y + QuestionLabel.Height)
+                    );
+            };
+            Controls.Add(SubmitBtn);
+        }
+
+        private void buttonNext_Click(object sender, EventArgs eventArgs, bool i_IsCorrect, Point i_Location)
+        {
+            Label isCorrectLabel = createNewDefaultLabel(i_IsCorrect.ToString(), i_Location);
+            Controls.Add(isCorrectLabel);
+            isCorrectLabel.BringToFront();
+
+            if (i_IsCorrect)
+            {
+                newQuestion(
+                    sender,
+                    "How old is guy ronen",
+                    new Point(i_Location.X, i_Location.Y + (sender as Button).Height + k_PostsMargin));
+            }
         }
     }
 }
