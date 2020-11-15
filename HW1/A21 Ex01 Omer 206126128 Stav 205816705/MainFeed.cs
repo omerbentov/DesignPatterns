@@ -16,7 +16,6 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
     {
         private const int k_PostsMargin = 20;
         private const int k_PostWidth = 500;
-        private const string k_DefaultFacebookPictureUrl = "./Assets/FacebookDefauleProfilePicture.PNG";
         private const int k_PostProfilePictureSize = 55;
 
         private bool m_IsCollapsed = false;
@@ -29,7 +28,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
 
         private void InitializeChildrenComponents()
         {
-            WelcomeUserNameLable.Text = "Welcome " + Global.User.Name;
+            WelcomeUserNameLable.Text = Global.User.FirstName;
             UserNamePictureBox.Image = Global.User.ImageSmall;
         }
 
@@ -83,6 +82,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             FeedGroupBox.Visible = true;
             FeedGroupBox.BackColor = Color.Transparent;
             FeedGroupBox.Width = NewPost.Width;
+            FeedGroupBox.MaximumSize = new Size(new Point(NewPost.Width, int.MaxValue));
 
             Point groupBoxLocation = new Point();
             Point baseLocation = new Point(20, 10);
@@ -163,8 +163,9 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
         private PictureBox createDefaultFacebookProfilePicture(GroupBox i_SinglePostGroupBox)
         {
             PictureBox defaultPic = new PictureBox();
-            defaultPic.LoadAsync(k_DefaultFacebookPictureUrl);
+            defaultPic.Image = Properties.Resources.FacebookDefaultProfilePicture;
             defaultPic.MaximumSize = new Size(new Point(k_PostProfilePictureSize, k_PostProfilePictureSize));
+            defaultPic.SizeMode = PictureBoxSizeMode.Zoom;
 
             return defaultPic;
         }
@@ -276,7 +277,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             Label tempLabel = new Label();
             tempLabel.Text = i_type + i_user;
             tempLabel.Location = calculateNextLabelPosition(i_prevPoint);
-            tempLabel.Width = 200;
+            tempLabel.MaximumSize = new Size(new Point((int)(NewPost.Width * 0.4), int.MaxValue));
             FeedGroupBox.Controls.Add(tempLabel);
         }
 

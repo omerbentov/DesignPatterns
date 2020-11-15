@@ -105,5 +105,17 @@
   <ItemGroup>
     <None Include="Assets\white-drop-down-arrow.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\FacebookDefaultProfilePicture.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\drop-down-arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\facebook-logo-png-38362.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\searchBtn.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

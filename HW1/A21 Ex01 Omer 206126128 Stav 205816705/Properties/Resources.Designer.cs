@@ -73,6 +73,36 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap drop_down_arrow {
+            get {
+                object obj = ResourceManager.GetObject("drop-down-arrow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap facebook_logo_png_38362 {
+            get {
+                object obj = ResourceManager.GetObject("facebook-logo-png-38362", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap FacebookDefaultProfilePicture {
+            get {
+                object obj = ResourceManager.GetObject("FacebookDefaultProfilePicture", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap FacebookIcom {
             get {
                 object obj = ResourceManager.GetObject("FacebookIcom", resourceCulture);
@@ -86,6 +116,16 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705.Properties {
         internal static System.Drawing.Bitmap FacebookIcom1 {
             get {
                 object obj = ResourceManager.GetObject("FacebookIcom1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap searchBtn {
+            get {
+                object obj = ResourceManager.GetObject("searchBtn", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
