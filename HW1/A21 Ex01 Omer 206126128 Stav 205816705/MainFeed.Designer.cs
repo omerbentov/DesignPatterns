@@ -330,7 +330,6 @@
             this.ForeColor = System.Drawing.Color.Black;
             this.Name = "MainFeed";
             this.Text = "newPost";
-            this.Click += new System.EventHandler(this.FetchaAlbumsBtn_Click);
             this.PanelDropDown.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SearchBtn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();

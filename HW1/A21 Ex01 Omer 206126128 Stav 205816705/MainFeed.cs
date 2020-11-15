@@ -19,9 +19,13 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
         private const int k_PostProfilePictureSize = 55;
         private const int k_NumOfPostsInHomePage = 3;
         private const int k_NumOfAlbumsInHomePage = 4;
+        private const int k_NumOfGuessingGameQuestions = 5;
 
         private bool m_IsCollapsed = false;
+        private int m_Score = 0;
+        private int m_GuessingGameQuestionNumber = 1;
         private List<Button> m_AllGames = new List<Button>();
+        private List<Control> m_GuessingGameControls = new List<Control>();
 
         public MainFeed()
         {
@@ -39,7 +43,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
 
         private void FetchaAlbumsBtn_Click(object sender, EventArgs e)
         {
-            resetFeedGroupBox();
+            transition();
 
             Point picLocation = new Point(20, 50);
 
@@ -95,12 +99,19 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
 
         private void FetchPostsBtn_Click(object sender, EventArgs e)
         {
-            resetFeedGroupBox();
+            transition();
 
             Point groupBoxLocation = new Point();
             Point baseLocation = new Point(20, 10);
 
             addPosts(groupBoxLocation, baseLocation, int.MaxValue);
+        }
+
+        private void transition()
+        {
+            NewPost.Visible = true;
+            resetFeedGroupBox();
+            removeAllGuessingGameControls();
         }
 
         private void resetFeedGroupBox()
@@ -222,6 +233,8 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
 
         private void FetchAccountInfoBtn_Click(object sender, EventArgs e)
         {
+            transition();
+
             FeedGroupBox.Controls.Clear();
             FeedGroupBox.Visible = true;
             Label top = new Label();
@@ -344,6 +357,8 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
 
         private void FetchEventsBtn_Click(object sender, EventArgs e)
         {
+            transition();
+
             /*
             FeedBox.Items.Clear();
             foreach (Event event_ in Global.User.Events)
@@ -457,7 +472,6 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             {
                 Controls.Remove(button);
             }
-
         }
 
         private void BirthdaysGameBtn_Click(object sender, EventArgs e)
@@ -465,17 +479,14 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             removeAllButtunsFromConstorls(m_AllGames);
 
             Random rnd = new Random();
-            int typeOfQuestions = rnd.Next(0, 2);
+            int typeOfQuestions = rnd.Next(0, 1);
 
             switch(typeOfQuestions)
             {
                 case 0:
                     // In this case we need to ranomize a friend and get his birthday - but permission denied
                     // newQuestion(sender, "How old is <RandomUserFriend()FullName>?", new Point(NewPost.Location.X, NewPost.Location.X + k_PostsMargin));
-                    newQuestion(sender, "How old is Guy Ronen?", new Point(NewPost.Location.X, NewPost.Location.X + k_PostsMargin));
-                    break;
-                case 1:
-
+                    newQuestion(sender, "How old is Guy Ronen?", new Point(NewPost.Location.X, NewPost.Location.Y + k_PostsMargin));
                     break;
             }
         }
@@ -484,10 +495,12 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
         {
             Label QuestionLabel = createNewDefaultLabel(i_Question, i_BaseLOaction);
             Controls.Add(QuestionLabel);
+            m_GuessingGameControls.Add(QuestionLabel);
 
             TextBox answerTextBox = new TextBox();
             answerTextBox.Location = new Point(QuestionLabel.Location.X + QuestionLabel.Width + k_PostsMargin, QuestionLabel.Location.Y);
             Controls.Add(answerTextBox);
+            m_GuessingGameControls.Add(answerTextBox);
 
             Button SubmitBtn = new Button();
             SubmitBtn.Text = "Submit";
@@ -501,20 +514,41 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
                     );
             };
             Controls.Add(SubmitBtn);
+            m_GuessingGameControls.Add(SubmitBtn);
         }
 
         private void buttonNext_Click(object sender, EventArgs eventArgs, bool i_IsCorrect, Point i_Location)
         {
             Label isCorrectLabel = createNewDefaultLabel(i_IsCorrect.ToString(), i_Location);
             Controls.Add(isCorrectLabel);
+            m_GuessingGameControls.Add(isCorrectLabel);
             isCorrectLabel.BringToFront();
 
             if (i_IsCorrect)
             {
-                newQuestion(
-                    sender,
-                    "How old is guy ronen",
-                    new Point(i_Location.X, i_Location.Y + (sender as Button).Height + k_PostsMargin));
+                if (m_GuessingGameQuestionNumber < k_NumOfGuessingGameQuestions)
+                {
+                    m_GuessingGameQuestionNumber++;
+                    m_Score++;
+                    newQuestion(
+                        sender,
+                        "How old is guy ronen",
+                        new Point(i_Location.X, i_Location.Y + (sender as Button).Height + k_PostsMargin));
+                }
+                else
+                {
+                    m_GuessingGameQuestionNumber = 1;
+                    m_Score++;
+                    removeAllGuessingGameControls();
+                }
+            }
+        }
+
+        private void removeAllGuessingGameControls()
+        {
+            foreach (Control control in m_GuessingGameControls)
+            {
+                Controls.Remove(control);
             }
         }
     }
