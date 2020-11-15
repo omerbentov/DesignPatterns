@@ -330,20 +330,15 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             return tempLabel;
         }
 
-        private void MainFeed_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (m_IsCollapsed)
+            if (!m_IsCollapsed)
             {
                 PanelDropDown.Height += 10;
                 if (PanelDropDown.Size == PanelDropDown.MaximumSize)
                 {
                     timer1.Stop();
-                    m_IsCollapsed = false;
+                    m_IsCollapsed = true;
                 }
             }
             else
@@ -352,7 +347,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
                 if (PanelDropDown.Size == PanelDropDown.MinimumSize)
                 {
                     timer1.Stop();
-                    m_IsCollapsed = true;
+                    m_IsCollapsed = false;
                 }
             }
         }
@@ -360,6 +355,15 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
         private void DropDownBar_Click(object sender, EventArgs e)
         {
             timer1.Start();
+        }
+
+        private void LogOut_Click(object sender, EventArgs e)
+        {
+            Global.User = null;
+
+            this.Hide();
+            LogInForm logInForm = new LogInForm();
+            logInForm.Show();
         }
     }
 }

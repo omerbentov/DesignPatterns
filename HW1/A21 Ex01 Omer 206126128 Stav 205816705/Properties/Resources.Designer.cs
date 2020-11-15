@@ -83,6 +83,16 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap FacebookIcom1 {
+            get {
+                object obj = ResourceManager.GetObject("FacebookIcom1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap white_drop_down_arrow {
             get {
                 object obj = ResourceManager.GetObject("white-drop-down-arrow", resourceCulture);

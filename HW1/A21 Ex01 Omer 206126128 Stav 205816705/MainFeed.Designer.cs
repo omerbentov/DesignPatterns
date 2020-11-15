@@ -43,11 +43,11 @@
             this.FeedGroupBox = new System.Windows.Forms.GroupBox();
             this.posted = new System.Windows.Forms.Button();
             this.PanelDropDown = new System.Windows.Forms.Panel();
-            this.UserNamePictureBox = new System.Windows.Forms.PictureBox();
             this.Account = new System.Windows.Forms.Button();
             this.LogOut = new System.Windows.Forms.Button();
-            this.DropDownBar = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.UserNamePictureBox = new System.Windows.Forms.PictureBox();
+            this.DropDownBar = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.PanelDropDown.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.UserNamePictureBox)).BeginInit();
@@ -70,7 +70,7 @@
             // 
             this.label1.BackColor = System.Drawing.Color.RoyalBlue;
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(-6, 0);
+            this.label1.Location = new System.Drawing.Point(-1, -11);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(1312, 78);
             this.label1.TabIndex = 1;
@@ -212,28 +212,20 @@
             // PanelDropDown
             // 
             this.PanelDropDown.Controls.Add(this.UserNamePictureBox);
-            this.PanelDropDown.Controls.Add(this.Account);
             this.PanelDropDown.Controls.Add(this.LogOut);
             this.PanelDropDown.Controls.Add(this.DropDownBar);
-            this.PanelDropDown.Location = new System.Drawing.Point(1155, 9);
+            this.PanelDropDown.Controls.Add(this.Account);
+            this.PanelDropDown.Location = new System.Drawing.Point(1137, 2);
             this.PanelDropDown.MaximumSize = new System.Drawing.Size(139, 150);
-            this.PanelDropDown.MinimumSize = new System.Drawing.Size(139, 66);
+            this.PanelDropDown.MinimumSize = new System.Drawing.Size(139, 62);
             this.PanelDropDown.Name = "PanelDropDown";
-            this.PanelDropDown.Size = new System.Drawing.Size(139, 66);
+            this.PanelDropDown.Size = new System.Drawing.Size(139, 62);
             this.PanelDropDown.TabIndex = 22;
-            // 
-            // UserNamePictureBox
-            // 
-            this.UserNamePictureBox.Location = new System.Drawing.Point(16, 5);
-            this.UserNamePictureBox.Name = "UserNamePictureBox";
-            this.UserNamePictureBox.Size = new System.Drawing.Size(61, 55);
-            this.UserNamePictureBox.TabIndex = 4;
-            this.UserNamePictureBox.TabStop = false;
             // 
             // Account
             // 
             this.Account.BackColor = System.Drawing.Color.RoyalBlue;
-            this.Account.Location = new System.Drawing.Point(1, 62);
+            this.Account.Location = new System.Drawing.Point(0, 59);
             this.Account.Name = "Account";
             this.Account.Size = new System.Drawing.Size(139, 44);
             this.Account.TabIndex = 23;
@@ -243,12 +235,26 @@
             // LogOut
             // 
             this.LogOut.BackColor = System.Drawing.Color.RoyalBlue;
-            this.LogOut.Location = new System.Drawing.Point(0, 103);
+            this.LogOut.Location = new System.Drawing.Point(0, 102);
             this.LogOut.Name = "LogOut";
             this.LogOut.Size = new System.Drawing.Size(139, 44);
             this.LogOut.TabIndex = 23;
             this.LogOut.Text = "Log out";
             this.LogOut.UseVisualStyleBackColor = false;
+            this.LogOut.Click += new System.EventHandler(this.LogOut_Click);
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 15;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // UserNamePictureBox
+            // 
+            this.UserNamePictureBox.Location = new System.Drawing.Point(16, 4);
+            this.UserNamePictureBox.Name = "UserNamePictureBox";
+            this.UserNamePictureBox.Size = new System.Drawing.Size(61, 55);
+            this.UserNamePictureBox.TabIndex = 4;
+            this.UserNamePictureBox.TabStop = false;
             // 
             // DropDownBar
             // 
@@ -257,23 +263,23 @@
             this.DropDownBar.Image = global::A21_Ex01_Omer_206126128_Stav_205816705.Properties.Resources.white_drop_down_arrow1;
             this.DropDownBar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.DropDownBar.Location = new System.Drawing.Point(0, 0);
+            this.DropDownBar.MaximumSize = new System.Drawing.Size(139, 196);
             this.DropDownBar.Name = "DropDownBar";
-            this.DropDownBar.Size = new System.Drawing.Size(139, 66);
+            this.DropDownBar.Size = new System.Drawing.Size(139, 63);
             this.DropDownBar.TabIndex = 21;
             this.DropDownBar.UseVisualStyleBackColor = false;
             this.DropDownBar.Click += new System.EventHandler(this.DropDownBar_Click);
             // 
-            // timer1
-            // 
-            this.timer1.Interval = 15;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
             // pictureBox1
             // 
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox1.ErrorImage = global::A21_Ex01_Omer_206126128_Stav_205816705.Properties.Resources.FacebookIcom;
+            this.pictureBox1.Image = global::A21_Ex01_Omer_206126128_Stav_205816705.Properties.Resources.FacebookIcom;
+            this.pictureBox1.InitialImage = global::A21_Ex01_Omer_206126128_Stav_205816705.Properties.Resources.FacebookIcom1;
             this.pictureBox1.Location = new System.Drawing.Point(12, 9);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(54, 55);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
@@ -302,7 +308,6 @@
             this.Controls.Add(this.label1);
             this.Name = "MainFeed";
             this.Text = "newPost";
-            this.Load += new System.EventHandler(this.MainFeed_Load);
             this.Click += new System.EventHandler(this.FetchaAlbumsBtn_Click);
             this.PanelDropDown.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.UserNamePictureBox)).EndInit();
@@ -316,7 +321,6 @@
 
         private System.Windows.Forms.Label WelcomeUserNameLable;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button FetchaAlbumsBtn;
         private System.Windows.Forms.Button FetchPostsBtn;
         private System.Windows.Forms.Button FetchAccountInfoBtn;
@@ -334,5 +338,6 @@
         private System.Windows.Forms.Button Account;
         private System.Windows.Forms.Button LogOut;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
