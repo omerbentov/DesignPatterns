@@ -10,8 +10,10 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
 {
     public static class Global
     {
-        private static User m_User;
         private const string k_appID = "1556806451170375";
+
+        private static User m_User;
+        private static string m_AccesToken;
 
         public static User User
         {
@@ -22,6 +24,18 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             set
             {
                 m_User = value;
+            }
+        }
+
+        public static string AccesToken
+        {
+            get
+            {
+                return m_AccesToken;
+            }
+            set
+            {
+                m_AccesToken = value;
             }
         }
 

@@ -36,14 +36,14 @@
             this.FetchEventsBtn = new System.Windows.Forms.Button();
             this.Friends = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.GroupsBtn = new System.Windows.Forms.Button();
             this.NewPost = new System.Windows.Forms.RichTextBox();
             this.FeedGroupBox = new System.Windows.Forms.GroupBox();
             this.posted = new System.Windows.Forms.Button();
             this.PanelDropDown = new System.Windows.Forms.Panel();
             this.LogOut = new System.Windows.Forms.Button();
-            this.DropDownBar = new System.Windows.Forms.Button();
             this.Account = new System.Windows.Forms.Button();
+            this.DropDownBar = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.SearchBtn = new System.Windows.Forms.PictureBox();
@@ -142,17 +142,18 @@
             this.button2.Text = "Chat";
             this.button2.UseVisualStyleBackColor = false;
             // 
-            // button3
+            // GroupsBtn
             // 
-            this.button3.BackColor = System.Drawing.Color.RoyalBlue;
-            this.button3.Font = new System.Drawing.Font("Britannic Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(22, 96);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(238, 47);
-            this.button3.TabIndex = 15;
-            this.button3.Text = "Home";
-            this.button3.UseVisualStyleBackColor = false;
+            this.GroupsBtn.BackColor = System.Drawing.Color.RoyalBlue;
+            this.GroupsBtn.Font = new System.Drawing.Font("Britannic Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GroupsBtn.ForeColor = System.Drawing.Color.White;
+            this.GroupsBtn.Location = new System.Drawing.Point(22, 96);
+            this.GroupsBtn.Name = "GroupsBtn";
+            this.GroupsBtn.Size = new System.Drawing.Size(238, 47);
+            this.GroupsBtn.TabIndex = 15;
+            this.GroupsBtn.Text = "Groups";
+            this.GroupsBtn.UseVisualStyleBackColor = false;
+            this.GroupsBtn.Click += new System.EventHandler(this.GroupBtn_Click);
             // 
             // NewPost
             // 
@@ -213,6 +214,17 @@
             this.LogOut.UseVisualStyleBackColor = false;
             this.LogOut.Click += new System.EventHandler(this.LogOut_Click);
             // 
+            // Account
+            // 
+            this.Account.BackColor = System.Drawing.Color.RoyalBlue;
+            this.Account.Location = new System.Drawing.Point(0, 3);
+            this.Account.Name = "Account";
+            this.Account.Size = new System.Drawing.Size(139, 44);
+            this.Account.TabIndex = 23;
+            this.Account.Text = "Account";
+            this.Account.UseVisualStyleBackColor = false;
+            this.Account.Click += new System.EventHandler(this.FetchAccountInfoBtn_Click);
+            // 
             // DropDownBar
             // 
             this.DropDownBar.BackColor = System.Drawing.Color.RoyalBlue;
@@ -225,17 +237,6 @@
             this.DropDownBar.TabIndex = 21;
             this.DropDownBar.UseVisualStyleBackColor = false;
             this.DropDownBar.Click += new System.EventHandler(this.DropDownBar_Click);
-            // 
-            // Account
-            // 
-            this.Account.BackColor = System.Drawing.Color.RoyalBlue;
-            this.Account.Location = new System.Drawing.Point(0, 3);
-            this.Account.Name = "Account";
-            this.Account.Size = new System.Drawing.Size(139, 44);
-            this.Account.TabIndex = 23;
-            this.Account.Text = "Account";
-            this.Account.UseVisualStyleBackColor = false;
-            this.Account.Click += new System.EventHandler(this.FetchAccountInfoBtn_Click);
             // 
             // timer1
             // 
@@ -314,7 +315,7 @@
             this.Controls.Add(this.FeedGroupBox);
             this.Controls.Add(this.posted);
             this.Controls.Add(this.NewPost);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.GroupsBtn);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.Friends);
             this.Controls.Add(this.FetchEventsBtn);
@@ -348,7 +349,7 @@
         private System.Windows.Forms.Button FetchEventsBtn;
         private System.Windows.Forms.Button Friends;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button GroupsBtn;
         private System.Windows.Forms.RichTextBox NewPost;
         private System.Windows.Forms.GroupBox FeedGroupBox;
         private System.Windows.Forms.Button posted;

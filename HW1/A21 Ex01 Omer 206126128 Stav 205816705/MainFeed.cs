@@ -87,7 +87,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             Point groupBoxLocation = new Point();
             Point baseLocation = new Point(20, 10);
 
-            foreach (Post post in Global.User.Posts)
+            foreach (Post post in Global.User.WallPosts)
             {
                 int Y_Offset = 1;
 
@@ -365,6 +365,19 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             this.Hide();
             LogInForm logInForm = new LogInForm();
             logInForm.Show();
+        }
+
+        private void GroupBtn_Click(object sender, EventArgs e)
+        {
+            var fc = new Facebook.FacebookClient(Global.AccesToken);
+            dynamic parameters = new System.Dynamic.ExpandoObject();
+            parameters.access_token = Global.AccesToken;
+            parameters.message = "This is a test message that has been published by the Facebook C# SDK on Codeplex. " + DateTime.UtcNow.Ticks.ToString();
+            parameters.attribution = "Facebook C# SDK";
+
+
+            dynamic result = fc.Post("/794218984478862", parameters);
+
         }
     }
 }
