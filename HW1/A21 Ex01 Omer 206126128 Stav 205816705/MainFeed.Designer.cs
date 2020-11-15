@@ -36,7 +36,7 @@
             this.FetchEventsBtn = new System.Windows.Forms.Button();
             this.Friends = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.GroupsBtn = new System.Windows.Forms.Button();
+            this.HomeBtn = new System.Windows.Forms.Button();
             this.NewPost = new System.Windows.Forms.RichTextBox();
             this.FeedGroupBox = new System.Windows.Forms.GroupBox();
             this.posted = new System.Windows.Forms.Button();
@@ -142,18 +142,18 @@
             this.button2.Text = "Chat";
             this.button2.UseVisualStyleBackColor = false;
             // 
-            // GroupsBtn
+            // HomeBtn
             // 
-            this.GroupsBtn.BackColor = System.Drawing.Color.RoyalBlue;
-            this.GroupsBtn.Font = new System.Drawing.Font("Britannic Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GroupsBtn.ForeColor = System.Drawing.Color.White;
-            this.GroupsBtn.Location = new System.Drawing.Point(22, 96);
-            this.GroupsBtn.Name = "GroupsBtn";
-            this.GroupsBtn.Size = new System.Drawing.Size(238, 47);
-            this.GroupsBtn.TabIndex = 15;
-            this.GroupsBtn.Text = "Groups";
-            this.GroupsBtn.UseVisualStyleBackColor = false;
-            this.GroupsBtn.Click += new System.EventHandler(this.GroupBtn_Click);
+            this.HomeBtn.BackColor = System.Drawing.Color.RoyalBlue;
+            this.HomeBtn.Font = new System.Drawing.Font("Britannic Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HomeBtn.ForeColor = System.Drawing.Color.White;
+            this.HomeBtn.Location = new System.Drawing.Point(22, 96);
+            this.HomeBtn.Name = "HomeBtn";
+            this.HomeBtn.Size = new System.Drawing.Size(238, 47);
+            this.HomeBtn.TabIndex = 15;
+            this.HomeBtn.Text = "Home";
+            this.HomeBtn.UseVisualStyleBackColor = false;
+            this.HomeBtn.Click += new System.EventHandler(this.HomeBtn_Click);
             // 
             // NewPost
             // 
@@ -315,7 +315,7 @@
             this.Controls.Add(this.FeedGroupBox);
             this.Controls.Add(this.posted);
             this.Controls.Add(this.NewPost);
-            this.Controls.Add(this.GroupsBtn);
+            this.Controls.Add(this.HomeBtn);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.Friends);
             this.Controls.Add(this.FetchEventsBtn);
@@ -349,7 +349,7 @@
         private System.Windows.Forms.Button FetchEventsBtn;
         private System.Windows.Forms.Button Friends;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button GroupsBtn;
+        private System.Windows.Forms.Button HomeBtn;
         private System.Windows.Forms.RichTextBox NewPost;
         private System.Windows.Forms.GroupBox FeedGroupBox;
         private System.Windows.Forms.Button posted;
