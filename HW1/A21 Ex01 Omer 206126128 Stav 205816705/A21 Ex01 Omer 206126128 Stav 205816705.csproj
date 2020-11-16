@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Albums.cs" />
     <Compile Include="Global.cs" />
     <Compile Include="MainFeed.cs">
       <SubType>Form</SubType>
@@ -116,6 +117,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\searchBtn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Facebook_2_Cake.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Facebook_1_Cake.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

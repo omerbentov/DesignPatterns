@@ -48,55 +48,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             transition();
 
             Point picLocation = new Point(20, 50);
-
-            addAlbums(picLocation, int.MaxValue);
-        }
-
-        private void addAlbums(Point i_PicLocation, int i_NumOfAlbums)
-        {
-            FacebookObjectCollection<Album> albums = Global.User.Albums;
-
-            foreach (Album album in albums)
-            {
-                if (i_NumOfAlbums <= 0)
-                {
-                    break;
-                }
-                i_NumOfAlbums--;
-
-                PictureBox albumPicture = new PictureBox();
-                albumPicture.Size = new System.Drawing.Size(150, 150);
-                albumPicture.Location = i_PicLocation;
-                albumPicture.SizeMode = PictureBoxSizeMode.StretchImage;
-                albumPicture.LoadAsync(album.PictureAlbumURL);
-                FeedGroupBox.Controls.Add(albumPicture);
-
-                Label albumName = new Label();
-                albumName.Text = album.Name;
-                albumName.ForeColor = Color.Black;
-                albumName.Location = new Point(i_PicLocation.X, i_PicLocation.Y - albumName.Size.Height);
-                FeedGroupBox.Controls.Add(albumName);
-
-                Point countLabelPoint = new Point(i_PicLocation.X, i_PicLocation.Y + albumPicture.Height);
-                Label albumCount = createNewDefaultLabel(album.Count + " Photos", countLabelPoint);
-                FeedGroupBox.Controls.Add(albumCount);
-
-                i_PicLocation = calculateNextAlbumCUverPhotoPosition(i_PicLocation);
-            }
-        }
-
-        private Point calculateNextAlbumCUverPhotoPosition(Point i_prevPoint)
-        {
-            int x = i_prevPoint.X;
-            int y = i_prevPoint.Y;
-
-            x = (x + 200) % 400;
-            if (x <= 50)
-            {
-                y += 220;
-            }
-
-            return new Point(x, y);
+            Albums.addAlbums(picLocation, int.MaxValue, FeedGroupBox);
         }
 
         private void FetchPostsBtn_Click(object sender, EventArgs e)
@@ -106,7 +58,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             Point groupBoxLocation = new Point();
             Point baseLocation = new Point(20, 10);
 
-            addPosts(groupBoxLocation, baseLocation, int.MaxValue);
+            Posts.addPosts(groupBoxLocation, baseLocation, int.MaxValue, FeedGroupBox);
         }
 
         private void transition()
@@ -125,109 +77,6 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             FeedGroupBox.MaximumSize = new Size(new Point(NewPost.Width, int.MaxValue));
         }
 
-        private Point addPosts(Point i_GroupBoxLocation, Point i_BaseLocation, int i_NumOfPost)
-        {
-            Point nextPosition = new Point();
-
-            if (i_NumOfPost >= 0)
-            {
-                foreach (Post post in Global.User.WallPosts)
-                {
-                    i_NumOfPost--;
-
-                    int Y_Offset = 1;
-                    GroupBox singlePostGroupBox = createPostGroupPost(i_GroupBoxLocation);
-                    PictureBox defaultPic = createDefaultFacebookProfilePicture(singlePostGroupBox);
-                    PictureBox myPic = new PictureBox();
-                    myPic.Image = Global.User.ImageSmall;
-                    myPic.MaximumSize = new Size(new Point(k_PostProfilePictureSize, k_PostProfilePictureSize));
-
-                    if (post.From.Name != null)
-                    {
-                        Point labelLocation = i_BaseLocation;
-                        labelLocation.X += defaultPic.Width;
-                        Label postFromName = createNewDefaultLabel(post.From.Name, labelLocation);
-                        singlePostGroupBox.Controls.Add(postFromName);
-
-                        if (!postFromName.Text.Equals(Global.User.Name))
-                        {
-                            Point location = new Point(postFromName.Location.X + postFromName.Width, postFromName.Location.Y);
-                            Label ToMyUser = createNewDefaultLabel("->" + Global.User.Name, location);
-                            singlePostGroupBox.Controls.Add(ToMyUser);
-                            singlePostGroupBox.Controls.Add(defaultPic);
-                        }
-                        else
-                        {
-                            singlePostGroupBox.Controls.Add(myPic);
-                        }
-
-                        if (post.Name != null)
-                        {
-                            Point location = new Point(postFromName.Location.X, i_BaseLocation.Y + Y_Offset * postFromName.Height);
-                            Label postName = createNewDefaultLabel(post.Name, location);
-                            Y_Offset++;
-                            singlePostGroupBox.Controls.Add(postName);
-                        }
-
-                        if (post.CreatedTime != null)
-                        {
-                            Point location = new Point(postFromName.Location.X, i_BaseLocation.Y + Y_Offset * postFromName.Height);
-                            Label postDate = createNewDefaultLabel(post.CreatedTime.ToString(), location);
-                            singlePostGroupBox.Controls.Add(postDate);
-                        }
-
-                        if (post.Message != null)
-                        {
-                            Point location = new Point(defaultPic.Location.X, defaultPic.Location.Y + defaultPic.Height);
-                            Label postMessage = createNewDefaultLabel(post.Message, location);
-                            Y_Offset++;
-                            singlePostGroupBox.Controls.Add(postMessage);
-                        }
-
-                        FeedGroupBox.Controls.Add(singlePostGroupBox);
-                        i_GroupBoxLocation = calculateNextPostPosition(i_GroupBoxLocation, singlePostGroupBox.Height);
-                        nextPosition = i_GroupBoxLocation;
-                    }
-
-                    //validation
-                    if (i_NumOfPost <= 0)
-                    {
-                        break;
-                    }
-                }
-            }
-
-            return nextPosition;
-        }
-
-        private GroupBox createPostGroupPost(Point i_GroupBoxLoaction)
-        {
-            GroupBox singlePostGroupBox = new GroupBox();
-            singlePostGroupBox.AutoSize = true;
-            singlePostGroupBox.BackColor = Color.White;
-            singlePostGroupBox.MaximumSize = new Size(FeedGroupBox.Width, int.MaxValue);
-            singlePostGroupBox.Width = NewPost.Width;
-            singlePostGroupBox.Location = i_GroupBoxLoaction;
-            singlePostGroupBox.Visible = true;
-
-            return singlePostGroupBox;
-        }
-
-        private PictureBox createDefaultFacebookProfilePicture(GroupBox i_SinglePostGroupBox)
-        {
-            PictureBox defaultPic = new PictureBox();
-            defaultPic.Image = Properties.Resources.FacebookDefaultProfilePicture;
-            defaultPic.MaximumSize = new Size(new Point(k_PostProfilePictureSize, k_PostProfilePictureSize));
-            defaultPic.SizeMode = PictureBoxSizeMode.Zoom;
-
-            return defaultPic;
-        }
-
-        private Point calculateNextPostPosition(Point i_prevPoint, int i_PrevGroupBoxHeight)
-        {
-            return new Point(i_prevPoint.X, i_prevPoint.Y + i_PrevGroupBoxHeight + k_PostsMargin);
-        }
-
         private Point calculateNextLabelPosition(Point i_prevPoint)
         {
             return new Point(i_prevPoint.X , i_prevPoint.Y + 50);
@@ -236,17 +85,21 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
         private void FetchAccountInfoBtn_Click(object sender, EventArgs e)
         {
             transition();
-
-            FeedGroupBox.Controls.Clear();
             FeedGroupBox.Visible = true;
-            Label top = new Label();
-            top.Text = "Information About Your Account" ;
-            FeedGroupBox.Controls.Add(top);
+            FeedGroupBox.BackColor = Color.White;
+
+            Label header = new Label();
+            header.Text = "Information About Your Account" ;
+            header.Location = new Point(0, 20);
+            header.AutoSize = true;
+            FeedGroupBox.Controls.Add(header);
+
             Label line = new Label();
             line.Text = "----------------------------------------------------------";
-            line.Width = 500;
+            line.AutoSize = true;
             line.Location = new Point(0,30);
             FeedGroupBox.Controls.Add(line);
+
             Point LabelLocation = new Point(10,10);
             Point baseLocation = new Point(10, 10);
             
@@ -259,7 +112,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
                 CreateInformationLabel("Name :", Global.User.Name, baseLocation);
             }
 
-            LabelLocation = new Point(LabelLocation.X, LabelLocation.Y + 50);
+            LabelLocation = new Point(LabelLocation.X, LabelLocation.Y + k_LabelMargin);
 
             if (Global.User.Email == null)
             {
@@ -270,7 +123,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
                 CreateInformationLabel("Email :", Global.User.Email, LabelLocation);
             }
 
-            LabelLocation = new Point(LabelLocation.X, LabelLocation.Y + 50);
+            LabelLocation = new Point(LabelLocation.X, LabelLocation.Y + k_LabelMargin);
 
             if (Global.User.Birthday == null)
             {
@@ -281,7 +134,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
                 CreateInformationLabel("Birthday :", Global.User.Birthday, LabelLocation);
             }
 
-            LabelLocation = new Point(LabelLocation.X, LabelLocation.Y + 50);
+            LabelLocation = new Point(LabelLocation.X, LabelLocation.Y + k_LabelMargin);
 
             if (Global.User.Gender == null)
             {
@@ -292,7 +145,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
                 CreateInformationLabel("Gender :", Global.User.Gender.ToString(), LabelLocation);
             }
 
-            LabelLocation = new Point(LabelLocation.X, LabelLocation.Y + 50);
+            LabelLocation = new Point(LabelLocation.X, LabelLocation.Y + k_LabelMargin);
 
             if (Global.User.Hometown == null)
             {
@@ -303,7 +156,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
                 CreateInformationLabel("Home Town :", Global.User.Hometown.ToString(), LabelLocation);
             }
 
-            LabelLocation = new Point(LabelLocation.X, LabelLocation.Y + 50);
+            LabelLocation = new Point(LabelLocation.X, LabelLocation.Y + k_LabelMargin);
 
             if (Global.User.Educations == null)
             {
@@ -314,7 +167,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
                 CreateInformationLabel("Education :", Global.User.Educations.ToString(), LabelLocation);
             }
 
-            LabelLocation = new Point(LabelLocation.X, LabelLocation.Y + 50);
+            LabelLocation = new Point(LabelLocation.X, LabelLocation.Y + k_LabelMargin);
 
             if (Global.User.RelationshipStatus == null)
             {
@@ -332,13 +185,13 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             Label tempLabel = new Label();
             tempLabel.Text = i_type + i_user;
             tempLabel.Location = calculateNextLabelPosition(i_prevPoint);
-            tempLabel.MaximumSize = new Size(new Point((int)(NewPost.Width * 0.4), int.MaxValue));
+            tempLabel.AutoSize = true;
             FeedGroupBox.Controls.Add(tempLabel);
         }
 
         private Point calculateNextButtonPosition(Point i_prevPoint, int i_labelWidth)
         {
-            return new Point(i_labelWidth + 10 , i_prevPoint.Y + 50);
+            return new Point(i_labelWidth + 10 , i_prevPoint.Y + k_LabelMargin);
         }
 
         private void CreateAddingButton(String i_type, Point i_prevPoint)
@@ -348,6 +201,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             addingButton.BackColor = Color.White;
             addingButton.Visible = true;
             addingButton.AutoSize = true;
+
             Label tempLabel = new Label();
             tempLabel.Text = i_type;
             tempLabel.Width = 200;
@@ -360,17 +214,47 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
         private void FetchEventsBtn_Click(object sender, EventArgs e)
         {
             transition();
+            FeedGroupBox.Visible = true;
+            FeedGroupBox.BackColor = Color.White;
 
-            /*
-            FeedBox.Items.Clear();
-            foreach (Event event_ in Global.User.Events)
+            Label header = new Label();
+            header.Text = "Your Events";
+            header.Size = new System.Drawing.Size(50, 27);
+            header.AutoSize = true;
+            header.ForeColor = Color.Blue;
+            header.Location = new Point(20, 20);
+            FeedGroupBox.Controls.Add(header);
+
+            if (Global.User.Events.Count == 0)
             {
-                FeedBox.Items.Add(event_.Name);
-                FeedBox.Items.Add(event_.StartTime);
-                FeedBox.Items.Add("");
+                MessageBox.Show("No events on your Facebook account");
             }
-            */
+
+            foreach (Event myEvent in Global.User.Events)
+            {
+                addEvent(myEvent);
+                addPicture(myEvent);
+            }
         }
+
+        private void addEvent(Event i_newEvent)
+        {
+            Point LabelLocation = new Point(10, 10);
+
+            Label eventLabel = new Label();
+            string eventName = i_newEvent.Name;
+            string eventTime = i_newEvent.StartTime.ToString();
+            long attendingCount = (long)i_newEvent.AttendingCount;
+            string newEvent = String.Format("Event: {0}\n start at: {1}\n attending: {2}\n", eventName, eventTime, attendingCount);
+
+            eventLabel.Text = newEvent;
+            eventLabel.AutoSize = true;
+            eventLabel.Location = calculateNextLabelPosition(LabelLocation);
+            eventLabel.Visible = true;
+
+            FeedGroupBox.Controls.Add(eventLabel);
+        }
+        
 
         private void CreatNewPost(object sender, EventArgs e)
         {
@@ -431,9 +315,9 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             Point groupBoxLocation = new Point();
             Point baseLocation = new Point(20, 10);
 
-            Point nextPosition = addPosts(groupBoxLocation, baseLocation, k_NumOfPostsInHomePage);
+            Point nextPosition = Posts.addPosts(groupBoxLocation, baseLocation, k_NumOfPostsInHomePage, FeedGroupBox);
             nextPosition.Y += k_PostsMargin;
-            addAlbums(nextPosition, k_NumOfAlbumsInHomePage);
+            Albums.addAlbums(nextPosition, k_NumOfAlbumsInHomePage, FeedGroupBox);
         }
 
         // Games
@@ -598,6 +482,20 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             }
         }
 
+        private void addPicture(Event i_newEvent)
+        {
+            PictureBox eventPicture = new PictureBox();
+            Point LabelLocation = new Point(10, 10);
+            //eventPicture.ImageLocation = i_newEvent.PictureSqaureURL;
+            //eventPicture.LoadAsync(i_newEvent.PictureSmallURL);
+            eventPicture.Image = Properties.Resources.Facebook_1_Cake;
+            eventPicture.Visible = true;
+            eventPicture.SizeMode = PictureBoxSizeMode.Zoom;
+            eventPicture.Location = calculateNextButtonPosition(LabelLocation, 100);
+            eventPicture.MaximumSize = new Size(new Point(k_PostProfilePictureSize + 20, k_PostProfilePictureSize + 20));
+            FeedGroupBox.Controls.Add(eventPicture);
+        }
+
         private void setEventsSearch()
         {
             Point LabelLocation = new Point(10, 10);
@@ -610,22 +508,9 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
                     {
                         if (myEvent.Name.Contains(m_TextToFind))
                         {
-                            Label findEvent = new Label();
-                            String eventName = myEvent.Name;
-                            long attendingCount = (long)myEvent.AttendingCount;
-                            String startTime = myEvent.StartTime.ToString();
-                            String eventText = String.Format(" Name: {0}\n Attending: {1}\n Time: {2}\n", eventName, attendingCount, startTime); ;
-                            findEvent.Text = eventText;
-                            findEvent.AutoSize = true;
-                            findEvent.Location = calculateNextLabelPosition(LabelLocation);
-                            findEvent.Visible = true;
-                            FeedGroupBox.Controls.Add(findEvent);
-                            PictureBox eventPicture = new PictureBox();
-                            eventPicture.ImageLocation = myEvent.PictureSqaureURL;
-                            //eventPicture.Size = new System.Drawing.Size(50, 50);
-                            eventPicture.Location = calculateNextButtonPosition(LabelLocation, findEvent.Width);
-                            eventPicture.Visible = true;
-                            FeedGroupBox.Controls.Add(eventPicture);
+                            addEvent(myEvent);
+                            addPicture(myEvent);
+
                         }
                     }
                 }

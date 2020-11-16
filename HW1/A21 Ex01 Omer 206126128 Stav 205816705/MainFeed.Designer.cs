@@ -259,9 +259,7 @@
             // SearchBtn
             // 
             this.SearchBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.SearchBtn.ErrorImage = global::A21_Ex01_Omer_206126128_Stav_205816705.Properties.Resources.FacebookIcom;
             this.SearchBtn.Image = global::A21_Ex01_Omer_206126128_Stav_205816705.Properties.Resources.searchBtn;
-            this.SearchBtn.InitialImage = global::A21_Ex01_Omer_206126128_Stav_205816705.Properties.Resources.FacebookIcom1;
             this.SearchBtn.Location = new System.Drawing.Point(664, 12);
             this.SearchBtn.Name = "SearchBtn";
             this.SearchBtn.Size = new System.Drawing.Size(54, 47);
@@ -284,6 +282,7 @@
             // 
             // UserNamePictureBox
             // 
+            this.UserNamePictureBox.Image = global::A21_Ex01_Omer_206126128_Stav_205816705.Properties.Resources.FacebookDefaultProfilePicture;
             this.UserNamePictureBox.Location = new System.Drawing.Point(1089, 6);
             this.UserNamePictureBox.Name = "UserNamePictureBox";
             this.UserNamePictureBox.Size = new System.Drawing.Size(61, 55);
@@ -293,9 +292,7 @@
             // FacebookIcon
             // 
             this.FacebookIcon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.FacebookIcon.ErrorImage = global::A21_Ex01_Omer_206126128_Stav_205816705.Properties.Resources.FacebookIcom;
             this.FacebookIcon.Image = global::A21_Ex01_Omer_206126128_Stav_205816705.Properties.Resources.facebook_logo_png_38362;
-            this.FacebookIcon.InitialImage = global::A21_Ex01_Omer_206126128_Stav_205816705.Properties.Resources.FacebookIcom1;
             this.FacebookIcon.Location = new System.Drawing.Point(22, 12);
             this.FacebookIcon.Name = "FacebookIcon";
             this.FacebookIcon.Size = new System.Drawing.Size(43, 43);
@@ -352,7 +349,6 @@
         private System.Windows.Forms.Button Friends;
         private System.Windows.Forms.Button GamesBtn;
         private System.Windows.Forms.Button HomeBtn;
-        private System.Windows.Forms.RichTextBox NewPost;
         private System.Windows.Forms.GroupBox FeedGroupBox;
         private System.Windows.Forms.Button posted;
         private System.Windows.Forms.PictureBox UserNamePictureBox;
@@ -365,5 +361,6 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.TextBox SearchTextBox;
         private System.Windows.Forms.PictureBox SearchBtn;
+        public System.Windows.Forms.RichTextBox NewPost;
     }
 }
