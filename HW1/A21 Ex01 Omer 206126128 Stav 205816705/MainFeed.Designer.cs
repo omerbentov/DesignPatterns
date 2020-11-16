@@ -45,7 +45,7 @@
             this.Account = new System.Windows.Forms.Button();
             this.DropDownBar = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.SearchTextBox = new System.Windows.Forms.TextBox();
             this.SearchBtn = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.UserNamePictureBox = new System.Windows.Forms.PictureBox();
@@ -244,16 +244,17 @@
             this.timer1.Interval = 15;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // textBox1
+            // SearchTextBox
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.textBox1.ForeColor = System.Drawing.SystemColors.InactiveCaption;
-            this.textBox1.Location = new System.Drawing.Point(84, 12);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(634, 47);
-            this.textBox1.TabIndex = 24;
-            this.textBox1.Text = "Search";
+            this.SearchTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.SearchTextBox.ForeColor = System.Drawing.SystemColors.InactiveCaption;
+            this.SearchTextBox.Location = new System.Drawing.Point(84, 12);
+            this.SearchTextBox.Multiline = true;
+            this.SearchTextBox.Name = "SearchTextBox";
+            this.SearchTextBox.Size = new System.Drawing.Size(634, 47);
+            this.SearchTextBox.TabIndex = 24;
+            this.SearchTextBox.Text = "Search";
+            this.SearchTextBox.TextChanged += new System.EventHandler(this.SearchTextBox_TextChanged);
             // 
             // SearchBtn
             // 
@@ -267,6 +268,7 @@
             this.SearchBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.SearchBtn.TabIndex = 25;
             this.SearchBtn.TabStop = false;
+            this.SearchBtn.Click += new System.EventHandler(this.SearchBtn_Click);
             // 
             // pictureBox2
             // 
@@ -310,7 +312,7 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(1306, 1030);
             this.Controls.Add(this.SearchBtn);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.SearchTextBox);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.UserNamePictureBox);
             this.Controls.Add(this.FeedGroupBox);
@@ -361,7 +363,7 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.PictureBox FacebookIcon;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox SearchTextBox;
         private System.Windows.Forms.PictureBox SearchBtn;
     }
 }

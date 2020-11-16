@@ -20,7 +20,9 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
         private const int k_NumOfPostsInHomePage = 3;
         private const int k_NumOfAlbumsInHomePage = 4;
         private const int k_NumOfGuessingGameQuestions = 5;
+        private const int k_LabelMargin = 50;
 
+        private string m_TextToFind;
         private bool m_IsCollapsed = false;
         private int m_Score = 0;
         private int m_GuessingGameQuestionNumber = 1;
@@ -550,6 +552,103 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             {
                 Controls.Remove(control);
             }
+        }
+
+        // serach
+        private void SearchBtn_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(m_TextToFind))
+            {
+                clearAllFindings();
+                setEventsSearch();
+                //setPagesFindings();
+                //setGroupsFindings();
+                //setFriendPosts();
+            }
+            else
+            {
+                MessageBox.Show("Please enter phrase to search", "Missing Input");
+            }
+        }
+
+        private void clearAllFindings()
+        {
+            FeedGroupBox.Controls.Clear();
+        }
+
+        private void setFriendPosts()
+        {
+            foreach (User user in Global.User.Friends)
+            {
+                foreach (Post post in user.Posts)
+                {
+                    if (!string.IsNullOrEmpty(post.Message))
+                    {
+                        if (post.Message.Contains(m_TextToFind))
+                        {
+                            Label postOfAFriend = new Label();
+                            String userName = post.From.Name + "posted";
+                            postOfAFriend.Text = userName + post.Message;
+                            postOfAFriend.AutoSize = true;
+                            postOfAFriend.Location = new Point();
+                            FeedGroupBox.Controls.Add(postOfAFriend);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void setEventsSearch()
+        {
+            Point LabelLocation = new Point(10, 10);
+
+            try
+            {
+                foreach (Event myEvent in Global.User.Events)
+                {
+                    if (!string.IsNullOrEmpty(myEvent.Name))
+                    {
+                        if (myEvent.Name.Contains(m_TextToFind))
+                        {
+                            Label findEvent = new Label();
+                            String eventName = myEvent.Name;
+                            long attendingCount = (long)myEvent.AttendingCount;
+                            String startTime = myEvent.StartTime.ToString();
+                            String eventText = String.Format(" Name: {0}\n Attending: {1}\n Time: {2}\n", eventName, attendingCount, startTime); ;
+                            findEvent.Text = eventText;
+                            findEvent.AutoSize = true;
+                            findEvent.Location = calculateNextLabelPosition(LabelLocation);
+                            findEvent.Visible = true;
+                            FeedGroupBox.Controls.Add(findEvent);
+                            PictureBox eventPicture = new PictureBox();
+                            eventPicture.ImageLocation = myEvent.PictureSqaureURL;
+                            //eventPicture.Size = new System.Drawing.Size(50, 50);
+                            eventPicture.Location = calculateNextButtonPosition(LabelLocation, findEvent.Width);
+                            eventPicture.Visible = true;
+                            FeedGroupBox.Controls.Add(eventPicture);
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                errMessage();
+            }
+        }
+
+        private void errMessage()
+        {
+            FeedGroupBox.Controls.Clear();
+            Label errMessage = new Label();
+            errMessage.Text = "sorry, we can't access the information";
+            errMessage.AutoSize = true;
+            errMessage.Location = new Point(20, 20);
+            FeedGroupBox.Controls.Add(errMessage);
+        }
+
+        private void SearchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            m_TextToFind = SearchTextBox.Text;
         }
     }
 }
