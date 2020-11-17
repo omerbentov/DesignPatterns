@@ -13,7 +13,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
     {
         public static void addAlbums(Point i_PicLocation, int i_NumOfAlbums, GroupBox i_feedGroupBox)
         {
-            FacebookObjectCollection<Album> albums = GlobalData.User.Albums;
+            FacebookObjectCollection<Album> albums = LoggedInUserData.User.Albums;
 
             foreach (Album album in albums)
             {

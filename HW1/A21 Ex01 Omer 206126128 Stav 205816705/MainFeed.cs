@@ -24,6 +24,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
         private static string k_TextToFind;
         private bool m_IsCollapsed = false;
 
+        // Prop
         public static Point PostProfilePicturePointSize
         {
             get
@@ -56,6 +57,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             }
         }
 
+        // Main
         public MainFeed()
         {
             InitializeComponent();
@@ -66,13 +68,15 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
 
         private void InitializeChildrenComponents()
         {
-            WelcomeUserNameLable.Text = GlobalData.User.FirstName;
-            UserNamePictureBox.Image = GlobalData.User.ImageSmall;
+            WelcomeUserNameLable.Text = LoggedInUserData.User.FirstName;
+            UserNamePictureBox.Image = LoggedInUserData.User.ImageSmall;
         }
 
         // Home 
         private void HomeBtn_Click(object sender, EventArgs e)
         {
+            Transition();
+
             MainOps.ResetFeedGroupBox(FeedGroupBox, DefaultCenterWidth);
 
             Point groupBoxLocation = new Point();
@@ -107,6 +111,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
         private void FetchAccountInfoBtn_Click(object sender, EventArgs e)
         {
             Transition();
+
             FeedGroupBox.Visible = true;
             FeedGroupBox.BackColor = Color.White;
 
@@ -125,79 +130,79 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             Point LabelLocation = new Point(10,10);
             Point baseLocation = new Point(10, 10);
             
-            if (GlobalData.User.Name == null)
+            if (LoggedInUserData.User.Name == null)
             {
                 CreateAddingButton("Name :", LabelLocation);
             }
             else
             {
-                CreateInformationLabel("Name :", GlobalData.User.Name, baseLocation);
+                CreateInformationLabel("Name :", LoggedInUserData.User.Name, baseLocation);
             }
 
             LabelLocation = new Point(LabelLocation.X, LabelLocation.Y + k_LabelMargin);
 
-            if (GlobalData.User.Email == null)
+            if (LoggedInUserData.User.Email == null)
             {
                 CreateAddingButton("Email :", LabelLocation);
             }
             else
             {
-                CreateInformationLabel("Email :", GlobalData.User.Email, LabelLocation);
+                CreateInformationLabel("Email :", LoggedInUserData.User.Email, LabelLocation);
             }
 
             LabelLocation = new Point(LabelLocation.X, LabelLocation.Y + k_LabelMargin);
 
-            if (GlobalData.User.Birthday == null)
+            if (LoggedInUserData.User.Birthday == null)
             {
                 CreateAddingButton("Birthday :", LabelLocation);
             }
             else
             {
-                CreateInformationLabel("Birthday :", GlobalData.User.Birthday, LabelLocation);
+                CreateInformationLabel("Birthday :", LoggedInUserData.User.Birthday, LabelLocation);
             }
 
             LabelLocation = new Point(LabelLocation.X, LabelLocation.Y + k_LabelMargin);
 
-            if (GlobalData.User.Gender == null)
+            if (LoggedInUserData.User.Gender == null)
             {
                 CreateAddingButton("Gender :", LabelLocation);
             }
             else
             {
-                CreateInformationLabel("Gender :", GlobalData.User.Gender.ToString(), LabelLocation);
+                CreateInformationLabel("Gender :", LoggedInUserData.User.Gender.ToString(), LabelLocation);
             }
 
             LabelLocation = new Point(LabelLocation.X, LabelLocation.Y + k_LabelMargin);
 
-            if (GlobalData.User.Hometown == null)
+            if (LoggedInUserData.User.Hometown == null)
             {
                 CreateAddingButton("Home Town :", LabelLocation);
             }
             else
             {
-                CreateInformationLabel("Home Town :", GlobalData.User.Hometown.ToString(), LabelLocation);
+                CreateInformationLabel("Home Town :", LoggedInUserData.User.Hometown.ToString(), LabelLocation);
             }
 
             LabelLocation = new Point(LabelLocation.X, LabelLocation.Y + k_LabelMargin);
 
-            if (GlobalData.User.Educations == null)
+            if (LoggedInUserData.User.Educations == null)
             {
                 CreateAddingButton("Education :", LabelLocation);
             }
             else
             {
-                CreateInformationLabel("Education :", GlobalData.User.Educations.ToString(), LabelLocation);
+                CreateInformationLabel("Education :", LoggedInUserData.User.Educations.ToString(), LabelLocation);
             }
 
             LabelLocation = new Point(LabelLocation.X, LabelLocation.Y + k_LabelMargin);
 
-            if (GlobalData.User.RelationshipStatus == null)
+            if (LoggedInUserData.User.RelationshipStatus == null)
             {
                 CreateAddingButton("RelationshipStatus :", LabelLocation);
             }
             else
             {
-                CreateInformationLabel("RelationshipStatus  :", GlobalData.User.RelationshipStatus.ToString(), LabelLocation);
+                CreateInformationLabel("RelationshipStatus  :", LoggedInUserData.User.RelationshipStatus.ToString(), LabelLocation);
             }
 
         }
@@ -232,6 +237,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
         private void FetchEventsBtn_Click(object sender, EventArgs e)
         {
             Transition();
+
             FeedGroupBox.Visible = true;
             FeedGroupBox.BackColor = Color.White;
 
@@ -243,22 +249,56 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             header.Location = new Point(20, 20);
             FeedGroupBox.Controls.Add(header);
 
-            if (GlobalData.User.Events.Count == 0)
+            if (LoggedInUserData.User.Events.Count == 0)
             {
                 MessageBox.Show("No events on your Facebook account");
             }
 
-            foreach (Event myEvent in GlobalData.User.Events)
+            foreach (Event myEvent in LoggedInUserData.User.Events)
             {
                 addEvent(myEvent);
                 addPicture(myEvent);
             }
         }
 
-        // LogOut - Need Class !
+        private void addEvent(Event i_newEvent)
+        {
+            Point LabelLocation = new Point(10, 10);
+
+            Label eventLabel = new Label();
+            string eventName = i_newEvent.Name;
+            string eventTime = i_newEvent.StartTime.ToString();
+            long attendingCount = (long)i_newEvent.AttendingCount;
+            string newEvent = String.Format("Event: {0}\n start at: {1}\n attending: {2}\n", eventName, eventTime, attendingCount);
+
+            eventLabel.Text = newEvent;
+            eventLabel.AutoSize = true;
+            eventLabel.Location = MainOps.CalculateNextLabelPosition(LabelLocation);
+            eventLabel.Visible = true;
+
+            FeedGroupBox.Controls.Add(eventLabel);
+        }
+
+        private void addPicture(Event i_newEvent)
+        {
+            PictureBox eventPicture = new PictureBox();
+            Point LabelLocation = new Point(10, 10);
+            //eventPicture.ImageLocation = i_newEvent.PictureSqaureURL;
+            //eventPicture.LoadAsync(i_newEvent.PictureSmallURL);
+            eventPicture.Image = Properties.Resources.Facebook_1_Cake;
+            eventPicture.Visible = true;
+            eventPicture.SizeMode = PictureBoxSizeMode.Zoom;
+            eventPicture.Location = MainOps.CalculateNextButtonPosition(LabelLocation, 100);
+            eventPicture.MaximumSize = new Size(new Point(k_PostProfilePictureSize + 20, k_PostProfilePictureSize + 20));
+            FeedGroupBox.Controls.Add(eventPicture);
+        }
+
+        // LogOut
         private void LogOut_Click(object sender, EventArgs e)
         {
-            GlobalData.User = null;
+            Transition();
+
+            LoggedInUserData.User = null;
 
             this.Hide();
             LogInForm logInForm = new LogInForm();
@@ -295,6 +335,8 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
         // Games
         private void GamesBtn_Click(object sender, EventArgs e)
         {
+            Transition();
+
             NewPost.Hide();
             FeedGroupBox.Hide();
 
@@ -336,6 +378,8 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
         // serach
         private void SearchBtn_Click(object sender, EventArgs e)
         {
+            Transition();
+
             if (!string.IsNullOrEmpty(k_TextToFind))
             {
                 Transition();

@@ -20,7 +20,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
 
             if (i_NumOfPost >= 0)
             {
-                foreach (Post post in GlobalData.User.WallPosts)
+                foreach (Post post in LoggedInUserData.User.WallPosts)
                 {
                     i_NumOfPost--;
 
@@ -28,7 +28,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
                     GroupBox singlePostGroupBox = createPostGroupPost(i_GroupBoxLocation, i_feedGroupBox);
                     PictureBox defaultPic = createDefaultFacebookProfilePicture(singlePostGroupBox);
                     PictureBox myPic = new PictureBox();
-                    myPic.Image = GlobalData.User.ImageSmall;
+                    myPic.Image = LoggedInUserData.User.ImageSmall;
                     myPic.MaximumSize = new Size(new Point(k_PostProfilePictureSize, k_PostProfilePictureSize));
 
                     if (post.From.Name != null)
@@ -38,10 +38,10 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
                         Label postFromName = MainOps.createNewDefaultLabel(post.From.Name, labelLocation, i_feedGroupBox);
                         singlePostGroupBox.Controls.Add(postFromName);
 
-                        if (!postFromName.Text.Equals(GlobalData.User.Name))
+                        if (!postFromName.Text.Equals(LoggedInUserData.User.Name))
                         {
                             Point location = new Point(postFromName.Location.X + postFromName.Width, postFromName.Location.Y);
-                            Label ToMyUser = MainOps.createNewDefaultLabel("->" + GlobalData.User.Name, location, i_feedGroupBox);
+                            Label ToMyUser = MainOps.createNewDefaultLabel("->" + LoggedInUserData.User.Name, location, i_feedGroupBox);
                             singlePostGroupBox.Controls.Add(ToMyUser);
                             singlePostGroupBox.Controls.Add(defaultPic);
                         }

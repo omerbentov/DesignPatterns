@@ -54,7 +54,7 @@
   <ItemGroup>
     <Compile Include="AlbumsOps.cs" />
     <Compile Include="GamesOps.cs" />
-    <Compile Include="GlobalData.cs" />
+    <Compile Include="LoggedInUserData.cs" />
     <Compile Include="MainOps.cs" />
     <Compile Include="MainFeed.cs">
       <SubType>Form</SubType>

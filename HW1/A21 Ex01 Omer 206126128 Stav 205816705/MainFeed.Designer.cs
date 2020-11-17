@@ -164,7 +164,6 @@
             this.NewPost.Size = new System.Drawing.Size(693, 111);
             this.NewPost.TabIndex = 18;
             this.NewPost.Text = "What\'s on your mind?";
-            this.NewPost.TextChanged += new System.EventHandler(this.CreatNewPost);
             // 
             // FeedGroupBox
             // 

@@ -103,6 +103,11 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
 
         public static void RemoveAllGuessingGameControls(Control.ControlCollection i_Controls)
         {
+            foreach (Control control in m_AllGames)
+            {
+                i_Controls.Remove(control);
+            }
+
             foreach (Control control in m_GuessingGameControls)
             {
                 i_Controls.Remove(control);

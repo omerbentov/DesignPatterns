@@ -18,7 +18,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
 
             try
             {
-                foreach (Event myEvent in GlobalData.User.Events)
+                foreach (Event myEvent in LoggedInUserData.User.Events)
                 {
                     if (!string.IsNullOrEmpty(myEvent.Name))
                     {
@@ -39,7 +39,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
 
         private static void setFriendPosts(string i_TextToFind, GroupBox i_FeedGroupBox)
         {
-            foreach (User user in GlobalData.User.Friends)
+            foreach (User user in LoggedInUserData.User.Friends)
             {
                 foreach (Post post in user.Posts)
                 {

@@ -33,7 +33,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
 
         private void LogInBtn_Click(object sender, EventArgs e)
         {
-            LoginResult result = FacebookService.Login(GlobalData.AppId,
+            LoginResult result = FacebookService.Login(LoggedInUserData.AppId,
                 "public_profile",
                 "email",
                 "user_photos", 
@@ -52,8 +52,8 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
                 "pages_manage_posts",
                 "publish_to_groups");
 
-            GlobalData.User = result.LoggedInUser;
-            GlobalData.AccesToken = result.AccessToken;
+            LoggedInUserData.User = result.LoggedInUser;
+            LoggedInUserData.AccesToken = result.AccessToken;
             this.Hide();
             MainFeed mainFeed = new MainFeed();
             mainFeed.Show();
