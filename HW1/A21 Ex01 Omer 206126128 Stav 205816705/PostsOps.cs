@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace A21_Ex01_Omer_206126128_Stav_205816705
 {
-    public class Posts
+    public static class PostsOps
     {
         private const int k_PostProfilePictureSize = 55;
         private const int k_PostsMargin = 20;
@@ -20,7 +20,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
 
             if (i_NumOfPost >= 0)
             {
-                foreach (Post post in Global.User.WallPosts)
+                foreach (Post post in GlobalData.User.WallPosts)
                 {
                     i_NumOfPost--;
 
@@ -28,20 +28,20 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
                     GroupBox singlePostGroupBox = createPostGroupPost(i_GroupBoxLocation, i_feedGroupBox);
                     PictureBox defaultPic = createDefaultFacebookProfilePicture(singlePostGroupBox);
                     PictureBox myPic = new PictureBox();
-                    myPic.Image = Global.User.ImageSmall;
+                    myPic.Image = GlobalData.User.ImageSmall;
                     myPic.MaximumSize = new Size(new Point(k_PostProfilePictureSize, k_PostProfilePictureSize));
 
                     if (post.From.Name != null)
                     {
                         Point labelLocation = i_BaseLocation;
                         labelLocation.X += defaultPic.Width;
-                        Label postFromName = LabelApp.createNewDefaultLabel(post.From.Name, labelLocation, i_feedGroupBox);
+                        Label postFromName = MainOps.createNewDefaultLabel(post.From.Name, labelLocation, i_feedGroupBox);
                         singlePostGroupBox.Controls.Add(postFromName);
 
-                        if (!postFromName.Text.Equals(Global.User.Name))
+                        if (!postFromName.Text.Equals(GlobalData.User.Name))
                         {
                             Point location = new Point(postFromName.Location.X + postFromName.Width, postFromName.Location.Y);
-                            Label ToMyUser = LabelApp.createNewDefaultLabel("->" + Global.User.Name, location, i_feedGroupBox);
+                            Label ToMyUser = MainOps.createNewDefaultLabel("->" + GlobalData.User.Name, location, i_feedGroupBox);
                             singlePostGroupBox.Controls.Add(ToMyUser);
                             singlePostGroupBox.Controls.Add(defaultPic);
                         }
@@ -53,7 +53,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
                         if (post.Name != null)
                         {
                             Point location = new Point(postFromName.Location.X, i_BaseLocation.Y + Y_Offset * postFromName.Height);
-                            Label postName = LabelApp.createNewDefaultLabel(post.Name, location, i_feedGroupBox);
+                            Label postName = MainOps.createNewDefaultLabel(post.Name, location, i_feedGroupBox);
                             Y_Offset++;
                             singlePostGroupBox.Controls.Add(postName);
                         }
@@ -61,14 +61,14 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
                         if (post.CreatedTime != null)
                         {
                             Point location = new Point(postFromName.Location.X, i_BaseLocation.Y + Y_Offset * postFromName.Height);
-                            Label postDate = LabelApp.createNewDefaultLabel(post.CreatedTime.ToString(), location, i_feedGroupBox);
+                            Label postDate = MainOps.createNewDefaultLabel(post.CreatedTime.ToString(), location, i_feedGroupBox);
                             singlePostGroupBox.Controls.Add(postDate);
                         }
 
                         if (post.Message != null)
                         {
                             Point location = new Point(defaultPic.Location.X, defaultPic.Location.Y + defaultPic.Height);
-                            Label postMessage = LabelApp.createNewDefaultLabel(post.Message, location, i_feedGroupBox);
+                            Label postMessage = MainOps.createNewDefaultLabel(post.Message, location, i_feedGroupBox);
                             Y_Offset++;
                             singlePostGroupBox.Controls.Add(postMessage);
                         }
@@ -111,6 +111,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
 
             return defaultPic;
         }
+
         private static Point calculateNextPostPosition(Point i_prevPoint, int i_PrevGroupBoxHeight)
         {
             return new Point(i_prevPoint.X, i_prevPoint.Y + i_PrevGroupBoxHeight + k_PostsMargin);

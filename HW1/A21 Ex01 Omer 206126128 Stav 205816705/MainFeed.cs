@@ -19,15 +19,42 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
         private const int k_PostProfilePictureSize = 55;
         private const int k_NumOfPostsInHomePage = 3;
         private const int k_NumOfAlbumsInHomePage = 4;
-        private const int k_NumOfGuessingGameQuestions = 5;
         private const int k_LabelMargin = 50;
 
-        private string m_TextToFind;
+        private static string k_TextToFind;
         private bool m_IsCollapsed = false;
-        private int m_Score = 0;
-        private int m_GuessingGameQuestionNumber = 1;
-        private List<Button> m_AllGames = new List<Button>();
-        private List<Control> m_GuessingGameControls = new List<Control>();
+
+        public static Point PostProfilePicturePointSize
+        {
+            get
+            {
+                return new Point(k_PostProfilePictureSize, k_PostProfilePictureSize);
+            }
+        }
+
+        public bool NewPostVisabilty
+        {
+           set
+           {
+                NewPost.Visible = value;
+           }
+        }
+
+        public static int LabelMargin
+        {
+            get
+            {
+                return k_LabelMargin;
+            }
+        }
+
+        public static int DefaultCenterWidth
+        {
+            get
+            {
+                return k_PostWidth;
+            }
+        }
 
         public MainFeed()
         {
@@ -39,52 +66,47 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
 
         private void InitializeChildrenComponents()
         {
-            WelcomeUserNameLable.Text = Global.User.FirstName;
-            UserNamePictureBox.Image = Global.User.ImageSmall;
+            WelcomeUserNameLable.Text = GlobalData.User.FirstName;
+            UserNamePictureBox.Image = GlobalData.User.ImageSmall;
         }
 
-        private void FetchaAlbumsBtn_Click(object sender, EventArgs e)
+        // Home 
+        private void HomeBtn_Click(object sender, EventArgs e)
         {
-            transition();
-
-            Point picLocation = new Point(20, 50);
-            Albums.addAlbums(picLocation, int.MaxValue, FeedGroupBox);
-        }
-
-        private void FetchPostsBtn_Click(object sender, EventArgs e)
-        {
-            transition();
+            MainOps.ResetFeedGroupBox(FeedGroupBox, DefaultCenterWidth);
 
             Point groupBoxLocation = new Point();
             Point baseLocation = new Point(20, 10);
 
-            Posts.addPosts(groupBoxLocation, baseLocation, int.MaxValue, FeedGroupBox);
+            Point nextPosition = PostsOps.addPosts(groupBoxLocation, baseLocation, k_NumOfPostsInHomePage, FeedGroupBox);
+            nextPosition.Y += k_PostsMargin;
+            AlbumsOps.addAlbums(nextPosition, k_NumOfAlbumsInHomePage, FeedGroupBox);
         }
 
-        private void transition()
+        // Albums
+        private void FetchaAlbumsBtn_Click(object sender, EventArgs e)
         {
-            NewPost.Visible = true;
-            resetFeedGroupBox();
-            removeAllGuessingGameControls();
+            Transition();
+
+            Point picLocation = new Point(20, 50);
+            AlbumsOps.addAlbums(picLocation, int.MaxValue, FeedGroupBox);
         }
 
-        private void resetFeedGroupBox()
+        // Posts
+        private void FetchPostsBtn_Click(object sender, EventArgs e)
         {
-            FeedGroupBox.Controls.Clear();
-            FeedGroupBox.Visible = true;
-            FeedGroupBox.BackColor = Color.Transparent;
-            FeedGroupBox.Width = NewPost.Width;
-            FeedGroupBox.MaximumSize = new Size(new Point(NewPost.Width, int.MaxValue));
+            Transition();
+
+            Point groupBoxLocation = new Point();
+            Point baseLocation = new Point(20, 10);
+
+            PostsOps.addPosts(groupBoxLocation, baseLocation, int.MaxValue, FeedGroupBox);
         }
 
-        private Point calculateNextLabelPosition(Point i_prevPoint)
-        {
-            return new Point(i_prevPoint.X , i_prevPoint.Y + 50);
-        }
-
+        // Account - Class not needed?
         private void FetchAccountInfoBtn_Click(object sender, EventArgs e)
         {
-            transition();
+            Transition();
             FeedGroupBox.Visible = true;
             FeedGroupBox.BackColor = Color.White;
 
@@ -103,95 +125,81 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             Point LabelLocation = new Point(10,10);
             Point baseLocation = new Point(10, 10);
             
-            if (Global.User.Name == null)
+            if (GlobalData.User.Name == null)
             {
                 CreateAddingButton("Name :", LabelLocation);
             }
             else
             {
-                CreateInformationLabel("Name :", Global.User.Name, baseLocation);
+                CreateInformationLabel("Name :", GlobalData.User.Name, baseLocation);
             }
 
             LabelLocation = new Point(LabelLocation.X, LabelLocation.Y + k_LabelMargin);
 
-            if (Global.User.Email == null)
+            if (GlobalData.User.Email == null)
             {
                 CreateAddingButton("Email :", LabelLocation);
             }
             else
             {
-                CreateInformationLabel("Email :", Global.User.Email, LabelLocation);
+                CreateInformationLabel("Email :", GlobalData.User.Email, LabelLocation);
             }
 
             LabelLocation = new Point(LabelLocation.X, LabelLocation.Y + k_LabelMargin);
 
-            if (Global.User.Birthday == null)
+            if (GlobalData.User.Birthday == null)
             {
                 CreateAddingButton("Birthday :", LabelLocation);
             }
             else
             {
-                CreateInformationLabel("Birthday :", Global.User.Birthday, LabelLocation);
+                CreateInformationLabel("Birthday :", GlobalData.User.Birthday, LabelLocation);
             }
 
             LabelLocation = new Point(LabelLocation.X, LabelLocation.Y + k_LabelMargin);
 
-            if (Global.User.Gender == null)
+            if (GlobalData.User.Gender == null)
             {
                 CreateAddingButton("Gender :", LabelLocation);
             }
             else
             {
-                CreateInformationLabel("Gender :", Global.User.Gender.ToString(), LabelLocation);
+                CreateInformationLabel("Gender :", GlobalData.User.Gender.ToString(), LabelLocation);
             }
 
             LabelLocation = new Point(LabelLocation.X, LabelLocation.Y + k_LabelMargin);
 
-            if (Global.User.Hometown == null)
+            if (GlobalData.User.Hometown == null)
             {
                 CreateAddingButton("Home Town :", LabelLocation);
             }
             else
             {
-                CreateInformationLabel("Home Town :", Global.User.Hometown.ToString(), LabelLocation);
+                CreateInformationLabel("Home Town :", GlobalData.User.Hometown.ToString(), LabelLocation);
             }
 
             LabelLocation = new Point(LabelLocation.X, LabelLocation.Y + k_LabelMargin);
 
-            if (Global.User.Educations == null)
+            if (GlobalData.User.Educations == null)
             {
                 CreateAddingButton("Education :", LabelLocation);
             }
             else
             {
-                CreateInformationLabel("Education :", Global.User.Educations.ToString(), LabelLocation);
+                CreateInformationLabel("Education :", GlobalData.User.Educations.ToString(), LabelLocation);
             }
 
             LabelLocation = new Point(LabelLocation.X, LabelLocation.Y + k_LabelMargin);
 
-            if (Global.User.RelationshipStatus == null)
+            if (GlobalData.User.RelationshipStatus == null)
             {
                 CreateAddingButton("RelationshipStatus :", LabelLocation);
             }
             else
             {
-                CreateInformationLabel("RelationshipStatus  :", Global.User.RelationshipStatus.ToString(), LabelLocation);
+                CreateInformationLabel("RelationshipStatus  :", GlobalData.User.RelationshipStatus.ToString(), LabelLocation);
             }
 
-        }
-
-        private void CreateInformationLabel(String i_type, String i_user, Point i_prevPoint)
-        {
-            Label tempLabel = new Label();
-            tempLabel.Text = i_type + i_user;
-            tempLabel.Location = calculateNextLabelPosition(i_prevPoint);
-            tempLabel.AutoSize = true;
-            FeedGroupBox.Controls.Add(tempLabel);
-        }
-
-        private Point calculateNextButtonPosition(Point i_prevPoint, int i_labelWidth)
-        {
-            return new Point(i_labelWidth + 10 , i_prevPoint.Y + k_LabelMargin);
         }
 
         private void CreateAddingButton(String i_type, Point i_prevPoint)
@@ -205,15 +213,16 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             Label tempLabel = new Label();
             tempLabel.Text = i_type;
             tempLabel.Width = 200;
-            tempLabel.Location = calculateNextLabelPosition(i_prevPoint);
-            addingButton.Location = calculateNextButtonPosition(i_prevPoint, tempLabel.Width);
+            tempLabel.Location = MainOps.CalculateNextLabelPosition(i_prevPoint);
+            addingButton.Location = MainOps.CalculateNextButtonPosition(i_prevPoint, tempLabel.Width);
             FeedGroupBox.Controls.Add(tempLabel);
             FeedGroupBox.Controls.Add(addingButton);
         }
 
+        //Events - Need Class ?
         private void FetchEventsBtn_Click(object sender, EventArgs e)
         {
-            transition();
+            Transition();
             FeedGroupBox.Visible = true;
             FeedGroupBox.BackColor = Color.White;
 
@@ -225,51 +234,31 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             header.Location = new Point(20, 20);
             FeedGroupBox.Controls.Add(header);
 
-            if (Global.User.Events.Count == 0)
+            if (GlobalData.User.Events.Count == 0)
             {
                 MessageBox.Show("No events on your Facebook account");
             }
 
-            foreach (Event myEvent in Global.User.Events)
+            foreach (Event myEvent in GlobalData.User.Events)
             {
                 addEvent(myEvent);
                 addPicture(myEvent);
             }
         }
 
-        private void addEvent(Event i_newEvent)
+        // LogOut - Need Class !
+        private void LogOut_Click(object sender, EventArgs e)
         {
-            Point LabelLocation = new Point(10, 10);
+            GlobalData.User = null;
 
-            Label eventLabel = new Label();
-            string eventName = i_newEvent.Name;
-            string eventTime = i_newEvent.StartTime.ToString();
-            long attendingCount = (long)i_newEvent.AttendingCount;
-            string newEvent = String.Format("Event: {0}\n start at: {1}\n attending: {2}\n", eventName, eventTime, attendingCount);
-
-            eventLabel.Text = newEvent;
-            eventLabel.AutoSize = true;
-            eventLabel.Location = calculateNextLabelPosition(LabelLocation);
-            eventLabel.Visible = true;
-
-            FeedGroupBox.Controls.Add(eventLabel);
-        }
-        
-
-        private void CreatNewPost(object sender, EventArgs e)
-        {
-            
+            this.Hide();
+            LogInForm logInForm = new LogInForm();
+            logInForm.Show();
         }
 
-        private Label createNewDefaultLabel(string i_text, Point i_Location)
+        private void DropDownBar_Click(object sender, EventArgs e)
         {
-            Label tempLabel = new Label();
-            tempLabel.AutoSize = true;
-            tempLabel.MaximumSize = new Size(FeedGroupBox.Width, int.MaxValue);
-            tempLabel.Text = i_text;
-            tempLabel.Location = i_Location;
-
-            return tempLabel;
+            timer1.Start();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -294,160 +283,57 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             }
         }
 
-        private void DropDownBar_Click(object sender, EventArgs e)
-        {
-            timer1.Start();
-        }
-
-        private void LogOut_Click(object sender, EventArgs e)
-        {
-            Global.User = null;
-
-            this.Hide();
-            LogInForm logInForm = new LogInForm();
-            logInForm.Show();
-        }
-
-        private void HomeBtn_Click(object sender, EventArgs e)
-        {
-            resetFeedGroupBox();
-
-            Point groupBoxLocation = new Point();
-            Point baseLocation = new Point(20, 10);
-
-            Point nextPosition = Posts.addPosts(groupBoxLocation, baseLocation, k_NumOfPostsInHomePage, FeedGroupBox);
-            nextPosition.Y += k_PostsMargin;
-            Albums.addAlbums(nextPosition, k_NumOfAlbumsInHomePage, FeedGroupBox);
-        }
-
         // Games
         private void GamesBtn_Click(object sender, EventArgs e)
         {
             NewPost.Hide();
             FeedGroupBox.Hide();
 
-            Label Header = createNewDefaultLabel("Games", NewPost.Location);
+            Label Header = MainOps.CreateNewDefaultLabel("Games", NewPost.Location, DefaultCenterWidth);
             Controls.Add(Header);
 
             Button guessingGameBtn = new Button();
             guessingGameBtn.Text = "Guessing game";
             guessingGameBtn.Click += BirthdaysGameBtn_Click;
             guessingGameBtn.Location = new Point(NewPost.Location.X, NewPost.Location.Y + k_PostsMargin);
-            m_AllGames.Add(guessingGameBtn);
+            GamesOps.AllGamesBtn.Add(guessingGameBtn);
 
             Button g = new Button();
             g.Text = "G";
             g.Click += BirthdaysGameBtn_Click;
             g.Location = new Point(NewPost.Location.X, guessingGameBtn.Location.Y + guessingGameBtn.Height + k_PostsMargin);
-            m_AllGames.Add(g);
+            GamesOps.AllGamesBtn.Add(g);
 
-            addAllButtunsToConstorls(m_AllGames);
-        }
-
-        void addAllButtunsToConstorls(List<Button> i_Buttons)
-        {
-            foreach(Button button in i_Buttons)
-            {
-                Controls.Add(button);
-            }
-        }
-
-        private void removeAllButtunsFromConstorls(List<Button> i_Buttons)
-        {
-            foreach (Button button in i_Buttons)
-            {
-                Controls.Remove(button);
-            }
+            GamesOps.AddAllButtunsToConstorls(GamesOps.AllGamesBtn, Controls);
         }
 
         private void BirthdaysGameBtn_Click(object sender, EventArgs e)
         {
-            removeAllButtunsFromConstorls(m_AllGames);
+            GamesOps.RemoveAllButtunsFromConstorls(GamesOps.AllGamesBtn, Controls);
 
             Random rnd = new Random();
             int typeOfQuestions = rnd.Next(0, 1);
 
-            switch(typeOfQuestions)
+            switch (typeOfQuestions)
             {
                 case 0:
                     // In this case we need to ranomize a friend and get his birthday - but permission denied
                     // newQuestion(sender, "How old is <RandomUserFriend()FullName>?", new Point(NewPost.Location.X, NewPost.Location.X + k_PostsMargin));
-                    newQuestion(sender, "How old is Guy Ronen?", new Point(NewPost.Location.X, NewPost.Location.Y + k_PostsMargin));
+                    GamesOps.NewQuestion(sender, "How old is Guy Ronen?", new Point(NewPost.Location.X, NewPost.Location.Y + k_PostsMargin), Controls);
                     break;
-            }
-        }
-
-        private void newQuestion(object sender, string i_Question, Point i_BaseLOaction)
-        {
-            Label QuestionLabel = createNewDefaultLabel(i_Question, i_BaseLOaction);
-            Controls.Add(QuestionLabel);
-            m_GuessingGameControls.Add(QuestionLabel);
-
-            TextBox answerTextBox = new TextBox();
-            answerTextBox.Location = new Point(QuestionLabel.Location.X + QuestionLabel.Width + k_PostsMargin, QuestionLabel.Location.Y);
-            Controls.Add(answerTextBox);
-            m_GuessingGameControls.Add(answerTextBox);
-
-            Button SubmitBtn = new Button();
-            SubmitBtn.Text = "Submit";
-            SubmitBtn.Location = new Point(answerTextBox.Location.X + answerTextBox.Width + k_PostsMargin, QuestionLabel.Location.Y);
-            SubmitBtn.Click += (sender_, EventArgs) => {
-                buttonNext_Click(
-                    sender,
-                    EventArgs,
-                    answerTextBox.Text.Equals("45"),
-                    new Point(QuestionLabel.Location.X, QuestionLabel.Location.Y + QuestionLabel.Height)
-                    );
-            };
-            Controls.Add(SubmitBtn);
-            m_GuessingGameControls.Add(SubmitBtn);
-        }
-
-        private void buttonNext_Click(object sender, EventArgs eventArgs, bool i_IsCorrect, Point i_Location)
-        {
-            Label isCorrectLabel = createNewDefaultLabel(i_IsCorrect.ToString(), i_Location);
-            Controls.Add(isCorrectLabel);
-            m_GuessingGameControls.Add(isCorrectLabel);
-            isCorrectLabel.BringToFront();
-
-            if (i_IsCorrect)
-            {
-                if (m_GuessingGameQuestionNumber < k_NumOfGuessingGameQuestions)
-                {
-                    m_GuessingGameQuestionNumber++;
-                    m_Score++;
-                    newQuestion(
-                        sender,
-                        "How old is guy ronen",
-                        new Point(i_Location.X, i_Location.Y + (sender as Button).Height + k_PostsMargin));
-                }
-                else
-                {
-                    m_GuessingGameQuestionNumber = 1;
-                    m_Score++;
-                    removeAllGuessingGameControls();
-                }
-            }
-        }
-
-        private void removeAllGuessingGameControls()
-        {
-            foreach (Control control in m_GuessingGameControls)
-            {
-                Controls.Remove(control);
             }
         }
 
         // serach
         private void SearchBtn_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(m_TextToFind))
+            if (!string.IsNullOrEmpty(k_TextToFind))
             {
-                clearAllFindings();
-                setEventsSearch();
+                Transition();
+                SearchOps.setEventsSearch(k_TextToFind, FeedGroupBox);
+                //setFriendPosts(m_TextToFind, FeedGroupBox);
                 //setPagesFindings();
                 //setGroupsFindings();
-                //setFriendPosts();
             }
             else
             {
@@ -455,85 +341,17 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             }
         }
 
-        private void clearAllFindings()
-        {
-            FeedGroupBox.Controls.Clear();
-        }
-
-        private void setFriendPosts()
-        {
-            foreach (User user in Global.User.Friends)
-            {
-                foreach (Post post in user.Posts)
-                {
-                    if (!string.IsNullOrEmpty(post.Message))
-                    {
-                        if (post.Message.Contains(m_TextToFind))
-                        {
-                            Label postOfAFriend = new Label();
-                            String userName = post.From.Name + "posted";
-                            postOfAFriend.Text = userName + post.Message;
-                            postOfAFriend.AutoSize = true;
-                            postOfAFriend.Location = new Point();
-                            FeedGroupBox.Controls.Add(postOfAFriend);
-                        }
-                    }
-                }
-            }
-        }
-
-        private void addPicture(Event i_newEvent)
-        {
-            PictureBox eventPicture = new PictureBox();
-            Point LabelLocation = new Point(10, 10);
-            //eventPicture.ImageLocation = i_newEvent.PictureSqaureURL;
-            //eventPicture.LoadAsync(i_newEvent.PictureSmallURL);
-            eventPicture.Image = Properties.Resources.Facebook_1_Cake;
-            eventPicture.Visible = true;
-            eventPicture.SizeMode = PictureBoxSizeMode.Zoom;
-            eventPicture.Location = calculateNextButtonPosition(LabelLocation, 100);
-            eventPicture.MaximumSize = new Size(new Point(k_PostProfilePictureSize + 20, k_PostProfilePictureSize + 20));
-            FeedGroupBox.Controls.Add(eventPicture);
-        }
-
-        private void setEventsSearch()
-        {
-            Point LabelLocation = new Point(10, 10);
-
-            try
-            {
-                foreach (Event myEvent in Global.User.Events)
-                {
-                    if (!string.IsNullOrEmpty(myEvent.Name))
-                    {
-                        if (myEvent.Name.Contains(m_TextToFind))
-                        {
-                            addEvent(myEvent);
-                            addPicture(myEvent);
-
-                        }
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                errMessage();
-            }
-        }
-
-        private void errMessage()
-        {
-            FeedGroupBox.Controls.Clear();
-            Label errMessage = new Label();
-            errMessage.Text = "sorry, we can't access the information";
-            errMessage.AutoSize = true;
-            errMessage.Location = new Point(20, 20);
-            FeedGroupBox.Controls.Add(errMessage);
-        }
-
         private void SearchTextBox_TextChanged(object sender, EventArgs e)
         {
-            m_TextToFind = SearchTextBox.Text;
+            k_TextToFind = SearchTextBox.Text;
+        }
+
+        //General
+        public void Transition()
+        {
+            NewPost.Visible = true;
+            MainOps.ResetFeedGroupBox(FeedGroupBox, DefaultCenterWidth);
+            GamesOps.RemoveAllGuessingGameControls(Controls);
         }
     }
 }

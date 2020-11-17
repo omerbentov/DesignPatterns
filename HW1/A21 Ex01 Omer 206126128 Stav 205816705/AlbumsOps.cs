@@ -9,11 +9,11 @@ using System.Windows.Forms;
 
 namespace A21_Ex01_Omer_206126128_Stav_205816705
 {
-    public class Albums
+    public static class AlbumsOps
     {
         public static void addAlbums(Point i_PicLocation, int i_NumOfAlbums, GroupBox i_feedGroupBox)
         {
-            FacebookObjectCollection<Album> albums = Global.User.Albums;
+            FacebookObjectCollection<Album> albums = GlobalData.User.Albums;
 
             foreach (Album album in albums)
             {
@@ -37,7 +37,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
                 i_feedGroupBox.Controls.Add(albumName);
 
                 Point countLabelPoint = new Point(i_PicLocation.X, i_PicLocation.Y + albumPicture.Height);
-                Label albumCount = LabelApp.createNewDefaultLabel(album.Count + " Photos", countLabelPoint, i_feedGroupBox);
+                Label albumCount = MainOps.createNewDefaultLabel(album.Count + " Photos", countLabelPoint, i_feedGroupBox);
                 i_feedGroupBox.Controls.Add(albumCount);
 
                 i_PicLocation = calculateNextAlbumCUverPhotoPosition(i_PicLocation);
@@ -57,8 +57,5 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
 
             return new Point(x, y);
         }
-
-
-
     }
 }

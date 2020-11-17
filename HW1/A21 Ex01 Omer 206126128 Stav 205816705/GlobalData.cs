@@ -8,7 +8,7 @@ using FacebookWrapper.ObjectModel;
 
 namespace A21_Ex01_Omer_206126128_Stav_205816705
 {
-    public static class Global
+    public static class GlobalData
     {
         private const string k_appID = "1556806451170375";
 

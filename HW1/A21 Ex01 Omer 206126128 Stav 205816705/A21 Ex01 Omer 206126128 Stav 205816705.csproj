@@ -52,8 +52,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Albums.cs" />
-    <Compile Include="Global.cs" />
+    <Compile Include="AlbumsOps.cs" />
+    <Compile Include="GamesOps.cs" />
+    <Compile Include="GlobalData.cs" />
+    <Compile Include="MainOps.cs" />
     <Compile Include="MainFeed.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,8 +68,10 @@
     <Compile Include="LogInForm.Designer.cs">
       <DependentUpon>LogInForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PostsOps.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SearchOps.cs" />
     <EmbeddedResource Include="LogInForm.resx">
       <DependentUpon>LogInForm.cs</DependentUpon>
     </EmbeddedResource>
