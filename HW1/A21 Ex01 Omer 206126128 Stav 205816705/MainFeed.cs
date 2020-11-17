@@ -202,6 +202,15 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
 
         }
 
+        private void CreateInformationLabel(String i_type, String i_user, Point i_prevPoint)
+        {
+            Label tempLabel = new Label();
+            tempLabel.Text = i_type + i_user;
+            tempLabel.Location = MainOps.CalculateNextLabelPosition(i_prevPoint);
+            tempLabel.AutoSize = true;
+            FeedGroupBox.Controls.Add(tempLabel);
+        }
+
         private void CreateAddingButton(String i_type, Point i_prevPoint)
         {
             Button addingButton = new Button();
