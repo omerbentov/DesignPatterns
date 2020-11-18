@@ -107,7 +107,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             PostsOps.addPosts(groupBoxLocation, baseLocation, int.MaxValue, FeedGroupBox);
         }
 
-        // Account - Class not needed?
+        // Account 
         private void FetchAccountInfoBtn_Click(object sender, EventArgs e)
         {
             Transition();
@@ -115,125 +115,11 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             FeedGroupBox.Visible = true;
             FeedGroupBox.BackColor = Color.White;
 
-            Label header = new Label();
-            header.Text = "Information About Your Account" ;
-            header.Location = new Point(0, 20);
-            header.AutoSize = true;
-            FeedGroupBox.Controls.Add(header);
-
-            Label line = new Label();
-            line.Text = "----------------------------------------------------------";
-            line.AutoSize = true;
-            line.Location = new Point(0,30);
-            FeedGroupBox.Controls.Add(line);
-
-            Point LabelLocation = new Point(10,10);
-            Point baseLocation = new Point(10, 10);
-            
-            if (LoggedInUserData.User.Name == null)
-            {
-                CreateAddingButton("Name :", LabelLocation);
-            }
-            else
-            {
-                CreateInformationLabel("Name :", LoggedInUserData.User.Name, baseLocation);
-            }
-
-            LabelLocation = new Point(LabelLocation.X, LabelLocation.Y + k_LabelMargin);
-
-            if (LoggedInUserData.User.Email == null)
-            {
-                CreateAddingButton("Email :", LabelLocation);
-            }
-            else
-            {
-                CreateInformationLabel("Email :", LoggedInUserData.User.Email, LabelLocation);
-            }
-
-            LabelLocation = new Point(LabelLocation.X, LabelLocation.Y + k_LabelMargin);
-
-            if (LoggedInUserData.User.Birthday == null)
-            {
-                CreateAddingButton("Birthday :", LabelLocation);
-            }
-            else
-            {
-                CreateInformationLabel("Birthday :", LoggedInUserData.User.Birthday, LabelLocation);
-            }
-
-            LabelLocation = new Point(LabelLocation.X, LabelLocation.Y + k_LabelMargin);
-
-            if (LoggedInUserData.User.Gender == null)
-            {
-                CreateAddingButton("Gender :", LabelLocation);
-            }
-            else
-            {
-                CreateInformationLabel("Gender :", LoggedInUserData.User.Gender.ToString(), LabelLocation);
-            }
-
-            LabelLocation = new Point(LabelLocation.X, LabelLocation.Y + k_LabelMargin);
-
-            if (LoggedInUserData.User.Hometown == null)
-            {
-                CreateAddingButton("Home Town :", LabelLocation);
-            }
-            else
-            {
-                CreateInformationLabel("Home Town :", LoggedInUserData.User.Hometown.ToString(), LabelLocation);
-            }
-
-            LabelLocation = new Point(LabelLocation.X, LabelLocation.Y + k_LabelMargin);
-
-            if (LoggedInUserData.User.Educations == null)
-            {
-                CreateAddingButton("Education :", LabelLocation);
-            }
-            else
-            {
-                CreateInformationLabel("Education :", LoggedInUserData.User.Educations.ToString(), LabelLocation);
-            }
-
-            LabelLocation = new Point(LabelLocation.X, LabelLocation.Y + k_LabelMargin);
-
-            if (LoggedInUserData.User.RelationshipStatus == null)
-            {
-                CreateAddingButton("RelationshipStatus :", LabelLocation);
-            }
-            else
-            {
-                CreateInformationLabel("RelationshipStatus  :", LoggedInUserData.User.RelationshipStatus.ToString(), LabelLocation);
-            }
+            AccountOps.AddAcountInfo(FeedGroupBox);
 
         }
 
-        private void CreateInformationLabel(String i_type, String i_user, Point i_prevPoint)
-        {
-            Label tempLabel = new Label();
-            tempLabel.Text = i_type + i_user;
-            tempLabel.Location = MainOps.CalculateNextLabelPosition(i_prevPoint);
-            tempLabel.AutoSize = true;
-            FeedGroupBox.Controls.Add(tempLabel);
-        }
-
-        private void CreateAddingButton(String i_type, Point i_prevPoint)
-        {
-            Button addingButton = new Button();
-            addingButton.Text = "Add Information";
-            addingButton.BackColor = Color.White;
-            addingButton.Visible = true;
-            addingButton.AutoSize = true;
-
-            Label tempLabel = new Label();
-            tempLabel.Text = i_type;
-            tempLabel.Width = 200;
-            tempLabel.Location = MainOps.CalculateNextLabelPosition(i_prevPoint);
-            addingButton.Location = MainOps.CalculateNextButtonPosition(i_prevPoint, tempLabel.Width);
-            FeedGroupBox.Controls.Add(tempLabel);
-            FeedGroupBox.Controls.Add(addingButton);
-        }
-
-        //Events - Need Class ?
+        //Events 
         private void FetchEventsBtn_Click(object sender, EventArgs e)
         {
             Transition();
@@ -241,56 +127,8 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             FeedGroupBox.Visible = true;
             FeedGroupBox.BackColor = Color.White;
 
-            Label header = new Label();
-            header.Text = "Your Events";
-            header.Size = new System.Drawing.Size(50, 27);
-            header.AutoSize = true;
-            header.ForeColor = Color.Blue;
-            header.Location = new Point(20, 20);
-            FeedGroupBox.Controls.Add(header);
+            EventsOps.AddEvents(FeedGroupBox);
 
-            if (LoggedInUserData.User.Events.Count == 0)
-            {
-                MessageBox.Show("No events on your Facebook account");
-            }
-
-            foreach (Event myEvent in LoggedInUserData.User.Events)
-            {
-                addEvent(myEvent);
-                addPicture(myEvent);
-            }
-        }
-
-        private void addEvent(Event i_newEvent)
-        {
-            Point LabelLocation = new Point(10, 10);
-
-            Label eventLabel = new Label();
-            string eventName = i_newEvent.Name;
-            string eventTime = i_newEvent.StartTime.ToString();
-            long attendingCount = (long)i_newEvent.AttendingCount;
-            string newEvent = String.Format("Event: {0}\n start at: {1}\n attending: {2}\n", eventName, eventTime, attendingCount);
-
-            eventLabel.Text = newEvent;
-            eventLabel.AutoSize = true;
-            eventLabel.Location = MainOps.CalculateNextLabelPosition(LabelLocation);
-            eventLabel.Visible = true;
-
-            FeedGroupBox.Controls.Add(eventLabel);
-        }
-
-        private void addPicture(Event i_newEvent)
-        {
-            PictureBox eventPicture = new PictureBox();
-            Point LabelLocation = new Point(10, 10);
-            //eventPicture.ImageLocation = i_newEvent.PictureSqaureURL;
-            //eventPicture.LoadAsync(i_newEvent.PictureSmallURL);
-            eventPicture.Image = Properties.Resources.Facebook_1_Cake;
-            eventPicture.Visible = true;
-            eventPicture.SizeMode = PictureBoxSizeMode.Zoom;
-            eventPicture.Location = MainOps.CalculateNextButtonPosition(LabelLocation, 100);
-            eventPicture.MaximumSize = new Size(new Point(k_PostProfilePictureSize + 20, k_PostProfilePictureSize + 20));
-            FeedGroupBox.Controls.Add(eventPicture);
         }
 
         // LogOut
@@ -383,8 +221,8 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             if (!string.IsNullOrEmpty(k_TextToFind))
             {
                 Transition();
-                SearchOps.setEventsSearch(k_TextToFind, FeedGroupBox);
-                //setFriendPosts(m_TextToFind, FeedGroupBox);
+                SearchOps.SetEventsSearch(k_TextToFind, FeedGroupBox);
+                SearchOps.SetFriendPosts(k_TextToFind, FeedGroupBox);
                 //setPagesFindings();
                 //setGroupsFindings();
             }

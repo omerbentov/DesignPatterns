@@ -52,7 +52,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountOps.cs" />
     <Compile Include="AlbumsOps.cs" />
+    <Compile Include="EventsOps.cs" />
     <Compile Include="GamesOps.cs" />
     <Compile Include="LoggedInUserData.cs" />
     <Compile Include="MainOps.cs" />

@@ -12,7 +12,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
 {
     public static class SearchOps
     {
-        public static void setEventsSearch(string i_TextToFind, GroupBox i_FeedGroupBox)
+        public static void SetEventsSearch(string i_TextToFind, GroupBox i_FeedGroupBox)
         {
             Point LabelLocation = new Point(10, 10);
 
@@ -37,24 +37,30 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             }
         }
 
-        private static void setFriendPosts(string i_TextToFind, GroupBox i_FeedGroupBox)
+        public static void SetFriendPosts(string i_TextToFind, GroupBox i_FeedGroupBox)
         {
             foreach (User user in LoggedInUserData.User.Friends)
             {
-                foreach (Post post in user.Posts)
+                try
                 {
-                    if (!string.IsNullOrEmpty(post.Message))
+                    foreach (Post post in user.Posts)
                     {
-                        if (post.Message.Contains(i_TextToFind))
+                        if (!string.IsNullOrEmpty(post.Message))
                         {
-                            Label postOfAFriend = new Label();
-                            String userName = post.From.Name + "posted";
-                            postOfAFriend.Text = userName + post.Message;
-                            postOfAFriend.AutoSize = true;
-                            postOfAFriend.Location = new Point();
-                            i_FeedGroupBox.Controls.Add(postOfAFriend);
+                            if (post.Message.Contains(i_TextToFind))
+                            {
+                                Label postOfAFriend = new Label();
+                                String userName = post.From.Name + "posted";
+                                postOfAFriend.Text = userName + post.Message;
+                                postOfAFriend.AutoSize = true;
+                                postOfAFriend.Location = new Point();
+                                i_FeedGroupBox.Controls.Add(postOfAFriend);
+                            }
                         }
                     }
+                }catch(Exception e)
+                {
+                    errMessage(i_FeedGroupBox);
                 }
             }
         }

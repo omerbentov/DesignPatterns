@@ -348,7 +348,6 @@
         private System.Windows.Forms.Button Friends;
         private System.Windows.Forms.Button GamesBtn;
         private System.Windows.Forms.Button HomeBtn;
-        private System.Windows.Forms.GroupBox FeedGroupBox;
         private System.Windows.Forms.Button posted;
         private System.Windows.Forms.PictureBox UserNamePictureBox;
         private System.Windows.Forms.Button DropDownBar;
@@ -361,5 +360,6 @@
         private System.Windows.Forms.TextBox SearchTextBox;
         private System.Windows.Forms.PictureBox SearchBtn;
         public System.Windows.Forms.RichTextBox NewPost;
+        public System.Windows.Forms.GroupBox FeedGroupBox;
     }
 }
