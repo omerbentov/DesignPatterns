@@ -35,13 +35,13 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
                     {
                         Point labelLocation = i_BaseLocation;
                         labelLocation.X += defaultPic.Width;
-                        Label postFromName = MainOps.createNewDefaultLabel(post.From.Name, labelLocation, i_feedGroupBox);
+                        Label postFromName = MainOps.CreateNewDefaultLabel(post.From.Name, labelLocation, i_feedGroupBox);
                         singlePostGroupBox.Controls.Add(postFromName);
 
                         if (!postFromName.Text.Equals(LoggedInUserData.User.Name))
                         {
                             Point location = new Point(postFromName.Location.X + postFromName.Width, postFromName.Location.Y);
-                            Label ToMyUser = MainOps.createNewDefaultLabel("->" + LoggedInUserData.User.Name, location, i_feedGroupBox);
+                            Label ToMyUser = MainOps.CreateNewDefaultLabel("->" + LoggedInUserData.User.Name, location, i_feedGroupBox);
                             singlePostGroupBox.Controls.Add(ToMyUser);
                             singlePostGroupBox.Controls.Add(defaultPic);
                         }
@@ -53,7 +53,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
                         if (post.Name != null)
                         {
                             Point location = new Point(postFromName.Location.X, i_BaseLocation.Y + Y_Offset * postFromName.Height);
-                            Label postName = MainOps.createNewDefaultLabel(post.Name, location, i_feedGroupBox);
+                            Label postName = MainOps.CreateNewDefaultLabel(post.Name, location, i_feedGroupBox);
                             Y_Offset++;
                             singlePostGroupBox.Controls.Add(postName);
                         }
@@ -61,14 +61,14 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
                         if (post.CreatedTime != null)
                         {
                             Point location = new Point(postFromName.Location.X, i_BaseLocation.Y + Y_Offset * postFromName.Height);
-                            Label postDate = MainOps.createNewDefaultLabel(post.CreatedTime.ToString(), location, i_feedGroupBox);
+                            Label postDate = MainOps.CreateNewDefaultLabel(post.CreatedTime.ToString(), location, i_feedGroupBox);
                             singlePostGroupBox.Controls.Add(postDate);
                         }
 
                         if (post.Message != null)
                         {
                             Point location = new Point(defaultPic.Location.X, defaultPic.Location.Y + defaultPic.Height);
-                            Label postMessage = MainOps.createNewDefaultLabel(post.Message, location, i_feedGroupBox);
+                            Label postMessage = MainOps.CreateNewDefaultLabel(post.Message, location, i_feedGroupBox);
                             Y_Offset++;
                             singlePostGroupBox.Controls.Add(postMessage);
                         }
@@ -95,7 +95,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             singlePostGroupBox.AutoSize = true;
             singlePostGroupBox.BackColor = Color.White;
             singlePostGroupBox.MaximumSize = new Size(i_feedGroupBox.Width, int.MaxValue);
-            //singlePostGroupBox.Width = MainFeed.NewPost.Width;
+            singlePostGroupBox.Width = 639;
             singlePostGroupBox.Location = i_GroupBoxLoaction;
             singlePostGroupBox.Visible = true;
 
