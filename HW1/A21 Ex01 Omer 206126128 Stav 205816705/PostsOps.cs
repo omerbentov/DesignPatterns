@@ -26,6 +26,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
 
                     int Y_Offset = 1;
                     GroupBox singlePostGroupBox = createPostGroupPost(i_GroupBoxLocation, i_feedGroupBox);
+                    singlePostGroupBox.Tag = "Center";
                     PictureBox defaultPic = createDefaultFacebookProfilePicture(singlePostGroupBox);
                     PictureBox myPic = new PictureBox();
                     myPic.Image = LoggedInUserData.User.ImageSmall;
@@ -95,7 +96,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             singlePostGroupBox.AutoSize = true;
             singlePostGroupBox.BackColor = Color.White;
             singlePostGroupBox.MaximumSize = new Size(i_feedGroupBox.Width, int.MaxValue);
-            singlePostGroupBox.Width = 639;
+            singlePostGroupBox.Width = i_feedGroupBox.Width;
             singlePostGroupBox.Location = i_GroupBoxLoaction;
             singlePostGroupBox.Visible = true;
 

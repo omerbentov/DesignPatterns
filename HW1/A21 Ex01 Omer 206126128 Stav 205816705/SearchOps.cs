@@ -64,7 +64,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             } 
         }
 
-        public static void setGroupsSearch(string i_TextToFind, GroupBox i_FeedGroupBox)
+        public static void SetGroupsSearch(string i_TextToFind, GroupBox i_FeedGroupBox)
         {
             try
             {
@@ -83,7 +83,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             
         }
 
-        public static void setPageSearchs(string i_TextToFind, GroupBox i_FeedGroupBox)
+        public static void SetPageSearchs(string i_TextToFind, GroupBox i_FeedGroupBox)
         {
             try { 
                 foreach (Page page in LoggedInUserData.User.LikedPages)

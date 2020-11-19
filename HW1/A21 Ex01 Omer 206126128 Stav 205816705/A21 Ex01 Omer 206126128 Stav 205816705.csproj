@@ -130,5 +130,8 @@
   <ItemGroup>
     <None Include="Assets\Facebook_1_Cake.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\GuessingGamePicture.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

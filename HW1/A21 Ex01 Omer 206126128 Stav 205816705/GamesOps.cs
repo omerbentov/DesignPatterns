@@ -47,7 +47,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             }
         }
 
-        public static void NewQuestion(object sender, string i_Question, Point i_BaseLOaction, Control.ControlCollection i_Controls)
+        public static void NewAgeQuestion(object sender, string i_Question, Point i_BaseLOaction, Control.ControlCollection i_Controls, MainFeed i_MainFeed)
         {
             Label QuestionLabel = MainOps.CreateNewDefaultLabel(i_Question, i_BaseLOaction, MainFeed.DefaultCenterWidth);
             i_Controls.Add(QuestionLabel);
@@ -67,38 +67,47 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
                     EventArgs,
                     answerTextBox.Text.Equals("45"),
                     new Point(QuestionLabel.Location.X, QuestionLabel.Location.Y + QuestionLabel.Height),
-                    i_Controls
+                    i_Controls,
+                    i_MainFeed
                     );
             };
             i_Controls.Add(SubmitBtn);
             m_GuessingGameControls.Add(SubmitBtn);
         }
 
-        private static void buttonNext_Click(object sender, EventArgs eventArgs, bool i_IsCorrect, Point i_Location, Control.ControlCollection i_Controls)
+        private static void buttonNext_Click(object sender, EventArgs eventArgs, bool i_IsCorrect, Point i_Location, Control.ControlCollection i_Controls, MainFeed i_MainFeed)
         {
             Label isCorrectLabel = MainOps.CreateNewDefaultLabel(i_IsCorrect.ToString(), i_Location, MainFeed.DefaultCenterWidth);
             i_Controls.Add(isCorrectLabel);
             m_GuessingGameControls.Add(isCorrectLabel);
             isCorrectLabel.BringToFront();
 
-            if (i_IsCorrect)
-            {
                 if (m_GuessingGameQuestionNumber < k_NumOfGuessingGameQuestions)
                 {
                     m_GuessingGameQuestionNumber++;
                     m_Score++;
-                    NewQuestion(
+                    // In this case we need to ranomize a friend and get his birthday - but permission denied
+                    /* newQuestion(
+                                sender,
+                                "How old is <RandomUserFriend().FullName>?",
+                                new Point(NewPost.Location.X, NewPost.Location.X + k_PostsMargin),
+                                this);
+                    */
+                    NewAgeQuestion(
                         sender,
-                        "How old is guy ronen",
-                        new Point(i_Location.X, i_Location.Y + (sender as Button).Height + k_PostsMargin), i_Controls);
+                        "How old is Guy Ronen",
+                        new Point(i_Location.X, i_Location.Y + k_PostsMargin),
+                        i_Controls,
+                        i_MainFeed);
                 }
                 else
                 {
                     m_GuessingGameQuestionNumber = 1;
                     m_Score++;
                     RemoveAllGuessingGameControls(i_Controls);
+                    i_MainFeed.GamesBtn_Click(new object(), new EventArgs());
                 }
-            }
+
         }
 
         public static void RemoveAllGuessingGameControls(Control.ControlCollection i_Controls)

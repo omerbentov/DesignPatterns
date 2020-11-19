@@ -14,15 +14,20 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
 {
     public partial class MainFeed : Form
     {
+        // Style
         private const int k_PostsMargin = 20;
-        private const int k_PostWidth = 500;
         private const int k_PostProfilePictureSize = 55;
         private const int k_NumOfPostsInHomePage = 3;
         private const int k_NumOfAlbumsInHomePage = 4;
         private const int k_LabelMargin = 50;
+        private const float k_SearchTextBoxRatio = 0.5f;
 
+        private static int s_PostWidth;
         private static string k_TextToFind;
         private bool m_IsCollapsed = false;
+
+        private Label m_GameHeader;
+
 
         // Prop
         public static Point PostProfilePicturePointSize
@@ -53,7 +58,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
         {
             get
             {
-                return k_PostWidth;
+                return s_PostWidth;
             }
         }
 
@@ -171,26 +176,42 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
         }
 
         // Games
-        private void GamesBtn_Click(object sender, EventArgs e)
+        public void GamesBtn_Click(object sender, EventArgs e)
         {
             Transition();
 
             NewPost.Hide();
             FeedGroupBox.Hide();
 
-            Label Header = MainOps.CreateNewDefaultLabel("Games", NewPost.Location, DefaultCenterWidth);
+            Label Header = MainOps.CreateNewDefaultLabel(
+                "Games",
+                new Point(0,0),
+                DefaultCenterWidth);
             Controls.Add(Header);
+            Header.Font = new Font("Britannic Bold", 32);
+            Header.ForeColor = Color.RoyalBlue;
+            Header.Location = new Point(NewPost.Location.X + (DefaultCenterWidth / 2) - (Header.Width / 2), NewPost.Location.Y + k_PostsMargin);
+            m_GameHeader = Header;
 
+            // Guessing game
             Button guessingGameBtn = new Button();
-            guessingGameBtn.Text = "Guessing game";
             guessingGameBtn.Click += BirthdaysGameBtn_Click;
-            guessingGameBtn.Location = new Point(NewPost.Location.X, NewPost.Location.Y + k_PostsMargin);
+            guessingGameBtn.Size = new Size(150, 100);
+            guessingGameBtn.BackgroundImage = Properties.Resources.GuessingGamePicture;
+            guessingGameBtn.BackgroundImageLayout = ImageLayout.Stretch;
+            guessingGameBtn.Location = new Point(
+                // ( ---- center of header ----------) - ( relative location)
+                Header.Location.X + (Header.Width / 2) - (int)(1.5f * guessingGameBtn.Width),
+                Header.Location.Y + Header.Height + k_PostsMargin);
             GamesOps.AllGamesBtn.Add(guessingGameBtn);
 
+
             Button g = new Button();
-            g.Text = "G";
             g.Click += BirthdaysGameBtn_Click;
-            g.Location = new Point(NewPost.Location.X, guessingGameBtn.Location.Y + guessingGameBtn.Height + k_PostsMargin);
+            g.Size = new Size(150, 100);
+            g.BackgroundImage = Properties.Resources.GuessingGamePicture;
+            g.BackgroundImageLayout = ImageLayout.Stretch;
+            g.Location = new Point(Header.Location.X + (Header.Width / 2) + (g.Width / 2), Header.Location.Y + Header.Height + k_PostsMargin);
             GamesOps.AllGamesBtn.Add(g);
 
             GamesOps.AddAllButtunsToConstorls(GamesOps.AllGamesBtn, Controls);
@@ -200,17 +221,18 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
         {
             GamesOps.RemoveAllButtunsFromConstorls(GamesOps.AllGamesBtn, Controls);
 
-            Random rnd = new Random();
-            int typeOfQuestions = rnd.Next(0, 1);
-
-            switch (typeOfQuestions)
-            {
-                case 0:
-                    // In this case we need to ranomize a friend and get his birthday - but permission denied
-                    // newQuestion(sender, "How old is <RandomUserFriend()FullName>?", new Point(NewPost.Location.X, NewPost.Location.X + k_PostsMargin));
-                    GamesOps.NewQuestion(sender, "How old is Guy Ronen?", new Point(NewPost.Location.X, NewPost.Location.Y + k_PostsMargin), Controls);
-                    break;
-            }
+            // In this case we need to ranomize a friend and get his birthday - but permission denied
+            /* newQuestion(
+                            sender,
+                            "How old is <RandomUserFriend().FullName>?",
+                            new Point(NewPost.Location.X, NewPost.Location.X + k_PostsMargin),
+                            this);
+            */
+            GamesOps.NewAgeQuestion(
+                sender,
+                "How old is Guy Ronen?",
+                new Point(NewPost.Location.X, m_GameHeader.Location.Y + m_GameHeader.Height + k_PostsMargin), Controls,
+                this);
         }
 
         // serach
@@ -223,8 +245,8 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
                 Transition();
                 SearchOps.SetEventsSearch(k_TextToFind, FeedGroupBox);
                 SearchOps.SetFriendPosts(k_TextToFind, FeedGroupBox);
-                //setPagesFindings();
-                //setGroupsFindings();
+                SearchOps.SetGroupsSearch(k_TextToFind, FeedGroupBox);
+                SearchOps.SetPageSearchs(k_TextToFind, FeedGroupBox);
             }
             else
             {
@@ -243,6 +265,56 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             NewPost.Visible = true;
             MainOps.ResetFeedGroupBox(FeedGroupBox, DefaultCenterWidth);
             GamesOps.RemoveAllGuessingGameControls(Controls);
+        }
+
+        private void setControlsLocations()
+        {
+            DropDownPictureBox.Location = new Point(this.Size.Width - DropDownPictureBox.Width - k_LabelMargin, DropDownPictureBox.Location.Y);
+            WelcomeUserNameLable.Location = new Point(DropDownPictureBox.Location.X - WelcomeUserNameLable.Width, WelcomeUserNameLable.Location.Y);
+            UserNamePictureBox.Location = new Point(WelcomeUserNameLable.Location.X - UserNamePictureBox.Width, UserNamePictureBox.Location.Y);
+            PanelDropDown.Location = new Point(UserNamePictureBox.Location.X, BlueTopBar.Height);
+
+            SearchTextBox.Location = new Point((this.Size.Width / 2) - (SearchTextBox.Width / 2), SearchTextBox.Location.Y);
+            SearchBtn.Location = new Point(SearchTextBox.Location.X + SearchTextBox.Width - SearchBtn.Width, SearchTextBox.Location.Y);
+
+            NewPost.Location = new Point((this.Size.Width / 2) - (NewPost.Width / 2), NewPost.Location.Y);
+            posted.Location = new Point(NewPost.Location.X - posted.Width, NewPost.Location.Y + NewPost.Height);
+
+            FeedGroupBox.Location = new Point(NewPost.Location.X, posted.Location.Y + posted.Height + k_PostsMargin);
+
+            HomeBtn.Location = new Point(((NewPost.Location.X - (k_PostsMargin + HomeBtn.Width)) / 2), NewPost.Location.Y);
+            FetchPostsBtn.Location = new Point(((NewPost.Location.X - (k_PostsMargin + FetchPostsBtn.Width)) / 2), HomeBtn.Location.Y + HomeBtn.Height + 5);
+            FetchaAlbumsBtn.Location = new Point(((NewPost.Location.X - (k_PostsMargin + FetchaAlbumsBtn.Width)) / 2), FetchPostsBtn.Location.Y + FetchPostsBtn.Height + 5);
+            FetchEventsBtn.Location = new Point(((NewPost.Location.X - (k_PostsMargin + FetchEventsBtn.Width)) / 2), FetchaAlbumsBtn.Location.Y + FetchaAlbumsBtn.Height + 5);
+            GamesBtn.Location = new Point(((NewPost.Location.X - (k_PostsMargin + GamesBtn.Width)) / 2), FetchEventsBtn.Location.Y + FetchEventsBtn.Height + 5);
+        }
+
+        private void setControlsSizes()
+        {
+            BlueTopBar.Height = (int)(FacebookIcon.Height * 1.5);
+            SearchTextBox.Width = DefaultCenterWidth;
+            NewPost.Width = DefaultCenterWidth;
+            FeedGroupBox.Width = DefaultCenterWidth;
+            PanelDropDown.MinimumSize = new Size(new Point(150, 0));
+            PanelDropDown.MaximumSize = new Size(new Point(150, 150));
+
+            foreach (Control control in Controls)
+            {
+                if (control.Tag != null)
+                {
+                    if (control.Tag.Equals("Center"))
+                    {
+                        control.Width = DefaultCenterWidth;
+                    }
+                }
+            }
+        }
+
+        private void MainFeed_SizeChanged(object sender, EventArgs e)
+        {
+            s_PostWidth = (int)(Width * k_SearchTextBoxRatio);
+            setControlsSizes();
+            setControlsLocations();
         }
     }
 }
