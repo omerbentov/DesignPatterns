@@ -167,6 +167,7 @@
             // posted
             // 
             this.posted.BackColor = System.Drawing.Color.RoyalBlue;
+            this.posted.Cursor = System.Windows.Forms.Cursors.AppStarting;
             this.posted.Font = new System.Drawing.Font("Britannic Bold", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.posted.ForeColor = System.Drawing.Color.White;
             this.posted.Location = new System.Drawing.Point(878, 215);
@@ -241,15 +242,16 @@
             this.SearchTextBox.Size = new System.Drawing.Size(634, 47);
             this.SearchTextBox.TabIndex = 24;
             this.SearchTextBox.Text = "Search";
+            this.SearchTextBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.SearchTextBox_MouseClick);
             this.SearchTextBox.TextChanged += new System.EventHandler(this.SearchTextBox_TextChanged);
             // 
             // SearchBtn
             // 
             this.SearchBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.SearchBtn.Image = global::A21_Ex01_Omer_206126128_Stav_205816705.Properties.Resources.searchBtn;
-            this.SearchBtn.Location = new System.Drawing.Point(664, 12);
+            this.SearchBtn.Location = new System.Drawing.Point(665, 13);
             this.SearchBtn.Name = "SearchBtn";
-            this.SearchBtn.Size = new System.Drawing.Size(54, 47);
+            this.SearchBtn.Size = new System.Drawing.Size(52, 45);
             this.SearchBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.SearchBtn.TabIndex = 25;
             this.SearchBtn.TabStop = false;
@@ -258,7 +260,10 @@
             // DropDownPictureBox
             // 
             this.DropDownPictureBox.BackColor = System.Drawing.Color.Transparent;
-            this.DropDownPictureBox.Image = global::A21_Ex01_Omer_206126128_Stav_205816705.Properties.Resources.drop_down_arrow;
+            this.DropDownPictureBox.BackgroundImage = global::A21_Ex01_Omer_206126128_Stav_205816705.Properties.Resources.drop_down_arrow1;
+            this.DropDownPictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.DropDownPictureBox.Cursor = System.Windows.Forms.Cursors.Default;
+            this.DropDownPictureBox.ErrorImage = null;
             this.DropDownPictureBox.Location = new System.Drawing.Point(1229, 20);
             this.DropDownPictureBox.Name = "DropDownPictureBox";
             this.DropDownPictureBox.Size = new System.Drawing.Size(34, 32);

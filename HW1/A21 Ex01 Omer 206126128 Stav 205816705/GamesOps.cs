@@ -123,5 +123,20 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
 
             return Header;
         }
+
+        public static Button CreateGameEnterBtn(Label i_GameHeader, Bitmap i_BackgrounPhoto, Control i_ControlGroup)
+        {
+            Button gameBtn = new Button();
+            gameBtn.Size = new Size(150, 100);
+            gameBtn.BackgroundImage = i_BackgrounPhoto;
+            gameBtn.BackgroundImageLayout = ImageLayout.Stretch;
+            gameBtn.Location = new Point(
+                i_GameHeader.Location.X + (i_GameHeader.Width / 2) - (int)(1.5f * gameBtn.Width),
+                i_GameHeader.Location.Y + i_GameHeader.Height + k_PostsMargin);
+            i_GameHeader.Controls.Add(gameBtn);
+            i_ControlGroup.Controls.Add(gameBtn);
+
+            return gameBtn;
+        }
     }
 }

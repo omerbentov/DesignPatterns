@@ -187,22 +187,14 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             m_GameHeader = GamesOps.CreateGameHeader("Games", FeedGroupBox);
 
             // Guessing game
-            Button guessingGameBtn = new Button();
+            Button guessingGameBtn = GamesOps.CreateGameEnterBtn(m_GameHeader, Properties.Resources.GuessingGamePicture, FeedGroupBox);
             guessingGameBtn.Click += BirthdaysGameBtn_Click;
-            guessingGameBtn.Size = new Size(150, 100);
-            guessingGameBtn.BackgroundImage = Properties.Resources.GuessingGamePicture;
-            guessingGameBtn.BackgroundImageLayout = ImageLayout.Stretch;
-            guessingGameBtn.Location = new Point(
-                m_GameHeader.Location.X + (m_GameHeader.Width / 2) - (int)(1.5f * guessingGameBtn.Width),
-                m_GameHeader.Location.Y + m_GameHeader.Height + k_PostsMargin);
-            FeedGroupBox.Controls.Add(guessingGameBtn);
 
-            Button comingSoonGameBtn = new Button();
-            comingSoonGameBtn.Size = new Size(150, 100);
-            comingSoonGameBtn.BackgroundImage = Properties.Resources.commingSoonGame;
-            comingSoonGameBtn.BackgroundImageLayout = ImageLayout.Stretch;
-            comingSoonGameBtn.Location = new Point(m_GameHeader.Location.X + (m_GameHeader.Width / 2) + (comingSoonGameBtn.Width / 2), m_GameHeader.Location.Y + m_GameHeader.Height + k_PostsMargin);
-            FeedGroupBox.Controls.Add(comingSoonGameBtn);
+            // Coming soon game
+            Button comingSoonGameBtn = GamesOps.CreateGameEnterBtn(m_GameHeader, Properties.Resources.commingSoonGame, FeedGroupBox);
+            comingSoonGameBtn.Location = new Point(
+                m_GameHeader.Location.X + (m_GameHeader.Width / 2) + (comingSoonGameBtn.Width / 2),
+                m_GameHeader.Location.Y + m_GameHeader.Height + k_PostsMargin);;
         }
 
         private void BirthdaysGameBtn_Click(object sender, EventArgs e)
@@ -250,6 +242,11 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             s_TextToFind = SearchTextBox.Text;
         }
 
+        private void SearchTextBox_MouseClick(object sender, MouseEventArgs e)
+        {
+            SearchTextBox.Text = string.Empty;
+        }
+
         //General
         public void Transition()
         {
@@ -259,12 +256,13 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
 
         private void setControlsLocations()
         {
+            FacebookIcon.Location = new Point((int)(this.Size.Width * 0.08), SearchTextBox.Location.Y);
             DropDownPictureBox.Location = new Point(this.Size.Width - DropDownPictureBox.Width - k_LabelMargin, DropDownPictureBox.Location.Y);
             WelcomeUserNameLable.Location = new Point(DropDownPictureBox.Location.X - WelcomeUserNameLable.Width, WelcomeUserNameLable.Location.Y);
             UserNamePictureBox.Location = new Point(WelcomeUserNameLable.Location.X - UserNamePictureBox.Width, UserNamePictureBox.Location.Y);
             PanelDropDown.Location = new Point(UserNamePictureBox.Location.X, BlueTopBar.Height);
 
-            SearchTextBox.Location = new Point((this.Size.Width / 2) - (SearchTextBox.Width / 2), SearchTextBox.Location.Y);
+            SearchTextBox.Location = new Point(FacebookIcon.Location.X + FacebookIcon.Width + 10, SearchTextBox.Location.Y);
             SearchBtn.Location = new Point(SearchTextBox.Location.X + SearchTextBox.Width - SearchBtn.Width, SearchTextBox.Location.Y);
 
             NewPost.Location = new Point((this.Size.Width / 2) - (NewPost.Width / 2), NewPost.Location.Y);
@@ -272,11 +270,11 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
 
             FeedGroupBox.Location = new Point(NewPost.Location.X, posted.Location.Y + posted.Height + k_PostsMargin);
 
-            HomeBtn.Location = new Point(((NewPost.Location.X - (k_PostsMargin + HomeBtn.Width)) / 2), NewPost.Location.Y);
-            FetchPostsBtn.Location = new Point(((NewPost.Location.X - (k_PostsMargin + FetchPostsBtn.Width)) / 2), HomeBtn.Location.Y + HomeBtn.Height + 5);
-            FetchaAlbumsBtn.Location = new Point(((NewPost.Location.X - (k_PostsMargin + FetchaAlbumsBtn.Width)) / 2), FetchPostsBtn.Location.Y + FetchPostsBtn.Height + 5);
-            FetchEventsBtn.Location = new Point(((NewPost.Location.X - (k_PostsMargin + FetchEventsBtn.Width)) / 2), FetchaAlbumsBtn.Location.Y + FetchaAlbumsBtn.Height + 5);
-            GamesBtn.Location = new Point(((NewPost.Location.X - (k_PostsMargin + GamesBtn.Width)) / 2), FetchEventsBtn.Location.Y + FetchEventsBtn.Height + 5);
+            HomeBtn.Location = new Point(FacebookIcon.Location.X, NewPost.Location.Y);
+            FetchPostsBtn.Location = new Point(FacebookIcon.Location.X, HomeBtn.Location.Y + HomeBtn.Height + 5);
+            FetchaAlbumsBtn.Location = new Point(FacebookIcon.Location.X, FetchPostsBtn.Location.Y + FetchPostsBtn.Height + 5);
+            FetchEventsBtn.Location = new Point(FacebookIcon.Location.X, FetchaAlbumsBtn.Location.Y + FetchaAlbumsBtn.Height + 5);
+            GamesBtn.Location = new Point(FacebookIcon.Location.X, FetchEventsBtn.Location.Y + FetchEventsBtn.Height + 5);
         }
 
         private void setControlsSizes()

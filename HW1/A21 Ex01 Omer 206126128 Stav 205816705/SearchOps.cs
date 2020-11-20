@@ -14,7 +14,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
     {
         private static Point s_LabelLocation = new Point(10, 10);
         private static int s_LabelMargin = 50;
-        private static string s_CannotAccesMessage = "sorry, we can't access the information";
+        private static string s_CannotAccesMessage = "Sorry, we couldn't find anything... Try to search for Events.";
 
         public static void SetEventsSearch(string i_TextToFind, GroupBox i_FeedGroupBox)
         {

@@ -93,6 +93,16 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap drop_down_arrow1 {
+            get {
+                object obj = ResourceManager.GetObject("drop-down-arrow1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Facebook_1_Cake {
             get {
                 object obj = ResourceManager.GetObject("Facebook_1_Cake", resourceCulture);
