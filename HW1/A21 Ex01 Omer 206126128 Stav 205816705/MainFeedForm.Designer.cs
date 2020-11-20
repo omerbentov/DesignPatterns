@@ -1,6 +1,6 @@
 ﻿namespace A21_Ex01_Omer_206126128_Stav_205816705
 {
-    partial class MainFeed
+    partial class MainFeedForm
     {
         /// <summary>
         /// Required designer variable.
@@ -287,7 +287,7 @@
             this.FacebookIcon.TabIndex = 3;
             this.FacebookIcon.TabStop = false;
             // 
-            // MainFeed
+            // MainFeedForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
@@ -314,7 +314,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.ForeColor = System.Drawing.Color.Black;
             this.MinimumSize = new System.Drawing.Size(1600, 1018);
-            this.Name = "MainFeed";
+            this.Name = "MainFeedForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "newPost";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

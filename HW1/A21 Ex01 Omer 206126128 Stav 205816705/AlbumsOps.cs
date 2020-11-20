@@ -11,11 +11,47 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
 {
     public static class AlbumsOps
     {
-        public static void addAlbums(Point i_PicLocation, int i_NumOfAlbums, GroupBox i_feedGroupBox)
-        {
-            FacebookObjectCollection<Album> albums = LoggedInUserData.User.Albums;
+        private const int k_PictureSize = 200;
+        private const string k_SorText = "Sort by number of photos";
 
-            foreach (Album album in albums)
+        private static Point s_DeafulteBaseLocation = new Point(20, 10);
+        private static Size s_AlbumPictureSize = new Size(150, 150);
+
+        public static int NumInArow
+        {
+            get
+            {
+                return MainFeedForm.DefaultCenterWidth / k_PictureSize;
+            }
+        }
+
+        private static Point m_PicLocation = new Point(20, 10);
+
+        public static void addAlbums(Point? i_BaseLocation,int i_NumOfAlbums, Control i_ControlGroup, FacebookObjectCollection<Album> i_Albums)
+        {
+            if (i_BaseLocation == null)
+            {
+                Button sortBtn = new Button();
+                sortBtn.Text = k_SorText;
+                sortBtn.Location = s_DeafulteBaseLocation;
+                sortBtn.Click += (sender_, EventArgs) =>
+                {
+                    SortLabel_Click(
+                        sender_,
+                        EventArgs,
+                        i_ControlGroup,
+                        i_NumOfAlbums);
+                }; ;
+                sortBtn.BackColor = Color.RoyalBlue;
+                i_ControlGroup.Controls.Add(sortBtn);
+                m_PicLocation = new Point(sortBtn.Location.X, sortBtn.Location.Y + MainFeedForm.LabelMargin);
+            }
+            else
+            {
+                m_PicLocation = (Point)i_BaseLocation;
+            }
+
+            foreach (Album album in i_Albums)
             {
                 if (i_NumOfAlbums <= 0)
                 {
@@ -25,23 +61,49 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
 
                 PictureBox albumPicture = new PictureBox();
                 albumPicture.Size = new System.Drawing.Size(150, 150);
-                albumPicture.Location = i_PicLocation;
+                albumPicture.Location = m_PicLocation;
                 albumPicture.SizeMode = PictureBoxSizeMode.StretchImage;
                 albumPicture.LoadAsync(album.PictureAlbumURL);
-                i_feedGroupBox.Controls.Add(albumPicture);
+                i_ControlGroup.Controls.Add(albumPicture);
 
                 Label albumName = new Label();
                 albumName.Text = album.Name;
                 albumName.ForeColor = Color.Black;
-                albumName.Location = new Point(i_PicLocation.X, i_PicLocation.Y - albumName.Size.Height);
-                i_feedGroupBox.Controls.Add(albumName);
+                albumName.Location = new Point(m_PicLocation.X, m_PicLocation.Y - albumName.Size.Height);
+                i_ControlGroup.Controls.Add(albumName);
 
-                Point countLabelPoint = new Point(i_PicLocation.X, i_PicLocation.Y + albumPicture.Height);
-                Label albumCount = MainOps.CreateNewDefaultLabel(album.Count + " Photos", countLabelPoint, i_feedGroupBox);
-                i_feedGroupBox.Controls.Add(albumCount);
+                Point countLabelPoint = new Point(m_PicLocation.X, m_PicLocation.Y + albumPicture.Height);
+                Label albumCount = MainOps.CreateNewDefaultLabel(album.Count + " Photos", countLabelPoint, i_ControlGroup as GroupBox);
+                i_ControlGroup.Controls.Add(albumCount);
 
-                i_PicLocation = calculateNextAlbumCUverPhotoPosition(i_PicLocation);
+                m_PicLocation = calculateNextAlbumCUverPhotoPosition(m_PicLocation);
             }
+        }
+
+        private static void SortLabel_Click(object sender, EventArgs e, Control i_ControlGroup, int i_NumOfAlbums)
+        {
+            i_ControlGroup.Controls.Clear();
+
+            FacebookObjectCollection<Album> sortedAlbums = GlobalData.User.Albums;
+
+            for (int i = 0; i < sortedAlbums.Count; i++)
+            {
+                long maxCount = 0;
+                int minAlbumIndex = i;
+
+                for (int j=i; j < sortedAlbums.Count; j++)
+                {
+                    if (sortedAlbums[j].Count > maxCount)
+                    {
+                        maxCount = (long)sortedAlbums[j].Count;
+                        minAlbumIndex = j;
+                    }
+                }
+
+                sortedAlbums.Move(minAlbumIndex, i);
+            }
+
+            addAlbums(null, i_NumOfAlbums, i_ControlGroup, sortedAlbums);
         }
 
         private static Point calculateNextAlbumCUverPhotoPosition(Point i_prevPoint)
@@ -49,7 +111,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             int x = i_prevPoint.X;
             int y = i_prevPoint.Y;
 
-            x = (x + 200) % 400;
+            x = (x + k_PictureSize) %  (k_PictureSize * NumInArow);
             if (x <= 50)
             {
                 y += 220;

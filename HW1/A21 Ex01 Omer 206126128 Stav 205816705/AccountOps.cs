@@ -11,97 +11,90 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
 {
     public class AccountOps
     {
-        private static int k_LabelMargin = 50;
+        private static int s_LabelMargin = 50;
 
         public static void AddAcountInfo(GroupBox i_feedGroupBox)
         {
-
-            Label header = new Label();
-            header.Text = "Information About Your Account";
-            header.Location = new Point(0, 20);
-            header.AutoSize = true;
+            Label header = MainOps.CreateNewDefaultLabel("Information About Your Account", new Point(0, 20), i_feedGroupBox);
             i_feedGroupBox.Controls.Add(header);
 
-            Label line = new Label();
-            line.Text = "----------------------------------------------------------";
-            line.AutoSize = true;
-            line.Location = new Point(0, 30);
+            Label line = MainOps.CreateNewDefaultLabel("----------------------------------------------------------", new Point(0, 30), i_feedGroupBox);
             i_feedGroupBox.Controls.Add(line);
 
             Point LabelLocation = new Point(10, 10);
             Point baseLocation = new Point(10, 10);
 
-            if (LoggedInUserData.User.Name == null)
+            if (GlobalData.User.Name == null)
             {
                 createAddingButton("Name :", LabelLocation, i_feedGroupBox);
             }
             else
             {
-                createInformationLabel("Name :", LoggedInUserData.User.Name, baseLocation, i_feedGroupBox);
+                createInformationLabel("Name :", GlobalData.User.Name, baseLocation, i_feedGroupBox);
             }
 
-            if(LoggedInUserData.User.Email == null)
+            if(GlobalData.User.Email == null)
             { 
                 createAddingButton("Email :", LabelLocation, i_feedGroupBox);
             }
             else
             {
-                createInformationLabel("Email :", LoggedInUserData.User.Email, LabelLocation, i_feedGroupBox);
+                createInformationLabel("Email :", GlobalData.User.Email, LabelLocation, i_feedGroupBox);
             }
 
-            LabelLocation = new Point(LabelLocation.X, LabelLocation.Y + k_LabelMargin);
+            LabelLocation = new Point(LabelLocation.X, LabelLocation.Y + s_LabelMargin);
 
-            if (LoggedInUserData.User.Birthday == null)
+            if (GlobalData.User.Birthday == null)
             {
                 createAddingButton("Birthday :", LabelLocation, i_feedGroupBox);
             }
             else
             {
-                createInformationLabel("Birthday :", LoggedInUserData.User.Birthday, LabelLocation, i_feedGroupBox);
+                createInformationLabel("Birthday :", GlobalData.User.Birthday, LabelLocation, i_feedGroupBox);
             }
 
-            LabelLocation = new Point(LabelLocation.X, LabelLocation.Y + k_LabelMargin);
+            LabelLocation = new Point(LabelLocation.X, LabelLocation.Y + s_LabelMargin);
 
-            if (LoggedInUserData.User.Gender == null)
+            if (GlobalData.User.Gender == null)
             {
                 createAddingButton("Gender :", LabelLocation, i_feedGroupBox);
             }
             else
             {
-                createInformationLabel("Gender :", LoggedInUserData.User.Gender.ToString(), LabelLocation, i_feedGroupBox);
+                createInformationLabel("Gender :", GlobalData.User.Gender.ToString(), LabelLocation, i_feedGroupBox);
             }
 
-            LabelLocation = new Point(LabelLocation.X, LabelLocation.Y + k_LabelMargin);
+            LabelLocation = new Point(LabelLocation.X, LabelLocation.Y + s_LabelMargin);
 
-            if (LoggedInUserData.User.Hometown == null)
+            if (GlobalData.User.Hometown == null)
             {
                 createAddingButton("Home Town :", LabelLocation, i_feedGroupBox);
             }
             else
             {
-                createInformationLabel("Home Town :", LoggedInUserData.User.Hometown.ToString(), LabelLocation, i_feedGroupBox);
+                createInformationLabel("Home Town :", GlobalData.User.Hometown.ToString(), LabelLocation, i_feedGroupBox);
             }
 
-            LabelLocation = new Point(LabelLocation.X, LabelLocation.Y + k_LabelMargin);
+            LabelLocation = new Point(LabelLocation.X, LabelLocation.Y + s_LabelMargin);
 
-            if (LoggedInUserData.User.Educations == null)
+            if (GlobalData.User.Educations == null)
             {
                 createAddingButton("Education :", LabelLocation, i_feedGroupBox);
             }
             else
             {
-                createInformationLabel("Education :", LoggedInUserData.User.Educations.ToString(), LabelLocation, i_feedGroupBox);
+                createInformationLabel("Education :", GlobalData.User.Educations.ToString(), LabelLocation, i_feedGroupBox);
             }
 
-            LabelLocation = new Point(LabelLocation.X, LabelLocation.Y + k_LabelMargin);
+            LabelLocation = new Point(LabelLocation.X, LabelLocation.Y + s_LabelMargin);
 
-            if (LoggedInUserData.User.RelationshipStatus == null)
+            if (GlobalData.User.RelationshipStatus == null)
             {
                 createAddingButton("RelationshipStatus :", LabelLocation, i_feedGroupBox);
             }
             else
             {
-                 createInformationLabel("RelationshipStatus  :", LoggedInUserData.User.RelationshipStatus.ToString(), LabelLocation, i_feedGroupBox);
+                 createInformationLabel("RelationshipStatus  :", GlobalData.User.RelationshipStatus.ToString(), LabelLocation, i_feedGroupBox);
             }
 
         }

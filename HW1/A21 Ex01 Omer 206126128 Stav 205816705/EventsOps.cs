@@ -12,23 +12,27 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
     public static class EventsOps
     {
         private const int k_PostProfilePictureSize = 55;
+        private const string k_NoEventsMessage = "No events on your Facebook account";
+        private const string k_HeaderText = "Your Events";
+        private static Size s_HeaderSize = new Size(50, 27);
+        private static Point s_HeaderLocation = new Point(20, 20);
 
         public static void AddEvents(GroupBox i_feedGroupBox)
         {
             Label header = new Label();
-            header.Text = "Your Events";
-            header.Size = new System.Drawing.Size(50, 27);
+            header.Text = k_HeaderText;
+            header.Size = s_HeaderSize;
             header.AutoSize = true;
             header.ForeColor = Color.Blue;
-            header.Location = new Point(20, 20);
+            header.Location = s_HeaderLocation;
             i_feedGroupBox.Controls.Add(header);
 
-            if (LoggedInUserData.User.Events.Count == 0)
+            if (GlobalData.User.Events.Count == 0)
             {
-                MessageBox.Show("No events on your Facebook account");
+                MessageBox.Show(k_NoEventsMessage);
             }
 
-            foreach (Event myEvent in LoggedInUserData.User.Events)
+            foreach (Event myEvent in GlobalData.User.Events)
             {
                 addNewEvent(myEvent, i_feedGroupBox);
                 addPicture(myEvent, i_feedGroupBox);
@@ -57,13 +61,11 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
         {
             PictureBox eventPicture = new PictureBox();
             Point LabelLocation = new Point(10, 10);
-            //eventPicture.ImageLocation = i_newEvent.PictureSqaureURL;
-            //eventPicture.LoadAsync(i_newEvent.PictureSmallURL);
             eventPicture.Image = Properties.Resources.Facebook_1_Cake;
             eventPicture.Visible = true;
             eventPicture.SizeMode = PictureBoxSizeMode.Zoom;
             eventPicture.Location = MainOps.CalculateNextButtonPosition(LabelLocation, 100);
-            eventPicture.MaximumSize = new Size(new Point(k_PostProfilePictureSize + 20, k_PostProfilePictureSize + 20));
+            eventPicture.MaximumSize = new Size(new Point(k_PostProfilePictureSize + MainFeedForm.LabelMargin , k_PostProfilePictureSize + MainFeedForm.LabelMargin));
             i_feedGroupBox.Controls.Add(eventPicture);
         }
     }

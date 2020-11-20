@@ -12,16 +12,17 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
 {
     public static class SearchOps
     {
-        private static Point LabelLocation = new Point(10, 10);
-        private static int k_LabelMargin = 50;
+        private static Point s_LabelLocation = new Point(10, 10);
+        private static int s_LabelMargin = 50;
+        private static string s_CannotAccesMessage = "sorry, we can't access the information";
 
         public static void SetEventsSearch(string i_TextToFind, GroupBox i_FeedGroupBox)
         {
-            Point LabelLocation = new Point(10, 10);
+            Point LabelLocation = s_LabelLocation;
 
             try
             {
-                foreach (Event myEvent in LoggedInUserData.User.Events)
+                foreach (Event myEvent in GlobalData.User.Events)
                 {
                     if (!string.IsNullOrEmpty(myEvent.Name))
                     {
@@ -44,7 +45,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
         {
             try 
             {
-                foreach (User user in LoggedInUserData.User.Friends)
+                foreach (User user in GlobalData.User.Friends)
                 {
                     foreach (Post post in user.Posts)
                     {
@@ -68,7 +69,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
         {
             try
             {
-                foreach (Group group in LoggedInUserData.User.Groups)
+                foreach (Group group in GlobalData.User.Groups)
                 {
                     if (group.Name.Contains(i_TextToFind))
                     {
@@ -86,7 +87,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
         public static void SetPageSearchs(string i_TextToFind, GroupBox i_FeedGroupBox)
         {
             try { 
-                foreach (Page page in LoggedInUserData.User.LikedPages)
+                foreach (Page page in GlobalData.User.LikedPages)
                 {
                     if (page.Name.Contains(i_TextToFind))
                     {
@@ -103,14 +104,12 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
         private static void addPicture(Event i_newEvent, GroupBox i_FeedGroupBox)
         {
             PictureBox eventPicture = new PictureBox();
-            Point LabelLocation = new Point(10, 10);
-            //eventPicture.ImageLocation = i_newEvent.PictureSqaureURL;
-            //eventPicture.LoadAsync(i_newEvent.PictureSmallURL);
+            Point LabelLocation = s_LabelLocation;
             eventPicture.Image = Properties.Resources.Facebook_1_Cake;
             eventPicture.Visible = true;
             eventPicture.SizeMode = PictureBoxSizeMode.Zoom;
             eventPicture.Location = MainOps.CalculateNextButtonPosition(LabelLocation, 100);
-            eventPicture.MaximumSize = new Size(MainFeed.PostProfilePicturePointSize);
+            eventPicture.MaximumSize = new Size(MainFeedForm.PostProfilePicturePointSize);
             i_FeedGroupBox.Controls.Add(eventPicture);
         }
 
@@ -118,7 +117,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
         {
             i_FeedGroupBox.Controls.Clear();
             Label errMessage = new Label();
-            errMessage.Text = "sorry, we can't access the information";
+            errMessage.Text = s_CannotAccesMessage;
             errMessage.AutoSize = true;
             errMessage.Location = new Point(20, 20);
             i_FeedGroupBox.Controls.Add(errMessage);
@@ -127,7 +126,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
         private static void addEvent(Event i_newEvent, GroupBox i_FeedGroupBox)
         {
             addHeader("Events", i_FeedGroupBox);
-            LabelLocation.Y += k_LabelMargin;
+            s_LabelLocation.Y += s_LabelMargin;
 
             Label eventLabel = new Label();
             string eventName = i_newEvent.Name;
@@ -137,7 +136,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
 
             eventLabel.Text = newEvent;
             eventLabel.AutoSize = true;
-            eventLabel.Location = MainOps.CalculateNextLabelPosition(LabelLocation);
+            eventLabel.Location = MainOps.CalculateNextLabelPosition(s_LabelLocation);
             eventLabel.Visible = true;
 
             i_FeedGroupBox.Controls.Add(eventLabel);
@@ -146,13 +145,13 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
         private static void addFriendPost(Post i_newPost, GroupBox i_FeedGroupBox)
         {
             addHeader("Friends Posts", i_FeedGroupBox);
-            LabelLocation.Y += k_LabelMargin;
+            s_LabelLocation.Y += s_LabelMargin;
 
             Label friendPostLabel = new Label();
             string userName = i_newPost.From.Name + "posted";
             friendPostLabel.Text = userName;
             friendPostLabel.AutoSize = true;
-            friendPostLabel.Location = MainOps.CalculateNextLabelPosition(LabelLocation);
+            friendPostLabel.Location = MainOps.CalculateNextLabelPosition(s_LabelLocation);
             friendPostLabel.Visible = true;
 
             i_FeedGroupBox.Controls.Add(friendPostLabel);
@@ -161,7 +160,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
         private static void addGroup(Group i_newGroup, GroupBox i_FeedGroupBox)
         {
             addHeader("Groups", i_FeedGroupBox);
-            LabelLocation.Y += k_LabelMargin;
+            s_LabelLocation.Y += s_LabelMargin;
 
             Label groupLabel = new Label();
             string groupName = i_newGroup.Name;
@@ -169,7 +168,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             string groupNumberOfPosts = i_newGroup.WallPosts.Count().ToString();
             string newGroup = String.Format("The Group {0} created by {1} has {2} posts", groupName, groupOwner, groupNumberOfPosts);
             groupLabel.Text = newGroup;
-            groupLabel.Location = MainOps.CalculateNextLabelPosition(LabelLocation);
+            groupLabel.Location = MainOps.CalculateNextLabelPosition(s_LabelLocation);
             groupLabel.AutoSize = true;
             groupLabel.Visible = true;
 
@@ -180,7 +179,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
         private static void addPage(Page i_newPage, GroupBox i_FeedGroupBox)
         {
             addHeader("Pages", i_FeedGroupBox);
-            LabelLocation.Y += k_LabelMargin;
+            s_LabelLocation.Y += s_LabelMargin;
 
             Label pageLabel = new Label();
             string pageName = i_newPage.Name;
@@ -188,7 +187,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             string pageAdmins = i_newPage.Admins.ToString();
             string newPagePost = String.Format("The page {0} created by {1} has {3} posts", pageName, pageAdmins, pageNumberOfPosts);
             pageLabel.Text = newPagePost;
-            pageLabel.Location = MainOps.CalculateNextLabelPosition(LabelLocation);
+            pageLabel.Location = MainOps.CalculateNextLabelPosition(s_LabelLocation);
             pageLabel.AutoSize = true;
             pageLabel.Visible = true;
 
@@ -200,7 +199,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
         {
             Label header = new Label();
             header.Text = "Your " + i_name + ":";
-            header.Location = MainOps.CalculateNextLabelPosition(LabelLocation);
+            header.Location = MainOps.CalculateNextLabelPosition(s_LabelLocation);
             header.AutoSize = true;
             header.Visible = true;
             i_FeedGroupBox.Controls.Add(header);

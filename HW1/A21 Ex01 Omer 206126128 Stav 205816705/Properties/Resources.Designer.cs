@@ -63,6 +63,16 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap commingSoonGame {
+            get {
+                object obj = ResourceManager.GetObject("commingSoonGame", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ContinueWithFacebook {
             get {
                 object obj = ResourceManager.GetObject("ContinueWithFacebook", resourceCulture);

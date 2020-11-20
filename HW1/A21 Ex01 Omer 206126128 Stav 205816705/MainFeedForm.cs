@@ -12,20 +12,20 @@ using System.Windows.Forms;
 
 namespace A21_Ex01_Omer_206126128_Stav_205816705
 {
-    public partial class MainFeed : Form
+    public partial class MainFeedForm : Form
     {
         // Style
         private const int k_PostsMargin = 20;
         private const int k_PostProfilePictureSize = 55;
         private const int k_NumOfPostsInHomePage = 3;
-        private const int k_NumOfAlbumsInHomePage = 4;
+        private const int k_NumOfAlbumsInHomePage = 6;
         private const int k_LabelMargin = 50;
         private const float k_SearchTextBoxRatio = 0.5f;
 
         private static int s_PostWidth;
-        private static string k_TextToFind;
-        private bool m_IsCollapsed = false;
+        private static string s_TextToFind;
 
+        private bool m_IsCollapsed = false;
         private Label m_GameHeader;
 
 
@@ -63,18 +63,18 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
         }
 
         // Main
-        public MainFeed()
+        public MainFeedForm()
         {
             InitializeComponent();
-            InitializeChildrenComponents();
+            initializeChildrenComponents();
 
             HomeBtn_Click(new object(), new EventArgs());
         }
 
-        private void InitializeChildrenComponents()
+        private void initializeChildrenComponents()
         {
-            WelcomeUserNameLable.Text = LoggedInUserData.User.FirstName;
-            UserNamePictureBox.Image = LoggedInUserData.User.ImageSmall;
+            WelcomeUserNameLable.Text = GlobalData.User.FirstName;
+            UserNamePictureBox.Image = GlobalData.User.ImageSmall;
         }
 
         // Home 
@@ -89,16 +89,17 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
 
             Point nextPosition = PostsOps.addPosts(groupBoxLocation, baseLocation, k_NumOfPostsInHomePage, FeedGroupBox);
             nextPosition.Y += k_PostsMargin;
-            AlbumsOps.addAlbums(nextPosition, k_NumOfAlbumsInHomePage, FeedGroupBox);
+            AlbumsOps.addAlbums(nextPosition, k_NumOfAlbumsInHomePage, FeedGroupBox, GlobalData.User.Albums);
         }
 
         // Albums
         private void FetchaAlbumsBtn_Click(object sender, EventArgs e)
         {
             Transition();
+            FeedGroupBox.BackColor = Color.White;
 
-            Point picLocation = new Point(20, 50);
-            AlbumsOps.addAlbums(picLocation, int.MaxValue, FeedGroupBox);
+            Point picLocation = new Point(20, 80);
+            AlbumsOps.addAlbums(null, int.MaxValue, FeedGroupBox, GlobalData.User.Albums);
         }
 
         // Posts
@@ -141,7 +142,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
         {
             Transition();
 
-            LoggedInUserData.User = null;
+            GlobalData.User = null;
 
             this.Hide();
             LogInForm logInForm = new LogInForm();
@@ -179,19 +180,11 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
         public void GamesBtn_Click(object sender, EventArgs e)
         {
             Transition();
-
-            NewPost.Hide();
-            FeedGroupBox.Hide();
-
-            Label Header = MainOps.CreateNewDefaultLabel(
-                "Games",
-                new Point(0,0),
-                DefaultCenterWidth);
-            Controls.Add(Header);
-            Header.Font = new Font("Britannic Bold", 32);
-            Header.ForeColor = Color.RoyalBlue;
-            Header.Location = new Point(NewPost.Location.X + (DefaultCenterWidth / 2) - (Header.Width / 2), NewPost.Location.Y + k_PostsMargin);
-            m_GameHeader = Header;
+            NewPost.Show();
+            FeedGroupBox.Show();
+            FeedGroupBox.BackColor = Color.Transparent;
+       
+            m_GameHeader = GamesOps.CreateGameHeader("Games", FeedGroupBox);
 
             // Guessing game
             Button guessingGameBtn = new Button();
@@ -200,26 +193,23 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             guessingGameBtn.BackgroundImage = Properties.Resources.GuessingGamePicture;
             guessingGameBtn.BackgroundImageLayout = ImageLayout.Stretch;
             guessingGameBtn.Location = new Point(
-                // ( ---- center of header ----------) - ( relative location)
-                Header.Location.X + (Header.Width / 2) - (int)(1.5f * guessingGameBtn.Width),
-                Header.Location.Y + Header.Height + k_PostsMargin);
-            GamesOps.AllGamesBtn.Add(guessingGameBtn);
+                m_GameHeader.Location.X + (m_GameHeader.Width / 2) - (int)(1.5f * guessingGameBtn.Width),
+                m_GameHeader.Location.Y + m_GameHeader.Height + k_PostsMargin);
+            FeedGroupBox.Controls.Add(guessingGameBtn);
 
-
-            Button g = new Button();
-            g.Click += BirthdaysGameBtn_Click;
-            g.Size = new Size(150, 100);
-            g.BackgroundImage = Properties.Resources.GuessingGamePicture;
-            g.BackgroundImageLayout = ImageLayout.Stretch;
-            g.Location = new Point(Header.Location.X + (Header.Width / 2) + (g.Width / 2), Header.Location.Y + Header.Height + k_PostsMargin);
-            GamesOps.AllGamesBtn.Add(g);
-
-            GamesOps.AddAllButtunsToConstorls(GamesOps.AllGamesBtn, Controls);
+            Button comingSoonGameBtn = new Button();
+            comingSoonGameBtn.Size = new Size(150, 100);
+            comingSoonGameBtn.BackgroundImage = Properties.Resources.commingSoonGame;
+            comingSoonGameBtn.BackgroundImageLayout = ImageLayout.Stretch;
+            comingSoonGameBtn.Location = new Point(m_GameHeader.Location.X + (m_GameHeader.Width / 2) + (comingSoonGameBtn.Width / 2), m_GameHeader.Location.Y + m_GameHeader.Height + k_PostsMargin);
+            FeedGroupBox.Controls.Add(comingSoonGameBtn);
         }
 
         private void BirthdaysGameBtn_Click(object sender, EventArgs e)
         {
-            GamesOps.RemoveAllButtunsFromConstorls(GamesOps.AllGamesBtn, Controls);
+            Transition();
+            FeedGroupBox.Controls.Clear();
+            GamesOps.CreateGameHeader("Guessing Game",FeedGroupBox);
 
             // In this case we need to ranomize a friend and get his birthday - but permission denied
             /* newQuestion(
@@ -231,7 +221,8 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             GamesOps.NewAgeQuestion(
                 sender,
                 "How old is Guy Ronen?",
-                new Point(NewPost.Location.X, m_GameHeader.Location.Y + m_GameHeader.Height + k_PostsMargin), Controls,
+                m_GameHeader.Location.Y + m_GameHeader.Height,
+                FeedGroupBox,
                 this);
         }
 
@@ -240,13 +231,13 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
         {
             Transition();
 
-            if (!string.IsNullOrEmpty(k_TextToFind))
+            if (!string.IsNullOrEmpty(s_TextToFind))
             {
                 Transition();
-                SearchOps.SetEventsSearch(k_TextToFind, FeedGroupBox);
-                SearchOps.SetFriendPosts(k_TextToFind, FeedGroupBox);
-                SearchOps.SetGroupsSearch(k_TextToFind, FeedGroupBox);
-                SearchOps.SetPageSearchs(k_TextToFind, FeedGroupBox);
+                SearchOps.SetEventsSearch(s_TextToFind, FeedGroupBox);
+                SearchOps.SetFriendPosts(s_TextToFind, FeedGroupBox);
+                SearchOps.SetGroupsSearch(s_TextToFind, FeedGroupBox);
+                SearchOps.SetPageSearchs(s_TextToFind, FeedGroupBox);
             }
             else
             {
@@ -256,7 +247,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
 
         private void SearchTextBox_TextChanged(object sender, EventArgs e)
         {
-            k_TextToFind = SearchTextBox.Text;
+            s_TextToFind = SearchTextBox.Text;
         }
 
         //General
@@ -264,7 +255,6 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
         {
             NewPost.Visible = true;
             MainOps.ResetFeedGroupBox(FeedGroupBox, DefaultCenterWidth);
-            GamesOps.RemoveAllGuessingGameControls(Controls);
         }
 
         private void setControlsLocations()

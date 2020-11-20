@@ -29,7 +29,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
 
         public static Point CalculateNextButtonPosition(Point i_prevPoint, int i_labelWidth)
         {
-            return new Point(i_labelWidth + 10, i_prevPoint.Y + MainFeed.LabelMargin);
+            return new Point(i_labelWidth + 10, i_prevPoint.Y + MainFeedForm.LabelMargin);
         }
 
         public static Label CreateNewDefaultLabel(string i_text, Point i_Location, int i_WidthSize)

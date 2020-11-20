@@ -20,7 +20,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
 
             if (i_NumOfPost >= 0)
             {
-                foreach (Post post in LoggedInUserData.User.WallPosts)
+                foreach (Post post in GlobalData.User.WallPosts)
                 {
                     i_NumOfPost--;
 
@@ -29,7 +29,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
                     singlePostGroupBox.Tag = "Center";
                     PictureBox defaultPic = createDefaultFacebookProfilePicture(singlePostGroupBox);
                     PictureBox myPic = new PictureBox();
-                    myPic.Image = LoggedInUserData.User.ImageSmall;
+                    myPic.Image = GlobalData.User.ImageSmall;
                     myPic.MaximumSize = new Size(new Point(k_PostProfilePictureSize, k_PostProfilePictureSize));
 
                     if (post.From.Name != null)
@@ -39,10 +39,10 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
                         Label postFromName = MainOps.CreateNewDefaultLabel(post.From.Name, labelLocation, i_feedGroupBox);
                         singlePostGroupBox.Controls.Add(postFromName);
 
-                        if (!postFromName.Text.Equals(LoggedInUserData.User.Name))
+                        if (!postFromName.Text.Equals(GlobalData.User.Name))
                         {
                             Point location = new Point(postFromName.Location.X + postFromName.Width, postFromName.Location.Y);
-                            Label ToMyUser = MainOps.CreateNewDefaultLabel("->" + LoggedInUserData.User.Name, location, i_feedGroupBox);
+                            Label ToMyUser = MainOps.CreateNewDefaultLabel("->" + GlobalData.User.Name, location, i_feedGroupBox);
                             singlePostGroupBox.Controls.Add(ToMyUser);
                             singlePostGroupBox.Controls.Add(defaultPic);
                         }
@@ -95,7 +95,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             GroupBox singlePostGroupBox = new GroupBox();
             singlePostGroupBox.AutoSize = true;
             singlePostGroupBox.BackColor = Color.White;
-            singlePostGroupBox.MaximumSize = new Size(i_feedGroupBox.Width, int.MaxValue);
+            singlePostGroupBox.MaximumSize = new Size(MainFeedForm.DefaultCenterWidth, int.MaxValue);
             singlePostGroupBox.Width = i_feedGroupBox.Width;
             singlePostGroupBox.Location = i_GroupBoxLoaction;
             singlePostGroupBox.Visible = true;

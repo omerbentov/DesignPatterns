@@ -18,7 +18,6 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
         private const int k_NumOfGuessingGameQuestions = 5;
 
         // Values
-        private static int m_Score = 0;
         private static int m_GuessingGameQuestionNumber = 1;
         private static List<Button> m_AllGames = new List<Button>();
         private static List<Control> m_GuessingGameControls = new List<Control>();
@@ -47,80 +46,82 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             }
         }
 
-        public static void NewAgeQuestion(object sender, string i_Question, Point i_BaseLOaction, Control.ControlCollection i_Controls, MainFeed i_MainFeed)
+        public static void NewAgeQuestion(object sender, string i_Question, int i_Y_Location, Control i_Control, MainFeedForm i_MainFeed)
         {
-            Label QuestionLabel = MainOps.CreateNewDefaultLabel(i_Question, i_BaseLOaction, MainFeed.DefaultCenterWidth);
-            i_Controls.Add(QuestionLabel);
+            Label QuestionLabel = MainOps.CreateNewDefaultLabel(i_Question, new Point(0,0), MainFeedForm.DefaultCenterWidth);
+            i_Control.Controls.Add(QuestionLabel);
+            Point labelLocation = new Point((i_Control.Width / 2) - QuestionLabel.Width, i_Y_Location);
+            QuestionLabel.Location = labelLocation;
             m_GuessingGameControls.Add(QuestionLabel);
 
             TextBox answerTextBox = new TextBox();
             answerTextBox.Location = new Point(QuestionLabel.Location.X + QuestionLabel.Width + k_PostsMargin, QuestionLabel.Location.Y);
-            i_Controls.Add(answerTextBox);
             m_GuessingGameControls.Add(answerTextBox);
+            Point answerLocation = new Point(QuestionLabel.Location.X + QuestionLabel.Width, QuestionLabel.Location.Y);
+            answerTextBox.Location = answerLocation;
+            i_Control.Controls.Add(answerTextBox);
 
             Button SubmitBtn = new Button();
             SubmitBtn.Text = "Submit";
-            SubmitBtn.Location = new Point(answerTextBox.Location.X + answerTextBox.Width + k_PostsMargin, QuestionLabel.Location.Y);
+            SubmitBtn.Location = new Point(answerTextBox.Location.X + answerTextBox.Width + k_PostsMargin, answerTextBox.Location.Y);
             SubmitBtn.Click += (sender_, EventArgs) => {
                 buttonNext_Click(
                     sender,
                     EventArgs,
                     answerTextBox.Text.Equals("45"),
                     new Point(QuestionLabel.Location.X, QuestionLabel.Location.Y + QuestionLabel.Height),
-                    i_Controls,
-                    i_MainFeed
-                    );
+                    i_Control,
+                    i_MainFeed);
             };
-            i_Controls.Add(SubmitBtn);
+            i_Control.Controls.Add(SubmitBtn);
             m_GuessingGameControls.Add(SubmitBtn);
         }
 
-        private static void buttonNext_Click(object sender, EventArgs eventArgs, bool i_IsCorrect, Point i_Location, Control.ControlCollection i_Controls, MainFeed i_MainFeed)
+        private static void buttonNext_Click(object sender, EventArgs eventArgs, bool i_IsCorrect, Point i_Location, Control i_Control, MainFeedForm i_MainFeed)
         {
-            Label isCorrectLabel = MainOps.CreateNewDefaultLabel(i_IsCorrect.ToString(), i_Location, MainFeed.DefaultCenterWidth);
-            i_Controls.Add(isCorrectLabel);
+            Label isCorrectLabel = MainOps.CreateNewDefaultLabel(i_IsCorrect.ToString(), i_Location, MainFeedForm.DefaultCenterWidth);
+            i_Control.Controls.Add(isCorrectLabel);
             m_GuessingGameControls.Add(isCorrectLabel);
             isCorrectLabel.BringToFront();
 
-                if (m_GuessingGameQuestionNumber < k_NumOfGuessingGameQuestions)
-                {
-                    m_GuessingGameQuestionNumber++;
-                    m_Score++;
-                    // In this case we need to ranomize a friend and get his birthday - but permission denied
-                    /* newQuestion(
-                                sender,
-                                "How old is <RandomUserFriend().FullName>?",
-                                new Point(NewPost.Location.X, NewPost.Location.X + k_PostsMargin),
-                                this);
-                    */
-                    NewAgeQuestion(
-                        sender,
-                        "How old is Guy Ronen",
-                        new Point(i_Location.X, i_Location.Y + k_PostsMargin),
-                        i_Controls,
-                        i_MainFeed);
-                }
-                else
-                {
-                    m_GuessingGameQuestionNumber = 1;
-                    m_Score++;
-                    RemoveAllGuessingGameControls(i_Controls);
-                    i_MainFeed.GamesBtn_Click(new object(), new EventArgs());
-                }
+            if (m_GuessingGameQuestionNumber < k_NumOfGuessingGameQuestions)
+            {
+                m_GuessingGameQuestionNumber++;
+                // In this case we need to ranomize a friend and get his birthday - but permission denied
+                /* newQuestion(
+                            sender,
+                            "How old is <RandomUserFriend().FullName>?",
+                            new Point(NewPost.Location.X, NewPost.Location.X + k_PostsMargin),
+                            this);
+                */
+                NewAgeQuestion(
+                    sender,
+                    "How old is Guy Ronen?",
+                    i_Location.Y + k_PostsMargin,
+                    i_Control,
+                    i_MainFeed);
+            }
+            else
+            {
+                m_GuessingGameQuestionNumber = 1;
+                i_MainFeed.GamesBtn_Click(new object(), new EventArgs());
+            }
 
         }
 
-        public static void RemoveAllGuessingGameControls(Control.ControlCollection i_Controls)
+        public static Label CreateGameHeader(string i_HeaderTitle, Control i_Control)
         {
-            foreach (Control control in m_AllGames)
-            {
-                i_Controls.Remove(control);
-            }
+            Label Header = MainOps.CreateNewDefaultLabel(
+               i_HeaderTitle,
+               new Point(0, 0),
+               MainFeedForm.DefaultCenterWidth);
+            Header.Name = i_HeaderTitle + "HeaderLabel";
+            Header.Font = new Font("Britannic Bold", 32);
+            Header.ForeColor = Color.RoyalBlue;
+            Header.Location = new Point((i_Control.Width / 2) - (Header.Width / 2), k_PostsMargin);
+            i_Control.Controls.Add(Header);
 
-            foreach (Control control in m_GuessingGameControls)
-            {
-                i_Controls.Remove(control);
-            }
+            return Header;
         }
     }
 }
