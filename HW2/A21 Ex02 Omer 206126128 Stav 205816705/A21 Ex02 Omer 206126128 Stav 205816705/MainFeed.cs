@@ -1,16 +1,12 @@
 ﻿using FacebookWrapper.ObjectModel;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using A21_Ex02_Omer_206126128_Stav_205816705;
+using System.Threading;
 
-namespace A21_Ex01_Omer_206126128_Stav_205816705
+namespace A21_Ex02_Omer_206126128_Stav_205816705
 {
     public partial class MainFeed : Form
     {
@@ -23,11 +19,13 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
         private const float k_SearchTextBoxRatio = 0.5f;
 
         private static int s_PostWidth;
-        private static string k_TextToFind;
+        private static string s_TextToFind;
+        private string m_AddingActivity;
+        private DateTime m_dateTime;
         private bool m_IsCollapsed = false;
 
         private Label m_GameHeader;
-
+        private ProxyMyListSport m_mySportList;
 
         // Prop
         public static Point PostProfilePicturePointSize
@@ -87,9 +85,12 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             Point groupBoxLocation = new Point();
             Point baseLocation = new Point(20, 10);
 
-            Point nextPosition = PostsOps.addPosts(groupBoxLocation, baseLocation, k_NumOfPostsInHomePage, FeedGroupBox);
+            Point nextPosition = new Point();
+            nextPosition = PostsOps.addPosts(groupBoxLocation, baseLocation, k_NumOfPostsInHomePage, FeedGroupBox); 
             nextPosition.Y += k_PostsMargin;
-            AlbumsOps.addAlbums(nextPosition, k_NumOfAlbumsInHomePage, FeedGroupBox);
+
+            Thread albums = new Thread(() =>  AlbumsOps.addAlbums(nextPosition, k_NumOfAlbumsInHomePage, FeedGroupBox));
+            albums.Start();
         }
 
         // Albums
@@ -98,7 +99,8 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             Transition();
 
             Point picLocation = new Point(20, 50);
-            AlbumsOps.addAlbums(picLocation, int.MaxValue, FeedGroupBox);
+            Thread albums = new Thread(() => AlbumsOps.addAlbums(picLocation, int.MaxValue, FeedGroupBox));
+            albums.Start();
         }
 
         // Posts
@@ -108,8 +110,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
 
             Point groupBoxLocation = new Point();
             Point baseLocation = new Point(20, 10);
-
-            PostsOps.addPosts(groupBoxLocation, baseLocation, int.MaxValue, FeedGroupBox);
+            PostsOps.addPosts(groupBoxLocation, baseLocation, k_NumOfPostsInHomePage, FeedGroupBox); 
         }
 
         // Account 
@@ -120,7 +121,8 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             FeedGroupBox.Visible = true;
             FeedGroupBox.BackColor = Color.White;
 
-            AccountOps.AddAcountInfo(FeedGroupBox);
+            Thread acountInfo = new Thread(() => AccountOps.AddAcountInfo(FeedGroupBox));
+            acountInfo.Start();
 
         }
 
@@ -132,7 +134,8 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             FeedGroupBox.Visible = true;
             FeedGroupBox.BackColor = Color.White;
 
-            EventsOps.AddEvents(FeedGroupBox);
+            Thread addEvents = new Thread(() => EventsOps.AddEvents(FeedGroupBox));
+            addEvents.Start();
 
         }
 
@@ -197,7 +200,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             Button guessingGameBtn = new Button();
             guessingGameBtn.Click += BirthdaysGameBtn_Click;
             guessingGameBtn.Size = new Size(150, 100);
-            guessingGameBtn.BackgroundImage = Properties.Resources.GuessingGamePicture;
+            guessingGameBtn.BackgroundImage = A21_Ex02_Omer_206126128_Stav_205816705.Properties.Resources.GuessingGamePicture;
             guessingGameBtn.BackgroundImageLayout = ImageLayout.Stretch;
             guessingGameBtn.Location = new Point(
                 // ( ---- center of header ----------) - ( relative location)
@@ -209,7 +212,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             Button g = new Button();
             g.Click += BirthdaysGameBtn_Click;
             g.Size = new Size(150, 100);
-            g.BackgroundImage = Properties.Resources.GuessingGamePicture;
+            g.BackgroundImage = A21_Ex02_Omer_206126128_Stav_205816705.Properties.Resources.GuessingGamePicture;
             g.BackgroundImageLayout = ImageLayout.Stretch;
             g.Location = new Point(Header.Location.X + (Header.Width / 2) + (g.Width / 2), Header.Location.Y + Header.Height + k_PostsMargin);
             GamesOps.AllGamesBtn.Add(g);
@@ -240,13 +243,20 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
         {
             Transition();
 
-            if (!string.IsNullOrEmpty(k_TextToFind))
+            if (!string.IsNullOrEmpty(s_TextToFind))
             {
                 Transition();
-                SearchOps.SetEventsSearch(k_TextToFind, FeedGroupBox);
-                SearchOps.SetFriendPosts(k_TextToFind, FeedGroupBox);
-                SearchOps.SetGroupsSearch(k_TextToFind, FeedGroupBox);
-                SearchOps.SetPageSearchs(k_TextToFind, FeedGroupBox);
+                Thread addEventSearch= new Thread(() => SearchOps.SetEventsSearch(s_TextToFind, FeedGroupBox));
+                addEventSearch.Start();
+
+                Thread addFriendSearch = new Thread(() => SearchOps.SetFriendPosts(s_TextToFind, FeedGroupBox));
+                addFriendSearch.Start();
+
+                Thread addGroupSearch = new Thread(() => SearchOps.SetGroupsSearch(s_TextToFind, FeedGroupBox));
+                addGroupSearch.Start();
+
+                Thread addPageSearch = new Thread(() => SearchOps.SetPageSearchs(s_TextToFind, FeedGroupBox));
+                addPageSearch.Start();
             }
             else
             {
@@ -256,7 +266,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
 
         private void SearchTextBox_TextChanged(object sender, EventArgs e)
         {
-            k_TextToFind = SearchTextBox.Text;
+            s_TextToFind = SearchTextBox.Text;
         }
 
         //General
@@ -316,5 +326,84 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             setControlsSizes();
             setControlsLocations();
         }
+
+        private void SportBtn_Click(object sender, EventArgs e)
+        {
+            Transition();
+            addNewActivityTextBox.Visible = true;
+            AddBth.Visible = true;
+            SportCheckedListBox.Visible = true;
+            FeedGroupBox.Visible = true;
+            dateTimePickerForSport.Visible = true;
+
+            Point LabelLocation = new Point(0, 0);
+
+            Label header = MainOps.CreateNewDefaultLabel(
+               "My Sport List",
+               new Point(0, 0),
+               DefaultCenterWidth);
+            header.Font = new Font("Britannic Bold", 24);
+            header.ForeColor = Color.RoyalBlue;
+            header.Location = new Point(0,10);
+            header.Visible = true;
+
+            FeedGroupBox.Controls.Add(header);
+            FeedGroupBox.BackColor = System.Drawing.Color.White;
+            FeedGroupBox.Controls.Add(SportCheckedListBox);
+            FeedGroupBox.Controls.Add(addNewActivityTextBox);
+            FeedGroupBox.Controls.Add(AddBth);
+            FeedGroupBox.Controls.Add(dateTimePickerForSport);
+
+            //init list
+            m_mySportList = new ProxyMyListSport();
+            SportListOps.InitList(SportCheckedListBox, m_mySportList);
+     
+        }
+
+        private void AddBth_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(m_AddingActivity))
+            {
+                SportActivity newSportActivity = new SportActivity(m_dateTime, m_AddingActivity);
+                try
+                {
+                    m_mySportList.SportList(newSportActivity);
+                    SportListOps.AddNewActivity(newSportActivity);
+                }
+                catch(Exception err) 
+                {
+                    MessageBox.Show(err.ToString());
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please enter phrase to search", "Missing Input");
+            }
+        }
+
+        private void AddActivity_TextChanged(object sender, EventArgs e)
+        {
+            m_AddingActivity = addNewActivityTextBox.Text;
+        }
+
+        private void SportList_ActivityChecked(object sender, ItemCheckEventArgs e)
+        {
+            switch (e.NewValue)
+            {
+                case (CheckState.Checked):
+                    m_mySportList.NumberOfActivities--;
+                    MessageBox.Show("You Are Killing It", "Good Job");
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void dateTimePickerForSport_ValueChanged(object sender, EventArgs e)
+        {
+            m_dateTime = dateTimePickerForSport.Value;
+        }
+
+        
     }
 }

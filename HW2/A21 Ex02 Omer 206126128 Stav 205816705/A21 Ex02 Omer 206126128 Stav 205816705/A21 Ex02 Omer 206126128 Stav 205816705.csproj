@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6AEAA13A-305A-462F-A498-CB71F7821C71}</ProjectGuid>
+    <ProjectGuid>{790780A5-365F-4331-8CDC-97AB73EFF280}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>A21_Ex01_Omer_206126128_Stav_205816705</RootNamespace>
-    <AssemblyName>A21 Ex01 Omer 206126128 Stav 205816705</AssemblyName>
+    <RootNamespace>A21_Ex02_Omer_206126128_Stav_205816705</RootNamespace>
+    <AssemblyName>A21 Ex02 Omer 206126128 Stav 205816705</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -55,32 +55,31 @@
     <Compile Include="AccountOps.cs" />
     <Compile Include="AlbumsOps.cs" />
     <Compile Include="EventsOps.cs" />
+    <Compile Include="FormsFactoryMethods.cs" />
     <Compile Include="GamesOps.cs" />
     <Compile Include="LoggedInUserData.cs" />
-    <Compile Include="MainOps.cs" />
-    <Compile Include="MainFeed.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MainFeed.Designer.cs">
-      <DependentUpon>MainFeed.cs</DependentUpon>
-    </Compile>
     <Compile Include="LogInForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="LogInForm.Designer.cs">
       <DependentUpon>LogInForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainFeed.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainFeed.Designer.cs">
+      <DependentUpon>MainFeed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainOps.cs" />
+    <Compile Include="MustDo.cs" />
+    <Compile Include="IMySportList.cs" />
     <Compile Include="PostsOps.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProxyMyListSport.cs" />
     <Compile Include="SearchOps.cs" />
-    <Compile Include="SportForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SportForm.Designer.cs">
-      <DependentUpon>SportForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Sport.cs" />
+    <Compile Include="SportActivity.cs" />
+    <Compile Include="SportListOps.cs" />
     <EmbeddedResource Include="LogInForm.resx">
       <DependentUpon>LogInForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -114,31 +113,31 @@
     <None Include="Assets\ContinueWithFacebook.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\FacebookIcom.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Assets\white-drop-down-arrow.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Assets\FacebookDefaultProfilePicture.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Assets\drop-down-arrow.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Assets\facebook-logo-png-38362.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Assets\searchBtn.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Assets\Facebook_2_Cake.jpg" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Facebook_1_Cake.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Facebook_2_Cake.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\FacebookDefaultProfilePicture.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\FacebookIcom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\facebook-logo-png-38362.jpg" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Assets\GuessingGamePicture.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\searchBtn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\white-drop-down-arrow.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

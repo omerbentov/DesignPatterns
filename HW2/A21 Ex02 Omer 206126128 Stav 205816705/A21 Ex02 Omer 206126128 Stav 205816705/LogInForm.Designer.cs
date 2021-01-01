@@ -1,4 +1,4 @@
-﻿namespace A21_Ex01_Omer_206126128_Stav_205816705
+﻿namespace A21_Ex02_Omer_206126128_Stav_205816705
 {
     partial class LogInForm
     {
@@ -43,8 +43,8 @@
             // 
             // WelcomeLable
             // 
-            this.WelcomeLable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.WelcomeLable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.WelcomeLable.AutoSize = true;
             this.WelcomeLable.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
@@ -57,7 +57,7 @@
             // LogInBtn
             // 
             this.LogInBtn.AutoSize = true;
-            this.LogInBtn.BackgroundImage = global::A21_Ex01_Omer_206126128_Stav_205816705.Properties.Resources.ContinueWithFacebook;
+            // this.LogInBtn.BackgroundImage = 
             this.LogInBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.LogInBtn.Location = new System.Drawing.Point(265, 224);
             this.LogInBtn.Name = "LogInBtn";

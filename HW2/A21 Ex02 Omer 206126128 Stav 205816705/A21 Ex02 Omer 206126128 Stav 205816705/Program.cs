@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace A21_Ex01_Omer_206126128_Stav_205816705
+namespace A21_Ex02_Omer_206126128_Stav_205816705
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LogInForm());
+            Application.Run(FormsFactoryMethods.CreateFetureForm(FormsFactoryMethods.eForms.LogInOform));
         }
     }
 }

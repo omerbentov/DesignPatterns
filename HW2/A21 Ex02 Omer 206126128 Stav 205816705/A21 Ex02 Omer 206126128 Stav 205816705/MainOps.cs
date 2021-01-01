@@ -7,7 +7,7 @@ using System.Drawing;
 using FacebookWrapper.ObjectModel;
 using System.Windows.Forms;
 
-namespace A21_Ex01_Omer_206126128_Stav_205816705
+namespace A21_Ex02_Omer_206126128_Stav_205816705
 {
     public static class MainOps
     {
@@ -59,6 +59,14 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             tempLabel.Location = CalculateNextLabelPosition(i_prevPoint);
             tempLabel.AutoSize = true;
             i_FeedGroupBox.Controls.Add(tempLabel);
+        }
+
+        public static void CreateNewErrMessage(GroupBox i_feedGroupBox)
+        {
+            Label errLabel = new Label();
+            errLabel.Text = "we can not fecth information";
+            errLabel.AutoSize = true;
+            i_feedGroupBox.Invoke(new Action(() => i_feedGroupBox.Controls.Add(errLabel)));
         }
     }
 }

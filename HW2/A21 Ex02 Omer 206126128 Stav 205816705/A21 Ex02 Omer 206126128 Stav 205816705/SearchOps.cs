@@ -8,7 +8,7 @@ using System.Windows.Forms;
 using FacebookWrapper;
 using FacebookWrapper.ObjectModel;
 
-namespace A21_Ex01_Omer_206126128_Stav_205816705
+namespace A21_Ex02_Omer_206126128_Stav_205816705
 {
     public static class SearchOps
     {
@@ -106,7 +106,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             Point LabelLocation = new Point(10, 10);
             //eventPicture.ImageLocation = i_newEvent.PictureSqaureURL;
             //eventPicture.LoadAsync(i_newEvent.PictureSmallURL);
-            eventPicture.Image = Properties.Resources.Facebook_1_Cake;
+            eventPicture.Image = A21_Ex02_Omer_206126128_Stav_205816705.Properties.Resources.Facebook_1_Cake;
             eventPicture.Visible = true;
             eventPicture.SizeMode = PictureBoxSizeMode.Zoom;
             eventPicture.Location = MainOps.CalculateNextButtonPosition(LabelLocation, 100);
@@ -116,12 +116,12 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
 
         private static void errMessage(GroupBox i_FeedGroupBox)
         {
-            i_FeedGroupBox.Controls.Clear();
+            i_FeedGroupBox.Invoke(new Action(() => i_FeedGroupBox.Controls.Clear()));
             Label errMessage = new Label();
             errMessage.Text = "sorry, we can't access the information";
             errMessage.AutoSize = true;
             errMessage.Location = new Point(20, 20);
-            i_FeedGroupBox.Controls.Add(errMessage);
+            i_FeedGroupBox.Invoke(new Action(() => i_FeedGroupBox.Controls.Add(errMessage)));
         }
 
         private static void addEvent(Event i_newEvent, GroupBox i_FeedGroupBox)
@@ -140,7 +140,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             eventLabel.Location = MainOps.CalculateNextLabelPosition(LabelLocation);
             eventLabel.Visible = true;
 
-            i_FeedGroupBox.Controls.Add(eventLabel);
+            i_FeedGroupBox.Invoke(new Action(() => i_FeedGroupBox.Controls.Add(eventLabel)));
         }
 
         private static void addFriendPost(Post i_newPost, GroupBox i_FeedGroupBox)
@@ -155,7 +155,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             friendPostLabel.Location = MainOps.CalculateNextLabelPosition(LabelLocation);
             friendPostLabel.Visible = true;
 
-            i_FeedGroupBox.Controls.Add(friendPostLabel);
+            i_FeedGroupBox.Invoke(new Action(() => i_FeedGroupBox.Controls.Add(friendPostLabel)));
         }
 
         private static void addGroup(Group i_newGroup, GroupBox i_FeedGroupBox)
@@ -173,8 +173,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             groupLabel.AutoSize = true;
             groupLabel.Visible = true;
 
-            i_FeedGroupBox.Controls.Add(groupLabel);
-
+            i_FeedGroupBox.Invoke(new Action(() => i_FeedGroupBox.Controls.Add(groupLabel)));
         }
 
         private static void addPage(Page i_newPage, GroupBox i_FeedGroupBox)
@@ -192,7 +191,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             pageLabel.AutoSize = true;
             pageLabel.Visible = true;
 
-            i_FeedGroupBox.Controls.Add(pageLabel);
+            i_FeedGroupBox.Invoke(new Action(() => i_FeedGroupBox.Controls.Add(pageLabel)));
 
         }
 
@@ -203,7 +202,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             header.Location = MainOps.CalculateNextLabelPosition(LabelLocation);
             header.AutoSize = true;
             header.Visible = true;
-            i_FeedGroupBox.Controls.Add(header);
+            i_FeedGroupBox.Invoke(new Action(() => i_FeedGroupBox.Controls.Add(header)));
         }
 
     }

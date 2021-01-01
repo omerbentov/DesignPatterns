@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace A21_Ex01_Omer_206126128_Stav_205816705
+namespace A21_Ex02_Omer_206126128_Stav_205816705
 {
     public partial class LogInForm : Form
     {
@@ -55,7 +55,7 @@ namespace A21_Ex01_Omer_206126128_Stav_205816705
             LoggedInUserData.User = result.LoggedInUser;
             LoggedInUserData.AccesToken = result.AccessToken;
             this.Hide();
-            MainFeed mainFeed = new MainFeed();
+            Form mainFeed = FormsFactoryMethods.CreateFetureForm(FormsFactoryMethods.eForms.MainFeedForm);
             mainFeed.Show();
         }
 

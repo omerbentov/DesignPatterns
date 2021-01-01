@@ -1,4 +1,4 @@
-﻿namespace A21_Ex01_Omer_206126128_Stav_205816705
+﻿namespace A21_Ex02_Omer_206126128_Stav_205816705
 {
     partial class MainFeed
     {
@@ -38,6 +38,10 @@
             this.HomeBtn = new System.Windows.Forms.Button();
             this.NewPost = new System.Windows.Forms.RichTextBox();
             this.FeedGroupBox = new System.Windows.Forms.GroupBox();
+            this.dateTimePickerForSport = new System.Windows.Forms.DateTimePicker();
+            this.AddBth = new System.Windows.Forms.Button();
+            this.addNewActivityTextBox = new System.Windows.Forms.TextBox();
+            this.SportCheckedListBox = new System.Windows.Forms.CheckedListBox();
             this.posted = new System.Windows.Forms.Button();
             this.PanelDropDown = new System.Windows.Forms.Panel();
             this.LogOut = new System.Windows.Forms.Button();
@@ -49,6 +53,8 @@
             this.DropDownPictureBox = new System.Windows.Forms.PictureBox();
             this.UserNamePictureBox = new System.Windows.Forms.PictureBox();
             this.FacebookIcon = new System.Windows.Forms.PictureBox();
+            this.SportBth = new System.Windows.Forms.Button();
+            this.FeedGroupBox.SuspendLayout();
             this.PanelDropDown.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SearchBtn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DropDownPictureBox)).BeginInit();
@@ -75,7 +81,7 @@
             this.BlueTopBar.ForeColor = System.Drawing.Color.White;
             this.BlueTopBar.Location = new System.Drawing.Point(0, 0);
             this.BlueTopBar.Name = "BlueTopBar";
-            this.BlueTopBar.Size = new System.Drawing.Size(1578, 75);
+            this.BlueTopBar.Size = new System.Drawing.Size(1682, 75);
             this.BlueTopBar.TabIndex = 1;
             // 
             // FetchaAlbumsBtn
@@ -157,12 +163,68 @@
             // 
             this.FeedGroupBox.AutoSize = true;
             this.FeedGroupBox.BackColor = System.Drawing.Color.White;
+            this.FeedGroupBox.Controls.Add(this.dateTimePickerForSport);
+            this.FeedGroupBox.Controls.Add(this.AddBth);
+            this.FeedGroupBox.Controls.Add(this.addNewActivityTextBox);
+            this.FeedGroupBox.Controls.Add(this.SportCheckedListBox);
             this.FeedGroupBox.Font = new System.Drawing.Font("Berlin Sans FB", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FeedGroupBox.Location = new System.Drawing.Point(276, 256);
             this.FeedGroupBox.Name = "FeedGroupBox";
-            this.FeedGroupBox.Size = new System.Drawing.Size(693, 762);
+            this.FeedGroupBox.Size = new System.Drawing.Size(693, 814);
             this.FeedGroupBox.TabIndex = 20;
             this.FeedGroupBox.TabStop = false;
+            // 
+            // dateTimePickerForSport
+            // 
+            this.dateTimePickerForSport.CalendarFont = new System.Drawing.Font("Britannic Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePickerForSport.CalendarMonthBackground = System.Drawing.Color.RoyalBlue;
+            this.dateTimePickerForSport.Font = new System.Drawing.Font("Britannic Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePickerForSport.Location = new System.Drawing.Point(30, 167);
+            this.dateTimePickerForSport.Name = "dateTimePickerForSport";
+            this.dateTimePickerForSport.Size = new System.Drawing.Size(382, 34);
+            this.dateTimePickerForSport.TabIndex = 28;
+            this.dateTimePickerForSport.Visible = false;
+            this.dateTimePickerForSport.ValueChanged += new System.EventHandler(this.dateTimePickerForSport_ValueChanged);
+            // 
+            // AddBth
+            // 
+            this.AddBth.BackColor = System.Drawing.Color.RoyalBlue;
+            this.AddBth.Font = new System.Drawing.Font("Britannic Bold", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddBth.ForeColor = System.Drawing.Color.White;
+            this.AddBth.Location = new System.Drawing.Point(418, 166);
+            this.AddBth.Name = "AddBth";
+            this.AddBth.Size = new System.Drawing.Size(91, 35);
+            this.AddBth.TabIndex = 27;
+            this.AddBth.Text = "Add";
+            this.AddBth.UseVisualStyleBackColor = false;
+            this.AddBth.Visible = false;
+            this.AddBth.Click += new System.EventHandler(this.AddBth_Click);
+            // 
+            // addNewActivityTextBox
+            // 
+            this.addNewActivityTextBox.BackColor = System.Drawing.Color.RoyalBlue;
+            this.addNewActivityTextBox.Font = new System.Drawing.Font("Britannic Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addNewActivityTextBox.ForeColor = System.Drawing.SystemColors.Window;
+            this.addNewActivityTextBox.Location = new System.Drawing.Point(30, 118);
+            this.addNewActivityTextBox.Name = "addNewActivityTextBox";
+            this.addNewActivityTextBox.Size = new System.Drawing.Size(350, 34);
+            this.addNewActivityTextBox.TabIndex = 1;
+            this.addNewActivityTextBox.Text = "Add New Activity";
+            this.addNewActivityTextBox.Visible = false;
+            this.addNewActivityTextBox.TextChanged += new System.EventHandler(this.AddActivity_TextChanged);
+            // 
+            // SportCheckedListBox
+            // 
+            this.SportCheckedListBox.BackColor = System.Drawing.Color.RoyalBlue;
+            this.SportCheckedListBox.Font = new System.Drawing.Font("Britannic Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SportCheckedListBox.ForeColor = System.Drawing.SystemColors.Window;
+            this.SportCheckedListBox.FormattingEnabled = true;
+            this.SportCheckedListBox.Location = new System.Drawing.Point(30, 219);
+            this.SportCheckedListBox.Name = "SportCheckedListBox";
+            this.SportCheckedListBox.Size = new System.Drawing.Size(449, 562);
+            this.SportCheckedListBox.TabIndex = 0;
+            this.SportCheckedListBox.Visible = false;
+            this.SportCheckedListBox.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.SportList_ActivityChecked);
             // 
             // posted
             // 
@@ -246,7 +308,7 @@
             // SearchBtn
             // 
             this.SearchBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.SearchBtn.Image = global::A21_Ex01_Omer_206126128_Stav_205816705.Properties.Resources.searchBtn;
+            this.SearchBtn.Image = global::A21_Ex02_Omer_206126128_Stav_205816705.Properties.Resources.searchBtn;
             this.SearchBtn.Location = new System.Drawing.Point(664, 12);
             this.SearchBtn.Name = "SearchBtn";
             this.SearchBtn.Size = new System.Drawing.Size(54, 47);
@@ -258,7 +320,7 @@
             // DropDownPictureBox
             // 
             this.DropDownPictureBox.BackColor = System.Drawing.Color.Transparent;
-            this.DropDownPictureBox.Image = global::A21_Ex01_Omer_206126128_Stav_205816705.Properties.Resources.drop_down_arrow;
+            this.DropDownPictureBox.Image = global::A21_Ex02_Omer_206126128_Stav_205816705.Properties.Resources.drop_down_arrow;
             this.DropDownPictureBox.Location = new System.Drawing.Point(1229, 20);
             this.DropDownPictureBox.Name = "DropDownPictureBox";
             this.DropDownPictureBox.Size = new System.Drawing.Size(34, 32);
@@ -269,7 +331,7 @@
             // 
             // UserNamePictureBox
             // 
-            this.UserNamePictureBox.Image = global::A21_Ex01_Omer_206126128_Stav_205816705.Properties.Resources.FacebookDefaultProfilePicture;
+            this.UserNamePictureBox.Image = global::A21_Ex02_Omer_206126128_Stav_205816705.Properties.Resources.FacebookDefaultProfilePicture;
             this.UserNamePictureBox.Location = new System.Drawing.Point(1089, 6);
             this.UserNamePictureBox.Name = "UserNamePictureBox";
             this.UserNamePictureBox.Size = new System.Drawing.Size(61, 55);
@@ -279,13 +341,26 @@
             // FacebookIcon
             // 
             this.FacebookIcon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.FacebookIcon.Image = global::A21_Ex01_Omer_206126128_Stav_205816705.Properties.Resources.facebook_logo_png_38362;
+            this.FacebookIcon.Image = global::A21_Ex02_Omer_206126128_Stav_205816705.Properties.Resources.facebook_logo_png_38362;
             this.FacebookIcon.Location = new System.Drawing.Point(22, 12);
             this.FacebookIcon.Name = "FacebookIcon";
             this.FacebookIcon.Size = new System.Drawing.Size(43, 43);
             this.FacebookIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.FacebookIcon.TabIndex = 3;
             this.FacebookIcon.TabStop = false;
+            // 
+            // SportBth
+            // 
+            this.SportBth.BackColor = System.Drawing.Color.RoyalBlue;
+            this.SportBth.Font = new System.Drawing.Font("Britannic Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SportBth.ForeColor = System.Drawing.Color.White;
+            this.SportBth.Location = new System.Drawing.Point(22, 361);
+            this.SportBth.Name = "SportBth";
+            this.SportBth.Size = new System.Drawing.Size(238, 47);
+            this.SportBth.TabIndex = 26;
+            this.SportBth.Text = "Sport";
+            this.SportBth.UseVisualStyleBackColor = false;
+            this.SportBth.Click += new System.EventHandler(this.SportBtn_Click);
             // 
             // MainFeed
             // 
@@ -294,7 +369,8 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ClientSize = new System.Drawing.Size(1578, 1030);
+            this.ClientSize = new System.Drawing.Size(1708, 1030);
+            this.Controls.Add(this.SportBth);
             this.Controls.Add(this.SearchBtn);
             this.Controls.Add(this.SearchTextBox);
             this.Controls.Add(this.DropDownPictureBox);
@@ -319,6 +395,8 @@
             this.Text = "newPost";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.SizeChanged += new System.EventHandler(this.MainFeed_SizeChanged);
+            this.FeedGroupBox.ResumeLayout(false);
+            this.FeedGroupBox.PerformLayout();
             this.PanelDropDown.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SearchBtn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DropDownPictureBox)).EndInit();
@@ -351,5 +429,10 @@
         private System.Windows.Forms.PictureBox SearchBtn;
         public System.Windows.Forms.RichTextBox NewPost;
         public System.Windows.Forms.GroupBox FeedGroupBox;
+        private System.Windows.Forms.Button SportBth;
+        private System.Windows.Forms.CheckedListBox SportCheckedListBox;
+        private System.Windows.Forms.TextBox addNewActivityTextBox;
+        private System.Windows.Forms.Button AddBth;
+        private System.Windows.Forms.DateTimePicker dateTimePickerForSport;
     }
 }
