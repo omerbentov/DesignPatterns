@@ -11,12 +11,22 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
 {
     public static class AlbumsOps
     {
+        private static FacebookObjectCollection<Album> s_Albums;
+        private static bool s_IsFetched = false;
+
+        public static void FetchAlbums()
+        {
+            s_Albums = LoggedInUserData.User.Albums;
+            s_IsFetched = true;
+        }
+
         public static void addAlbums(Point i_PicLocation, int i_NumOfAlbums, GroupBox i_feedGroupBox)
         {
             try
             {
-                FacebookObjectCollection<Album> albums = LoggedInUserData.User.Albums;
-                foreach (Album album in albums)
+                while (!s_IsFetched) ;
+
+                foreach (Album album in s_Albums)
                 {
                     if (i_NumOfAlbums <= 0)
                     {

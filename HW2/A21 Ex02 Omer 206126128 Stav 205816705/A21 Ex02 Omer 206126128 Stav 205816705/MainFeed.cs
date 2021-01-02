@@ -69,13 +69,20 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
             InitializeComponent();
             InitializeChildrenComponents();
 
-            HomeBtn_Click(new object(), new EventArgs());
+            Thread albums = new Thread(() => AlbumsOps.FetchAlbums());
+            albums.Start();
+            albums.Join();
         }
 
         private void InitializeChildrenComponents()
         {
             WelcomeUserNameLable.Text = LoggedInUserData.User.FirstName;
             UserNamePictureBox.Image = LoggedInUserData.User.ImageSmall;
+        }
+
+        private void MainFeed_Load(object sender, EventArgs e)
+        {
+            HomeBtn_Click(new object(), new EventArgs());
         }
 
         // Home 
@@ -92,8 +99,7 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
             nextPosition = PostsOps.addPosts(groupBoxLocation, baseLocation, k_NumOfPostsInHomePage, FeedGroupBox); 
             nextPosition.Y += k_PostsMargin;
 
-            Thread albums = new Thread(() =>  AlbumsOps.addAlbums(nextPosition, k_NumOfAlbumsInHomePage, FeedGroupBox));
-            albums.Start();
+            AlbumsOps.addAlbums(nextPosition, k_NumOfAlbumsInHomePage, FeedGroupBox);
         }
 
         // Albums
@@ -102,8 +108,7 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
             Transition();
 
             Point picLocation = new Point(20, 50);
-            Thread albums = new Thread(() => AlbumsOps.addAlbums(picLocation, int.MaxValue, FeedGroupBox));
-            albums.Start();
+            AlbumsOps.addAlbums(picLocation, int.MaxValue, FeedGroupBox);
         }
 
         // Posts
@@ -126,7 +131,6 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
 
             Thread acountInfo = new Thread(() => AccountOps.AddAcountInfo(FeedGroupBox));
             acountInfo.Start();
-
         }
 
         //Events 

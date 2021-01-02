@@ -38,6 +38,8 @@
             this.HomeBtn = new System.Windows.Forms.Button();
             this.NewPost = new System.Windows.Forms.RichTextBox();
             this.FeedGroupBox = new System.Windows.Forms.GroupBox();
+            this.LimitTimeLabel = new System.Windows.Forms.Label();
+            this.ActivityNameLabel = new System.Windows.Forms.Label();
             this.AddSportLabel = new System.Windows.Forms.Label();
             this.SportListActivitiesLabel = new System.Windows.Forms.Label();
             this.ActivityIsCheckedCheckBox = new System.Windows.Forms.CheckBox();
@@ -57,8 +59,6 @@
             this.UserNamePictureBox = new System.Windows.Forms.PictureBox();
             this.FacebookIcon = new System.Windows.Forms.PictureBox();
             this.SportBth = new System.Windows.Forms.Button();
-            this.ActivityNameLabel = new System.Windows.Forms.Label();
-            this.LimitTimeLabel = new System.Windows.Forms.Label();
             this.FeedGroupBox.SuspendLayout();
             this.PanelDropDown.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SearchBtn)).BeginInit();
@@ -183,6 +183,26 @@
             this.FeedGroupBox.Size = new System.Drawing.Size(693, 1013);
             this.FeedGroupBox.TabIndex = 20;
             this.FeedGroupBox.TabStop = false;
+            // 
+            // LimitTimeLabel
+            // 
+            this.LimitTimeLabel.AutoSize = true;
+            this.LimitTimeLabel.BackColor = System.Drawing.Color.Transparent;
+            this.LimitTimeLabel.Location = new System.Drawing.Point(34, 116);
+            this.LimitTimeLabel.Name = "LimitTimeLabel";
+            this.LimitTimeLabel.Size = new System.Drawing.Size(111, 26);
+            this.LimitTimeLabel.TabIndex = 33;
+            this.LimitTimeLabel.Text = "LimitTime";
+            // 
+            // ActivityNameLabel
+            // 
+            this.ActivityNameLabel.AutoSize = true;
+            this.ActivityNameLabel.BackColor = System.Drawing.Color.Transparent;
+            this.ActivityNameLabel.Location = new System.Drawing.Point(34, 69);
+            this.ActivityNameLabel.Name = "ActivityNameLabel";
+            this.ActivityNameLabel.Size = new System.Drawing.Size(152, 26);
+            this.ActivityNameLabel.TabIndex = 32;
+            this.ActivityNameLabel.Text = "Activity name";
             // 
             // AddSportLabel
             // 
@@ -406,26 +426,6 @@
             this.SportBth.UseVisualStyleBackColor = false;
             this.SportBth.Click += new System.EventHandler(this.SportBtn_Click);
             // 
-            // ActivityNameLabel
-            // 
-            this.ActivityNameLabel.AutoSize = true;
-            this.ActivityNameLabel.BackColor = System.Drawing.Color.Transparent;
-            this.ActivityNameLabel.Location = new System.Drawing.Point(34, 69);
-            this.ActivityNameLabel.Name = "ActivityNameLabel";
-            this.ActivityNameLabel.Size = new System.Drawing.Size(152, 26);
-            this.ActivityNameLabel.TabIndex = 32;
-            this.ActivityNameLabel.Text = "Activity name";
-            // 
-            // LimitTimeLabel
-            // 
-            this.LimitTimeLabel.AutoSize = true;
-            this.LimitTimeLabel.BackColor = System.Drawing.Color.Transparent;
-            this.LimitTimeLabel.Location = new System.Drawing.Point(34, 116);
-            this.LimitTimeLabel.Name = "LimitTimeLabel";
-            this.LimitTimeLabel.Size = new System.Drawing.Size(111, 26);
-            this.LimitTimeLabel.TabIndex = 33;
-            this.LimitTimeLabel.Text = "LimitTime";
-            // 
             // MainFeed
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
@@ -458,6 +458,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "newPost";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.MainFeed_Load);
             this.SizeChanged += new System.EventHandler(this.MainFeed_SizeChanged);
             this.FeedGroupBox.ResumeLayout(false);
             this.FeedGroupBox.PerformLayout();
