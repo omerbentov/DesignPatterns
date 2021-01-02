@@ -6,29 +6,23 @@ using System.Threading.Tasks;
 
 namespace A21_Ex02_Omer_206126128_Stav_205816705
 {
-    public class MustDo : IMySportList
+    public class SprotList : IActivityList
     {
-        private Dictionary<string, string> m_SportActivity;
-        private static MustDo s_ActivityIMustDo = null;
+        private Dictionary<string , SportActivity> m_SportActivity;
+        private static SprotList s_ActivityIMustDo = null;
         private static DateTime m_DateLimit;
         private static int m_NumberOfActivities;
         private static object s_LockObj = new object();
 
-        private MustDo()
+        private SprotList()
         {
-            m_SportActivity = new Dictionary<string, string>()
+            m_SportActivity = new Dictionary<string, SportActivity>()
             {
-                { "Run 1 km", "Unchecked" },
-                { "20 pushups", "Unchecked" },
-                { "Run 2 km", "Unchecked" },
-                { "20 Squats","Unchecked" },
-                { "Run 3 km", "Unchecked" },
-                { "Yoga morning session", "Unchecked" },
-                { "Find a friend and run 4 km", "Unchecked" },
+                // add instances
             };
         }
 
-        public static MustDo Instance
+        public static SprotList Instance
         {
             get
             {
@@ -38,7 +32,7 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
                     {
                         if (s_ActivityIMustDo == null)
                         {
-                            s_ActivityIMustDo = new MustDo();
+                            s_ActivityIMustDo = new SprotList();
                         }
                     }
                 }
@@ -46,7 +40,7 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
             }
         }
 
-        public Dictionary<string, string> SportActivities
+        public Dictionary<string, SportActivity> SportActivities
         {
             get
             {
@@ -82,9 +76,16 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
             }
         }
 
-        public void SportList(SportActivity i_addingActivity)
+        public void AddSportActivity(SportActivity i_addingActivity)
         {
-            m_SportActivity[i_addingActivity.Name] = "Unchecked";
+            if (i_addingActivity.Checked)
+            {
+                m_SportActivity[i_addingActivity.Name] = i_addingActivity;
+            }
+            else
+            {
+                m_SportActivity[i_addingActivity.Name] = i_addingActivity;
+            }
         }
     }
 }

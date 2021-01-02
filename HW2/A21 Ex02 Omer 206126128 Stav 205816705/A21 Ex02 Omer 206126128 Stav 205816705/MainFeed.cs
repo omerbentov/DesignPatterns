@@ -20,12 +20,15 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
 
         private static int s_PostWidth;
         private static string s_TextToFind;
-        private string m_AddingActivity;
+
+        private string m_ActivityName;
+        private bool m_ActivityIsChecked;
         private DateTime m_dateTime;
+
         private bool m_IsCollapsed = false;
 
         private Label m_GameHeader;
-        private ProxyMyListSport m_mySportList;
+        private ProxySportList m_MySportListProxy;
 
         // Prop
         public static Point PostProfilePicturePointSize
@@ -269,7 +272,7 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
             s_TextToFind = SearchTextBox.Text;
         }
 
-        //General
+        // General
         public void Transition()
         {
             NewPost.Visible = true;
@@ -297,6 +300,8 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
             FetchaAlbumsBtn.Location = new Point(((NewPost.Location.X - (k_PostsMargin + FetchaAlbumsBtn.Width)) / 2), FetchPostsBtn.Location.Y + FetchPostsBtn.Height + 5);
             FetchEventsBtn.Location = new Point(((NewPost.Location.X - (k_PostsMargin + FetchEventsBtn.Width)) / 2), FetchaAlbumsBtn.Location.Y + FetchaAlbumsBtn.Height + 5);
             GamesBtn.Location = new Point(((NewPost.Location.X - (k_PostsMargin + GamesBtn.Width)) / 2), FetchEventsBtn.Location.Y + FetchEventsBtn.Height + 5);
+            SportBth.Location = new Point(((NewPost.Location.X - (k_PostsMargin + SportBth.Width)) / 2), GamesBtn.Location.Y + GamesBtn.Height + 5);
+
         }
 
         private void setControlsSizes()
@@ -327,48 +332,48 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
             setControlsLocations();
         }
 
+        // Sport
         private void SportBtn_Click(object sender, EventArgs e)
         {
             Transition();
-            addNewActivityTextBox.Visible = true;
-            AddBth.Visible = true;
-            SportCheckedListBox.Visible = true;
             FeedGroupBox.Visible = true;
+
+            AddSportLabel.Visible = true;
+            NewActivityNameTextBox.Visible = true;
             dateTimePickerForSport.Visible = true;
+            AddBth.Visible = true;
+            ActivityIsCheckedCheckBox.Visible = true;
+
+            SportListActivitiesLabel.Visible = true;
+            SportCheckedListBox.Visible = true;
 
             Point LabelLocation = new Point(0, 0);
 
-            Label header = MainOps.CreateNewDefaultLabel(
-               "My Sport List",
-               new Point(0, 0),
-               DefaultCenterWidth);
-            header.Font = new Font("Britannic Bold", 24);
-            header.ForeColor = Color.RoyalBlue;
-            header.Location = new Point(0,10);
-            header.Visible = true;
-
-            FeedGroupBox.Controls.Add(header);
             FeedGroupBox.BackColor = System.Drawing.Color.White;
-            FeedGroupBox.Controls.Add(SportCheckedListBox);
-            FeedGroupBox.Controls.Add(addNewActivityTextBox);
+
+            FeedGroupBox.Controls.Add(AddSportLabel);
+            FeedGroupBox.Controls.Add(NewActivityNameTextBox);
             FeedGroupBox.Controls.Add(AddBth);
             FeedGroupBox.Controls.Add(dateTimePickerForSport);
+            FeedGroupBox.Controls.Add(ActivityIsCheckedCheckBox);
+
+            FeedGroupBox.Controls.Add(SportListActivitiesLabel);
+            FeedGroupBox.Controls.Add(SportCheckedListBox);
 
             //init list
-            m_mySportList = new ProxyMyListSport();
-            SportListOps.InitList(SportCheckedListBox, m_mySportList);
+            m_MySportListProxy = new ProxySportList();
+            ProxySportList.InitList(SportCheckedListBox);
      
         }
 
         private void AddBth_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(m_AddingActivity))
+            if (!string.IsNullOrEmpty(m_ActivityName))
             {
-                SportActivity newSportActivity = new SportActivity(m_dateTime, m_AddingActivity);
+                SportActivity newSportActivity = new SportActivity(ActivityIsCheckedCheckBox.Checked, m_ActivityName,m_dateTime);
                 try
                 {
-                    m_mySportList.SportList(newSportActivity);
-                    SportListOps.AddNewActivity(newSportActivity);
+                    m_MySportListProxy.AddSportActivity(newSportActivity, SportCheckedListBox);
                 }
                 catch(Exception err) 
                 {
@@ -383,15 +388,16 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
 
         private void AddActivity_TextChanged(object sender, EventArgs e)
         {
-            m_AddingActivity = addNewActivityTextBox.Text;
+            m_ActivityName = NewActivityNameTextBox.Text;
         }
 
         private void SportList_ActivityChecked(object sender, ItemCheckEventArgs e)
         {
+            ListViewItem lvi;
+
             switch (e.NewValue)
             {
                 case (CheckState.Checked):
-                    m_mySportList.NumberOfActivities--;
                     MessageBox.Show("You Are Killing It", "Good Job");
                     break;
                 default:
@@ -404,6 +410,9 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
             m_dateTime = dateTimePickerForSport.Value;
         }
 
-        
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            m_ActivityIsChecked = ActivityIsCheckedCheckBox.Checked;
+        }
     }
 }

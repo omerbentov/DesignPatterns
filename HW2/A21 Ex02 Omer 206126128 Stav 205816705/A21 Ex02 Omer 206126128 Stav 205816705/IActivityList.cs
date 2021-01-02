@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace A21_Ex02_Omer_206126128_Stav_205816705
 {
-    public interface IMySportList
+    public interface IActivityList
     {
-        void SportList(SportActivity i_CustomThing);
-        Dictionary<string, string> SportActivities { get; }
+        void AddSportActivity(SportActivity i_CustomThing);
+        Dictionary<string , SportActivity> SportActivities { get; }
         DateTime DateLimit { get; set; }
         int NumberOfActivities { get; set; }
     }

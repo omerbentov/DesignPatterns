@@ -32,7 +32,7 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
                         myPic.Image = LoggedInUserData.User.ImageSmall;
                         myPic.MaximumSize = new Size(new Point(k_PostProfilePictureSize, k_PostProfilePictureSize));
 
-                        if (post.From.Name != null)
+                        if (post.From != null && post.From.Name != null)
                         {
                             Point labelLocation = i_BaseLocation;
                             labelLocation.X += defaultPic.Width;

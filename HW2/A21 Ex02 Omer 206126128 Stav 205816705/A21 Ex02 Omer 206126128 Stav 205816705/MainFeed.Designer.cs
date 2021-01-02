@@ -38,9 +38,12 @@
             this.HomeBtn = new System.Windows.Forms.Button();
             this.NewPost = new System.Windows.Forms.RichTextBox();
             this.FeedGroupBox = new System.Windows.Forms.GroupBox();
+            this.AddSportLabel = new System.Windows.Forms.Label();
+            this.SportListActivitiesLabel = new System.Windows.Forms.Label();
+            this.ActivityIsCheckedCheckBox = new System.Windows.Forms.CheckBox();
             this.dateTimePickerForSport = new System.Windows.Forms.DateTimePicker();
             this.AddBth = new System.Windows.Forms.Button();
-            this.addNewActivityTextBox = new System.Windows.Forms.TextBox();
+            this.NewActivityNameTextBox = new System.Windows.Forms.TextBox();
             this.SportCheckedListBox = new System.Windows.Forms.CheckedListBox();
             this.posted = new System.Windows.Forms.Button();
             this.PanelDropDown = new System.Windows.Forms.Panel();
@@ -163,23 +166,63 @@
             // 
             this.FeedGroupBox.AutoSize = true;
             this.FeedGroupBox.BackColor = System.Drawing.Color.White;
+            this.FeedGroupBox.Controls.Add(this.AddSportLabel);
+            this.FeedGroupBox.Controls.Add(this.SportListActivitiesLabel);
+            this.FeedGroupBox.Controls.Add(this.ActivityIsCheckedCheckBox);
             this.FeedGroupBox.Controls.Add(this.dateTimePickerForSport);
             this.FeedGroupBox.Controls.Add(this.AddBth);
-            this.FeedGroupBox.Controls.Add(this.addNewActivityTextBox);
+            this.FeedGroupBox.Controls.Add(this.NewActivityNameTextBox);
             this.FeedGroupBox.Controls.Add(this.SportCheckedListBox);
             this.FeedGroupBox.Font = new System.Drawing.Font("Berlin Sans FB", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FeedGroupBox.Location = new System.Drawing.Point(276, 256);
             this.FeedGroupBox.Name = "FeedGroupBox";
-            this.FeedGroupBox.Size = new System.Drawing.Size(693, 814);
+            this.FeedGroupBox.Size = new System.Drawing.Size(693, 1013);
             this.FeedGroupBox.TabIndex = 20;
             this.FeedGroupBox.TabStop = false;
+            // 
+            // AddSportLabel
+            // 
+            this.AddSportLabel.AutoSize = true;
+            this.AddSportLabel.BackColor = System.Drawing.Color.Transparent;
+            this.AddSportLabel.Location = new System.Drawing.Point(247, 30);
+            this.AddSportLabel.Name = "AddSportLabel";
+            this.AddSportLabel.Size = new System.Drawing.Size(195, 26);
+            this.AddSportLabel.TabIndex = 31;
+            this.AddSportLabel.Text = "Add Sport Activity";
+            // 
+            // SportListActivitiesLabel
+            // 
+            this.SportListActivitiesLabel.AutoSize = true;
+            this.SportListActivitiesLabel.BackColor = System.Drawing.Color.Transparent;
+            this.SportListActivitiesLabel.Location = new System.Drawing.Point(272, 226);
+            this.SportListActivitiesLabel.Name = "SportListActivitiesLabel";
+            this.SportListActivitiesLabel.Size = new System.Drawing.Size(149, 26);
+            this.SportListActivitiesLabel.TabIndex = 30;
+            this.SportListActivitiesLabel.Text = "Sprt Activities";
+            // 
+            // ActivityIsCheckedCheckBox
+            // 
+            this.ActivityIsCheckedCheckBox.AutoSize = true;
+            this.ActivityIsCheckedCheckBox.Checked = true;
+            this.ActivityIsCheckedCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ActivityIsCheckedCheckBox.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.ActivityIsCheckedCheckBox.Location = new System.Drawing.Point(30, 124);
+            this.ActivityIsCheckedCheckBox.Name = "ActivityIsCheckedCheckBox";
+            this.ActivityIsCheckedCheckBox.Size = new System.Drawing.Size(91, 30);
+            this.ActivityIsCheckedCheckBox.TabIndex = 29;
+            this.ActivityIsCheckedCheckBox.Text = "Done";
+            this.ActivityIsCheckedCheckBox.UseVisualStyleBackColor = true;
+            this.ActivityIsCheckedCheckBox.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // dateTimePickerForSport
             // 
             this.dateTimePickerForSport.CalendarFont = new System.Drawing.Font("Britannic Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePickerForSport.CalendarForeColor = System.Drawing.Color.RoyalBlue;
             this.dateTimePickerForSport.CalendarMonthBackground = System.Drawing.Color.RoyalBlue;
+            this.dateTimePickerForSport.CalendarTitleForeColor = System.Drawing.Color.RoyalBlue;
+            this.dateTimePickerForSport.Cursor = System.Windows.Forms.Cursors.SizeNESW;
             this.dateTimePickerForSport.Font = new System.Drawing.Font("Britannic Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePickerForSport.Location = new System.Drawing.Point(30, 167);
+            this.dateTimePickerForSport.Location = new System.Drawing.Point(30, 160);
             this.dateTimePickerForSport.Name = "dateTimePickerForSport";
             this.dateTimePickerForSport.Size = new System.Drawing.Size(382, 34);
             this.dateTimePickerForSport.TabIndex = 28;
@@ -188,10 +231,10 @@
             // 
             // AddBth
             // 
-            this.AddBth.BackColor = System.Drawing.Color.RoyalBlue;
+            this.AddBth.BackColor = System.Drawing.Color.White;
             this.AddBth.Font = new System.Drawing.Font("Britannic Bold", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddBth.ForeColor = System.Drawing.Color.White;
-            this.AddBth.Location = new System.Drawing.Point(418, 166);
+            this.AddBth.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.AddBth.Location = new System.Drawing.Point(574, 159);
             this.AddBth.Name = "AddBth";
             this.AddBth.Size = new System.Drawing.Size(91, 35);
             this.AddBth.TabIndex = 27;
@@ -200,28 +243,28 @@
             this.AddBth.Visible = false;
             this.AddBth.Click += new System.EventHandler(this.AddBth_Click);
             // 
-            // addNewActivityTextBox
+            // NewActivityNameTextBox
             // 
-            this.addNewActivityTextBox.BackColor = System.Drawing.Color.RoyalBlue;
-            this.addNewActivityTextBox.Font = new System.Drawing.Font("Britannic Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addNewActivityTextBox.ForeColor = System.Drawing.SystemColors.Window;
-            this.addNewActivityTextBox.Location = new System.Drawing.Point(30, 118);
-            this.addNewActivityTextBox.Name = "addNewActivityTextBox";
-            this.addNewActivityTextBox.Size = new System.Drawing.Size(350, 34);
-            this.addNewActivityTextBox.TabIndex = 1;
-            this.addNewActivityTextBox.Text = "Add New Activity";
-            this.addNewActivityTextBox.Visible = false;
-            this.addNewActivityTextBox.TextChanged += new System.EventHandler(this.AddActivity_TextChanged);
+            this.NewActivityNameTextBox.BackColor = System.Drawing.Color.White;
+            this.NewActivityNameTextBox.Font = new System.Drawing.Font("Britannic Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NewActivityNameTextBox.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.NewActivityNameTextBox.Location = new System.Drawing.Point(30, 84);
+            this.NewActivityNameTextBox.Name = "NewActivityNameTextBox";
+            this.NewActivityNameTextBox.Size = new System.Drawing.Size(294, 34);
+            this.NewActivityNameTextBox.TabIndex = 1;
+            this.NewActivityNameTextBox.Text = "Activity name";
+            this.NewActivityNameTextBox.Visible = false;
+            this.NewActivityNameTextBox.TextChanged += new System.EventHandler(this.AddActivity_TextChanged);
             // 
             // SportCheckedListBox
             // 
-            this.SportCheckedListBox.BackColor = System.Drawing.Color.RoyalBlue;
+            this.SportCheckedListBox.BackColor = System.Drawing.Color.White;
             this.SportCheckedListBox.Font = new System.Drawing.Font("Britannic Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SportCheckedListBox.ForeColor = System.Drawing.SystemColors.Window;
+            this.SportCheckedListBox.ForeColor = System.Drawing.Color.RoyalBlue;
             this.SportCheckedListBox.FormattingEnabled = true;
-            this.SportCheckedListBox.Location = new System.Drawing.Point(30, 219);
+            this.SportCheckedListBox.Location = new System.Drawing.Point(30, 268);
             this.SportCheckedListBox.Name = "SportCheckedListBox";
-            this.SportCheckedListBox.Size = new System.Drawing.Size(449, 562);
+            this.SportCheckedListBox.Size = new System.Drawing.Size(622, 497);
             this.SportCheckedListBox.TabIndex = 0;
             this.SportCheckedListBox.Visible = false;
             this.SportCheckedListBox.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.SportList_ActivityChecked);
@@ -431,8 +474,11 @@
         public System.Windows.Forms.GroupBox FeedGroupBox;
         private System.Windows.Forms.Button SportBth;
         private System.Windows.Forms.CheckedListBox SportCheckedListBox;
-        private System.Windows.Forms.TextBox addNewActivityTextBox;
+        private System.Windows.Forms.TextBox NewActivityNameTextBox;
         private System.Windows.Forms.Button AddBth;
         private System.Windows.Forms.DateTimePicker dateTimePickerForSport;
+        private System.Windows.Forms.CheckBox ActivityIsCheckedCheckBox;
+        private System.Windows.Forms.Label SportListActivitiesLabel;
+        private System.Windows.Forms.Label AddSportLabel;
     }
 }

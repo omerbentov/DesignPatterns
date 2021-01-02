@@ -71,15 +71,14 @@
       <DependentUpon>MainFeed.cs</DependentUpon>
     </Compile>
     <Compile Include="MainOps.cs" />
-    <Compile Include="MustDo.cs" />
-    <Compile Include="IMySportList.cs" />
+    <Compile Include="SportList.cs" />
+    <Compile Include="IActivityList.cs" />
     <Compile Include="PostsOps.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ProxyMyListSport.cs" />
+    <Compile Include="ProxySportList.cs" />
     <Compile Include="SearchOps.cs" />
     <Compile Include="SportActivity.cs" />
-    <Compile Include="SportListOps.cs" />
     <EmbeddedResource Include="LogInForm.resx">
       <DependentUpon>LogInForm.cs</DependentUpon>
     </EmbeddedResource>
