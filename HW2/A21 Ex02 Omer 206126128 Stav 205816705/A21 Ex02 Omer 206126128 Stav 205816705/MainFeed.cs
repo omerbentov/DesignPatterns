@@ -339,7 +339,9 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
             FeedGroupBox.Visible = true;
 
             AddSportLabel.Visible = true;
+            ActivityNameLabel.Visible = true;
             NewActivityNameTextBox.Visible = true;
+            LimitTimeLabel.Visible = true;
             dateTimePickerForSport.Visible = true;
             AddBth.Visible = true;
             ActivityIsCheckedCheckBox.Visible = true;
@@ -352,10 +354,12 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
             FeedGroupBox.BackColor = System.Drawing.Color.White;
 
             FeedGroupBox.Controls.Add(AddSportLabel);
+            FeedGroupBox.Controls.Add(ActivityNameLabel);
             FeedGroupBox.Controls.Add(NewActivityNameTextBox);
-            FeedGroupBox.Controls.Add(AddBth);
+            FeedGroupBox.Controls.Add(LimitTimeLabel);
             FeedGroupBox.Controls.Add(dateTimePickerForSport);
             FeedGroupBox.Controls.Add(ActivityIsCheckedCheckBox);
+            FeedGroupBox.Controls.Add(AddBth);
 
             FeedGroupBox.Controls.Add(SportListActivitiesLabel);
             FeedGroupBox.Controls.Add(SportCheckedListBox);
@@ -377,7 +381,7 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
                 }
                 catch(Exception err) 
                 {
-                    MessageBox.Show(err.ToString());
+                    MessageBox.Show(err.Message.ToString());
                 }
             }
             else

@@ -57,6 +57,8 @@
             this.UserNamePictureBox = new System.Windows.Forms.PictureBox();
             this.FacebookIcon = new System.Windows.Forms.PictureBox();
             this.SportBth = new System.Windows.Forms.Button();
+            this.ActivityNameLabel = new System.Windows.Forms.Label();
+            this.LimitTimeLabel = new System.Windows.Forms.Label();
             this.FeedGroupBox.SuspendLayout();
             this.PanelDropDown.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SearchBtn)).BeginInit();
@@ -166,6 +168,8 @@
             // 
             this.FeedGroupBox.AutoSize = true;
             this.FeedGroupBox.BackColor = System.Drawing.Color.White;
+            this.FeedGroupBox.Controls.Add(this.LimitTimeLabel);
+            this.FeedGroupBox.Controls.Add(this.ActivityNameLabel);
             this.FeedGroupBox.Controls.Add(this.AddSportLabel);
             this.FeedGroupBox.Controls.Add(this.SportListActivitiesLabel);
             this.FeedGroupBox.Controls.Add(this.ActivityIsCheckedCheckBox);
@@ -194,7 +198,7 @@
             // 
             this.SportListActivitiesLabel.AutoSize = true;
             this.SportListActivitiesLabel.BackColor = System.Drawing.Color.Transparent;
-            this.SportListActivitiesLabel.Location = new System.Drawing.Point(272, 226);
+            this.SportListActivitiesLabel.Location = new System.Drawing.Point(247, 239);
             this.SportListActivitiesLabel.Name = "SportListActivitiesLabel";
             this.SportListActivitiesLabel.Size = new System.Drawing.Size(149, 26);
             this.SportListActivitiesLabel.TabIndex = 30;
@@ -203,10 +207,8 @@
             // ActivityIsCheckedCheckBox
             // 
             this.ActivityIsCheckedCheckBox.AutoSize = true;
-            this.ActivityIsCheckedCheckBox.Checked = true;
-            this.ActivityIsCheckedCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ActivityIsCheckedCheckBox.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.ActivityIsCheckedCheckBox.Location = new System.Drawing.Point(30, 124);
+            this.ActivityIsCheckedCheckBox.Location = new System.Drawing.Point(39, 154);
             this.ActivityIsCheckedCheckBox.Name = "ActivityIsCheckedCheckBox";
             this.ActivityIsCheckedCheckBox.Size = new System.Drawing.Size(91, 30);
             this.ActivityIsCheckedCheckBox.TabIndex = 29;
@@ -222,7 +224,7 @@
             this.dateTimePickerForSport.CalendarTitleForeColor = System.Drawing.Color.RoyalBlue;
             this.dateTimePickerForSport.Cursor = System.Windows.Forms.Cursors.SizeNESW;
             this.dateTimePickerForSport.Font = new System.Drawing.Font("Britannic Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePickerForSport.Location = new System.Drawing.Point(30, 160);
+            this.dateTimePickerForSport.Location = new System.Drawing.Point(192, 109);
             this.dateTimePickerForSport.Name = "dateTimePickerForSport";
             this.dateTimePickerForSport.Size = new System.Drawing.Size(382, 34);
             this.dateTimePickerForSport.TabIndex = 28;
@@ -234,7 +236,7 @@
             this.AddBth.BackColor = System.Drawing.Color.White;
             this.AddBth.Font = new System.Drawing.Font("Britannic Bold", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AddBth.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.AddBth.Location = new System.Drawing.Point(574, 159);
+            this.AddBth.Location = new System.Drawing.Point(277, 188);
             this.AddBth.Name = "AddBth";
             this.AddBth.Size = new System.Drawing.Size(91, 35);
             this.AddBth.TabIndex = 27;
@@ -248,11 +250,10 @@
             this.NewActivityNameTextBox.BackColor = System.Drawing.Color.White;
             this.NewActivityNameTextBox.Font = new System.Drawing.Font("Britannic Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NewActivityNameTextBox.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.NewActivityNameTextBox.Location = new System.Drawing.Point(30, 84);
+            this.NewActivityNameTextBox.Location = new System.Drawing.Point(192, 65);
             this.NewActivityNameTextBox.Name = "NewActivityNameTextBox";
             this.NewActivityNameTextBox.Size = new System.Drawing.Size(294, 34);
             this.NewActivityNameTextBox.TabIndex = 1;
-            this.NewActivityNameTextBox.Text = "Activity name";
             this.NewActivityNameTextBox.Visible = false;
             this.NewActivityNameTextBox.TextChanged += new System.EventHandler(this.AddActivity_TextChanged);
             // 
@@ -405,6 +406,26 @@
             this.SportBth.UseVisualStyleBackColor = false;
             this.SportBth.Click += new System.EventHandler(this.SportBtn_Click);
             // 
+            // ActivityNameLabel
+            // 
+            this.ActivityNameLabel.AutoSize = true;
+            this.ActivityNameLabel.BackColor = System.Drawing.Color.Transparent;
+            this.ActivityNameLabel.Location = new System.Drawing.Point(34, 69);
+            this.ActivityNameLabel.Name = "ActivityNameLabel";
+            this.ActivityNameLabel.Size = new System.Drawing.Size(152, 26);
+            this.ActivityNameLabel.TabIndex = 32;
+            this.ActivityNameLabel.Text = "Activity name";
+            // 
+            // LimitTimeLabel
+            // 
+            this.LimitTimeLabel.AutoSize = true;
+            this.LimitTimeLabel.BackColor = System.Drawing.Color.Transparent;
+            this.LimitTimeLabel.Location = new System.Drawing.Point(34, 116);
+            this.LimitTimeLabel.Name = "LimitTimeLabel";
+            this.LimitTimeLabel.Size = new System.Drawing.Size(111, 26);
+            this.LimitTimeLabel.TabIndex = 33;
+            this.LimitTimeLabel.Text = "LimitTime";
+            // 
             // MainFeed
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
@@ -480,5 +501,7 @@
         private System.Windows.Forms.CheckBox ActivityIsCheckedCheckBox;
         private System.Windows.Forms.Label SportListActivitiesLabel;
         private System.Windows.Forms.Label AddSportLabel;
+        private System.Windows.Forms.Label LimitTimeLabel;
+        private System.Windows.Forms.Label ActivityNameLabel;
     }
 }
