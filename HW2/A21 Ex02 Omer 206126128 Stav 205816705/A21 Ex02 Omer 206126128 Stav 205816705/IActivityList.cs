@@ -10,7 +10,7 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
     {
         void AddSportActivity(SportActivity i_CustomThing);
         Dictionary<string , SportActivity> SportActivities { get; }
-        DateTime DateLimit { get; set; }
-        int NumberOfActivities { get; set; }
+        void ToogleChangeItemChecked(string i_ActivityToToogleKey);
+        bool IsChecked(string i_ActivityToCheckKey);
     }
 }

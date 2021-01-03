@@ -28,7 +28,7 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
         private bool m_IsCollapsed = false;
 
         private Label m_GameHeader;
-        private ProxySportList m_MySportListProxy;
+        private ProxySportList m_MySportListProxy = new ProxySportList();
 
         // Prop
         public static Point PostProfilePicturePointSize
@@ -369,8 +369,8 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
             FeedGroupBox.Controls.Add(SportCheckedListBox);
 
             //init list
-            m_MySportListProxy = new ProxySportList();
-            ProxySportList.InitList(SportCheckedListBox);
+            SportCheckedListBox.Items.Clear();
+            m_MySportListProxy.InitList(SportCheckedListBox);
      
         }
 
@@ -381,7 +381,10 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
                 SportActivity newSportActivity = new SportActivity(ActivityIsCheckedCheckBox.Checked, m_ActivityName,m_dateTime);
                 try
                 {
-                    m_MySportListProxy.AddSportActivity(newSportActivity, SportCheckedListBox);
+                    // Storage
+                    m_MySportListProxy.AddSportActivity(newSportActivity);
+                    // UI
+                    SportCheckedListBox.Items.Add(newSportActivity, newSportActivity.Checked);
                 }
                 catch(Exception err) 
                 {
@@ -401,15 +404,15 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
 
         private void SportList_ActivityChecked(object sender, ItemCheckEventArgs e)
         {
-            ListViewItem lvi;
+            SportActivity sportActivity = (SportCheckedListBox.Items[e.Index] as SportActivity);
 
-            switch (e.NewValue)
+            bool stateOfKeyIsChecked = m_MySportListProxy.IsChecked(sportActivity.Name);
+
+            if ( // The state and the ui is equal we need to change, otherwise is just initial
+                (e.CurrentValue == CheckState.Checked && stateOfKeyIsChecked) ||
+                (e.CurrentValue == CheckState.Unchecked && !stateOfKeyIsChecked))
             {
-                case (CheckState.Checked):
-                    MessageBox.Show("You Are Killing It", "Good Job");
-                    break;
-                default:
-                    break;
+                sportActivity.Checked = !sportActivity.Checked;
             }
         }
 

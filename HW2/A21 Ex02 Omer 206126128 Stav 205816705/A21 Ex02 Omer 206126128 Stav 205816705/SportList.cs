@@ -8,10 +8,8 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
 {
     public class SprotList : IActivityList
     {
-        private Dictionary<string , SportActivity> m_SportActivity;
+        private Dictionary<string, SportActivity> m_SportActivity;
         private static SprotList s_ActivityIMustDo = null;
-        private static DateTime m_DateLimit;
-        private static int m_NumberOfActivities;
         private static object s_LockObj = new object();
 
         private SprotList()
@@ -52,30 +50,6 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
             }
         }
 
-        public DateTime DateLimit
-        {
-            get
-            {
-                return m_DateLimit;
-            }
-            set
-            {
-                m_DateLimit = value;
-            }
-        }
-
-        public int NumberOfActivities
-        {
-            get
-            {
-                return m_NumberOfActivities;
-            }
-            set
-            {
-                m_NumberOfActivities = value;
-            }
-        }
-
         public void AddSportActivity(SportActivity i_addingActivity)
         {
             if (i_addingActivity.Checked)
@@ -86,6 +60,16 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
             {
                 m_SportActivity[i_addingActivity.Name] = i_addingActivity;
             }
+        }
+
+        public void ToogleChangeItemChecked(string i_ActivityToToogleKey)
+        {
+            m_SportActivity[i_ActivityToToogleKey].Checked = !m_SportActivity[i_ActivityToToogleKey].Checked;
+        }
+
+        public bool IsChecked(string i_ActivityToCheckKey)
+        {
+            return m_SportActivity[i_ActivityToCheckKey].Checked;
         }
     }
 }
