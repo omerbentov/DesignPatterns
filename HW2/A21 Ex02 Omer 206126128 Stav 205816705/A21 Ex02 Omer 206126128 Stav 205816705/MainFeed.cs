@@ -388,6 +388,10 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
                     m_MySportListProxy.AddSportActivity(newSportActivity);
                     // UI
                     SportCheckedListBox.Items.Add(newSportActivity);
+                    // clear UI
+                    NewActivityNameTextBox.Text = string.Empty;
+                    ActivityIsCheckedCheckBox.Checked = false;
+                    MessageBox.Show("New activity just added :)");
                 }
                 catch(Exception err) 
                 {
