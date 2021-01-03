@@ -9,13 +9,13 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
     public class SportActivity
     {
         private bool m_Checked;
-        private string m_activityName;
+        private string m_ActivityName;
         private DateTime m_LimitTime;
 
         public SportActivity(bool i_Checked, string i_activityName, DateTime i_LimitTime)
         {
             m_Checked = i_Checked;
-            m_activityName = i_activityName;
+            m_ActivityName = i_activityName;
             m_LimitTime = i_LimitTime;
 
         }
@@ -24,12 +24,12 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
         {
             get
             {
-                return m_activityName;
+                return m_ActivityName;
             }
 
             set
             {
-                m_activityName = value;
+                m_ActivityName = value;
             }
         }
 
@@ -44,7 +44,7 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
             }
         }
 
-        public DateTime limitTime
+        public DateTime LimitTime
         {
             get
             {

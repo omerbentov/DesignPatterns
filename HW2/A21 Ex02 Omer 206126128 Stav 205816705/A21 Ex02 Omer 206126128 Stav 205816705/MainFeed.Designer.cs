@@ -147,7 +147,7 @@
             this.FetchaAlbumsBtn.TabIndex = 7;
             this.FetchaAlbumsBtn.Text = "Albums";
             this.FetchaAlbumsBtn.UseVisualStyleBackColor = false;
-            this.FetchaAlbumsBtn.Click += new System.EventHandler(this.FetchaAlbumsBtn_Click);
+            this.FetchaAlbumsBtn.Click += new System.EventHandler(this.fetchaAlbumsBtn_Click);
             // 
             // FetchPostsBtn
             // 
@@ -161,7 +161,7 @@
             this.FetchPostsBtn.TabIndex = 8;
             this.FetchPostsBtn.Text = "Posts";
             this.FetchPostsBtn.UseVisualStyleBackColor = false;
-            this.FetchPostsBtn.Click += new System.EventHandler(this.FetchPostsBtn_Click);
+            this.FetchPostsBtn.Click += new System.EventHandler(this.fetchPostsBtn_Click);
             // 
             // FetchEventsBtn
             // 
@@ -174,7 +174,7 @@
             this.FetchEventsBtn.TabIndex = 10;
             this.FetchEventsBtn.Text = "Events";
             this.FetchEventsBtn.UseVisualStyleBackColor = false;
-            this.FetchEventsBtn.Click += new System.EventHandler(this.FetchEventsBtn_Click);
+            this.FetchEventsBtn.Click += new System.EventHandler(this.fetchEventsBtn_Click);
             // 
             // GamesBtn
             // 
@@ -200,7 +200,7 @@
             this.HomeBtn.TabIndex = 15;
             this.HomeBtn.Text = "Home";
             this.HomeBtn.UseVisualStyleBackColor = false;
-            this.HomeBtn.Click += new System.EventHandler(this.HomeBtn_Click);
+            this.HomeBtn.Click += new System.EventHandler(this.homeBtn_Click);
             // 
             // NewPost
             // 
@@ -309,7 +309,7 @@
             this.AddBth.Text = "Add";
             this.AddBth.UseVisualStyleBackColor = false;
             this.AddBth.Visible = false;
-            this.AddBth.Click += new System.EventHandler(this.AddBth_Click);
+            this.AddBth.Click += new System.EventHandler(this.addBth_Click);
             // 
             // NewActivityNameTextBox
             // 
@@ -321,7 +321,7 @@
             this.NewActivityNameTextBox.Size = new System.Drawing.Size(294, 39);
             this.NewActivityNameTextBox.TabIndex = 1;
             this.NewActivityNameTextBox.Visible = false;
-            this.NewActivityNameTextBox.TextChanged += new System.EventHandler(this.AddActivity_TextChanged);
+            this.NewActivityNameTextBox.TextChanged += new System.EventHandler(this.addActivity_TextChanged);
             // 
             // SportListActivitiesLabel
             // 
@@ -370,7 +370,7 @@
             this.LogOut.TabIndex = 23;
             this.LogOut.Text = "Log out";
             this.LogOut.UseVisualStyleBackColor = false;
-            this.LogOut.Click += new System.EventHandler(this.LogOut_Click);
+            this.LogOut.Click += new System.EventHandler(this.logOut_Click);
             // 
             // Account
             // 
@@ -381,7 +381,7 @@
             this.Account.TabIndex = 23;
             this.Account.Text = "Account";
             this.Account.UseVisualStyleBackColor = false;
-            this.Account.Click += new System.EventHandler(this.FetchAccountInfoBtn_Click);
+            this.Account.Click += new System.EventHandler(this.fetchAccountInfoBtn_Click);
             // 
             // DropDownBar
             // 
@@ -394,7 +394,7 @@
             this.DropDownBar.Size = new System.Drawing.Size(139, 84);
             this.DropDownBar.TabIndex = 21;
             this.DropDownBar.UseVisualStyleBackColor = false;
-            this.DropDownBar.Click += new System.EventHandler(this.DropDownBar_Click);
+            this.DropDownBar.Click += new System.EventHandler(this.dropDownBar_Click);
             // 
             // timer1
             // 
@@ -411,7 +411,7 @@
             this.SearchTextBox.Size = new System.Drawing.Size(634, 47);
             this.SearchTextBox.TabIndex = 24;
             this.SearchTextBox.Text = "Search";
-            this.SearchTextBox.TextChanged += new System.EventHandler(this.SearchTextBox_TextChanged);
+            this.SearchTextBox.TextChanged += new System.EventHandler(this.searchTextBox_TextChanged);
             // 
             // SearchBtn
             // 
@@ -423,7 +423,7 @@
             this.SearchBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.SearchBtn.TabIndex = 25;
             this.SearchBtn.TabStop = false;
-            this.SearchBtn.Click += new System.EventHandler(this.SearchBtn_Click);
+            this.SearchBtn.Click += new System.EventHandler(this.searchBtn_Click);
             // 
             // DropDownPictureBox
             // 
@@ -435,7 +435,7 @@
             this.DropDownPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.DropDownPictureBox.TabIndex = 23;
             this.DropDownPictureBox.TabStop = false;
-            this.DropDownPictureBox.Click += new System.EventHandler(this.DropDownBar_Click);
+            this.DropDownPictureBox.Click += new System.EventHandler(this.dropDownBar_Click);
             // 
             // UserNamePictureBox
             // 
@@ -468,7 +468,7 @@
             this.SportBth.TabIndex = 26;
             this.SportBth.Text = "Sport";
             this.SportBth.UseVisualStyleBackColor = false;
-            this.SportBth.Click += new System.EventHandler(this.SportBtn_Click);
+            this.SportBth.Click += new System.EventHandler(this.sportBtn_Click);
             // 
             // checkedCheckBox
             // 
@@ -539,7 +539,7 @@
             this.SportCheckedListBox.Name = "SportCheckedListBox";
             this.SportCheckedListBox.Size = new System.Drawing.Size(265, 625);
             this.SportCheckedListBox.TabIndex = 34;
-            this.SportCheckedListBox.SelectedValueChanged += new System.EventHandler(this.SportCheckedListBox_SelectedValueChanged);
+            this.SportCheckedListBox.SelectedValueChanged += new System.EventHandler(this.sportCheckedListBox_SelectedValueChanged);
             // 
             // sportActivityBindingSource
             // 
@@ -577,8 +577,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "newPost";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.MainFeed_Load);
-            this.SizeChanged += new System.EventHandler(this.MainFeed_SizeChanged);
+            this.Load += new System.EventHandler(this.mainFeed_Load);
+            this.SizeChanged += new System.EventHandler(this.mainFeed_SizeChanged);
             this.FeedGroupBox.ResumeLayout(false);
             this.FeedGroupBox.PerformLayout();
             this.PanelDropDown.ResumeLayout(false);

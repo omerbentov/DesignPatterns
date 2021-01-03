@@ -45,7 +45,7 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
             {
                 throw new Exception("This Activity is already on the list");
             }
-            if(i_addingActivity.limitTime < DateTime.Now)
+            if(i_addingActivity.LimitTime < DateTime.Now)
             {
                 throw new Exception("Choose different time");
             }

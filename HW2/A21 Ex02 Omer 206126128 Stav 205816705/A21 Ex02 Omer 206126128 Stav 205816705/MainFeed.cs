@@ -31,7 +31,7 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
         private ProxySportList m_MySportListProxy = new ProxySportList();
 
         // Prop
-        public static Point PostProfilePicturePointSize
+        public static Point s_PostProfilePicturePointSize
         {
             get
             {
@@ -67,26 +67,26 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
         public MainFeed()
         {
             InitializeComponent();
-            InitializeChildrenComponents();
+            initializeChildrenComponents();
 
             Thread albums = new Thread(() => AlbumsOps.FetchAlbums());
             albums.Start();
             albums.Join();
         }
 
-        private void InitializeChildrenComponents()
+        private void initializeChildrenComponents()
         {
             WelcomeUserNameLable.Text = LoggedInUserData.User.FirstName;
             UserNamePictureBox.Image = LoggedInUserData.User.ImageSmall;
         }
 
-        private void MainFeed_Load(object sender, EventArgs e)
+        private void mainFeed_Load(object sender, EventArgs e)
         {
-            HomeBtn_Click(new object(), new EventArgs());
+            homeBtn_Click(new object(), new EventArgs());
         }
 
         // Home 
-        private void HomeBtn_Click(object sender, EventArgs e)
+        private void homeBtn_Click(object sender, EventArgs e)
         {
             Transition();
 
@@ -99,20 +99,20 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
             nextPosition = PostsOps.addPosts(groupBoxLocation, baseLocation, k_NumOfPostsInHomePage, FeedGroupBox); 
             nextPosition.Y += k_PostsMargin;
 
-            AlbumsOps.addAlbums(nextPosition, k_NumOfAlbumsInHomePage, FeedGroupBox);
+            AlbumsOps.AddAlbums(nextPosition, k_NumOfAlbumsInHomePage, FeedGroupBox);
         }
 
         // Albums
-        private void FetchaAlbumsBtn_Click(object sender, EventArgs e)
+        private void fetchaAlbumsBtn_Click(object sender, EventArgs e)
         {
             Transition();
 
             Point picLocation = new Point(20, 50);
-            AlbumsOps.addAlbums(picLocation, int.MaxValue, FeedGroupBox);
+            AlbumsOps.AddAlbums(picLocation, int.MaxValue, FeedGroupBox);
         }
 
         // Posts
-        private void FetchPostsBtn_Click(object sender, EventArgs e)
+        private void fetchPostsBtn_Click(object sender, EventArgs e)
         {
             Transition();
 
@@ -122,7 +122,7 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
         }
 
         // Account 
-        private void FetchAccountInfoBtn_Click(object sender, EventArgs e)
+        private void fetchAccountInfoBtn_Click(object sender, EventArgs e)
         {
             Transition();
 
@@ -134,7 +134,7 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
         }
 
         //Events 
-        private void FetchEventsBtn_Click(object sender, EventArgs e)
+        private void fetchEventsBtn_Click(object sender, EventArgs e)
         {
             Transition();
 
@@ -147,7 +147,7 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
         }
 
         // LogOut
-        private void LogOut_Click(object sender, EventArgs e)
+        private void logOut_Click(object sender, EventArgs e)
         {
             Transition();
 
@@ -158,7 +158,7 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
             logInForm.Show();
         }
 
-        private void DropDownBar_Click(object sender, EventArgs e)
+        private void dropDownBar_Click(object sender, EventArgs e)
         {
             timer1.Start();
         }
@@ -205,7 +205,7 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
 
             // Guessing game
             Button guessingGameBtn = new Button();
-            guessingGameBtn.Click += BirthdaysGameBtn_Click;
+            guessingGameBtn.Click += birthdaysGameBtn_Click;
             guessingGameBtn.Size = new Size(150, 100);
             guessingGameBtn.BackgroundImage = A21_Ex02_Omer_206126128_Stav_205816705.Properties.Resources.GuessingGamePicture;
             guessingGameBtn.BackgroundImageLayout = ImageLayout.Stretch;
@@ -217,7 +217,7 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
 
 
             Button g = new Button();
-            g.Click += BirthdaysGameBtn_Click;
+            g.Click += birthdaysGameBtn_Click;
             g.Size = new Size(150, 100);
             g.BackgroundImage = A21_Ex02_Omer_206126128_Stav_205816705.Properties.Resources.GuessingGamePicture;
             g.BackgroundImageLayout = ImageLayout.Stretch;
@@ -227,7 +227,7 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
             GamesOps.AddAllButtunsToConstorls(GamesOps.AllGamesBtn, Controls);
         }
 
-        private void BirthdaysGameBtn_Click(object sender, EventArgs e)
+        private void birthdaysGameBtn_Click(object sender, EventArgs e)
         {
             GamesOps.RemoveAllButtunsFromConstorls(GamesOps.AllGamesBtn, Controls);
 
@@ -246,7 +246,7 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
         }
 
         // serach
-        private void SearchBtn_Click(object sender, EventArgs e)
+        private void searchBtn_Click(object sender, EventArgs e)
         {
             Transition();
 
@@ -271,7 +271,7 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
             }
         }
 
-        private void SearchTextBox_TextChanged(object sender, EventArgs e)
+        private void searchTextBox_TextChanged(object sender, EventArgs e)
         {
             s_TextToFind = SearchTextBox.Text;
         }
@@ -329,7 +329,7 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
             }
         }
 
-        private void MainFeed_SizeChanged(object sender, EventArgs e)
+        private void mainFeed_SizeChanged(object sender, EventArgs e)
         {
             s_PostWidth = (int)(Width * k_SearchTextBoxRatio);
             setControlsSizes();
@@ -337,7 +337,7 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
         }
 
         // Sport
-        private void SportBtn_Click(object sender, EventArgs e)
+        private void sportBtn_Click(object sender, EventArgs e)
         {
             Transition();
             FeedGroupBox.Visible = true;
@@ -377,7 +377,7 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
      
         }
 
-        private void AddBth_Click(object sender, EventArgs e)
+        private void addBth_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(m_ActivityName))
             {
@@ -404,7 +404,7 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
             }
         }
 
-        private void AddActivity_TextChanged(object sender, EventArgs e)
+        private void addActivity_TextChanged(object sender, EventArgs e)
         {
             m_ActivityName = NewActivityNameTextBox.Text;
         }
@@ -419,7 +419,7 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
             m_ActivityIsChecked = ActivityIsCheckedCheckBox.Checked;
         }
 
-        private void SportCheckedListBox_SelectedValueChanged(object sender, EventArgs e)
+        private void sportCheckedListBox_SelectedValueChanged(object sender, EventArgs e)
         {
              sportActivityBindingSource.DataSource = SportCheckedListBox.SelectedItem as SportActivity;
         }

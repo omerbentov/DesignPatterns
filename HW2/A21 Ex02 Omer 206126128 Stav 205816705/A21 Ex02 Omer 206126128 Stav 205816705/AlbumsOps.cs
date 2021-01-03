@@ -20,7 +20,7 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
             s_IsFetched = true;
         }
 
-        public static void addAlbums(Point i_PicLocation, int i_NumOfAlbums, GroupBox i_feedGroupBox)
+        public static void AddAlbums(Point i_PicLocation, int i_NumOfAlbums, GroupBox i_feedGroupBox)
         {
             try
             {

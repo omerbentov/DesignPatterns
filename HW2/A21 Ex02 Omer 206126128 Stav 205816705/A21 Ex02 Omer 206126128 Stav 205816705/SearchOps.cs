@@ -110,7 +110,7 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
             eventPicture.Visible = true;
             eventPicture.SizeMode = PictureBoxSizeMode.Zoom;
             eventPicture.Location = MainOps.CalculateNextButtonPosition(LabelLocation, 100);
-            eventPicture.MaximumSize = new Size(MainFeed.PostProfilePicturePointSize);
+            eventPicture.MaximumSize = new Size(MainFeed.s_PostProfilePicturePointSize);
             i_FeedGroupBox.Controls.Add(eventPicture);
         }
 
