@@ -55,12 +55,12 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
             }
         }
 
-        public void InitList(CheckedListBox i_sportCheckedListBox)
+        public void InitList(ListBox i_sportCheckedListBox)
         {
 
             foreach (KeyValuePair<string, SportActivity> entry in SportActivities)
             {
-                i_sportCheckedListBox.Items.Add(entry.Value, entry.Value.Checked);
+                i_sportCheckedListBox.Items.Add(entry.Value);
             }
         }
 

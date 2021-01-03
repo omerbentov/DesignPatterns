@@ -59,7 +59,7 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
 
         public override string ToString()
         {
-            return Name + " (Until " + limitTime.ToString() + ")";
+            return Name;
         }
     }
 }

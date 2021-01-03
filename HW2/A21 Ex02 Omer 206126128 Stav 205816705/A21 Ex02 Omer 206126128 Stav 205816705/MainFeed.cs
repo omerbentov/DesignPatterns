@@ -282,6 +282,7 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
             NewPost.Visible = true;
             MainOps.ResetFeedGroupBox(FeedGroupBox, DefaultCenterWidth);
             GamesOps.RemoveAllGuessingGameControls(Controls);
+            ActivityDetailsPanel.Visible = false;
         }
 
         private void setControlsLocations()
@@ -305,9 +306,6 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
             FetchEventsBtn.Location = new Point(((NewPost.Location.X - (k_PostsMargin + FetchEventsBtn.Width)) / 2), FetchaAlbumsBtn.Location.Y + FetchaAlbumsBtn.Height + 5);
             GamesBtn.Location = new Point(((NewPost.Location.X - (k_PostsMargin + GamesBtn.Width)) / 2), FetchEventsBtn.Location.Y + FetchEventsBtn.Height + 5);
             SportBth.Location = new Point(((NewPost.Location.X - (k_PostsMargin + SportBth.Width)) / 2), GamesBtn.Location.Y + GamesBtn.Height + 5);
-
-            ActivityDetailsPanel.Location = new Point(FeedGroupBox.Location.X + FeedGroupBox.Width + 10, SportListActivitiesLabel.Location.Y);
-
         }
 
         private void setControlsSizes()
@@ -344,7 +342,6 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
             Transition();
             FeedGroupBox.Visible = true;
 
-            AddSportActivityPanel.Visible = true;
             AddSportLabel.Visible = true;
             ActivityNameLabel.Visible = true;
             NewActivityNameTextBox.Visible = true;
@@ -357,12 +354,12 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
             SportCheckedListBox.Visible = true;
 
             ActivityDetailsPanel.Visible = true;
+            FeedGroupBox.Controls.Add(ActivityDetailsPanel);
 
             Point LabelLocation = new Point(0, 0);
 
             FeedGroupBox.BackColor = System.Drawing.Color.White;
 
-            FeedGroupBox.Controls.Add(AddSportActivityPanel);
             FeedGroupBox.Controls.Add(AddSportLabel);
             FeedGroupBox.Controls.Add(ActivityNameLabel);
             FeedGroupBox.Controls.Add(NewActivityNameTextBox);
@@ -390,7 +387,7 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
                     // Storage
                     m_MySportListProxy.AddSportActivity(newSportActivity);
                     // UI
-                    SportCheckedListBox.Items.Add(newSportActivity, newSportActivity.Checked);
+                    SportCheckedListBox.Items.Add(newSportActivity);
                 }
                 catch(Exception err) 
                 {
@@ -406,20 +403,6 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
         private void AddActivity_TextChanged(object sender, EventArgs e)
         {
             m_ActivityName = NewActivityNameTextBox.Text;
-        }
-
-        private void SportList_ActivityChecked(object sender, ItemCheckEventArgs e)
-        {
-            SportActivity sportActivity = (SportCheckedListBox.Items[e.Index] as SportActivity);
-
-            bool stateOfKeyIsChecked = m_MySportListProxy.IsChecked(sportActivity.Name);
-
-            if ( // The state and the ui is equal we need to change, otherwise is just initial
-                (e.CurrentValue == CheckState.Checked && stateOfKeyIsChecked) ||
-                (e.CurrentValue == CheckState.Unchecked && !stateOfKeyIsChecked))
-            {
-                sportActivity.Checked = !sportActivity.Checked;
-            }
         }
 
         private void dateTimePickerForSport_ValueChanged(object sender, EventArgs e)
