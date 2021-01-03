@@ -306,6 +306,8 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
             GamesBtn.Location = new Point(((NewPost.Location.X - (k_PostsMargin + GamesBtn.Width)) / 2), FetchEventsBtn.Location.Y + FetchEventsBtn.Height + 5);
             SportBth.Location = new Point(((NewPost.Location.X - (k_PostsMargin + SportBth.Width)) / 2), GamesBtn.Location.Y + GamesBtn.Height + 5);
 
+            ActivityDetailsPanel.Location = new Point(FeedGroupBox.Location.X + FeedGroupBox.Width + 10, SportListActivitiesLabel.Location.Y);
+
         }
 
         private void setControlsSizes()
@@ -342,6 +344,7 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
             Transition();
             FeedGroupBox.Visible = true;
 
+            AddSportActivityPanel.Visible = true;
             AddSportLabel.Visible = true;
             ActivityNameLabel.Visible = true;
             NewActivityNameTextBox.Visible = true;
@@ -353,10 +356,13 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
             SportListActivitiesLabel.Visible = true;
             SportCheckedListBox.Visible = true;
 
+            ActivityDetailsPanel.Visible = true;
+
             Point LabelLocation = new Point(0, 0);
 
             FeedGroupBox.BackColor = System.Drawing.Color.White;
 
+            FeedGroupBox.Controls.Add(AddSportActivityPanel);
             FeedGroupBox.Controls.Add(AddSportLabel);
             FeedGroupBox.Controls.Add(ActivityNameLabel);
             FeedGroupBox.Controls.Add(NewActivityNameTextBox);
@@ -424,6 +430,11 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             m_ActivityIsChecked = ActivityIsCheckedCheckBox.Checked;
+        }
+
+        private void SportCheckedListBox_SelectedValueChanged(object sender, EventArgs e)
+        {
+             sportActivityBindingSource.DataSource = SportCheckedListBox.SelectedItem as SportActivity;
         }
     }
 }

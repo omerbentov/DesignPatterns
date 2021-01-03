@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.Label checkedLabel;
+            System.Windows.Forms.Label limitTimeLabel1;
+            System.Windows.Forms.Label nameLabel;
             this.WelcomeUserNameLable = new System.Windows.Forms.Label();
             this.BlueTopBar = new System.Windows.Forms.Label();
             this.FetchaAlbumsBtn = new System.Windows.Forms.Button();
@@ -59,12 +62,25 @@
             this.UserNamePictureBox = new System.Windows.Forms.PictureBox();
             this.FacebookIcon = new System.Windows.Forms.PictureBox();
             this.SportBth = new System.Windows.Forms.Button();
+            this.checkedCheckBox = new System.Windows.Forms.CheckBox();
+            this.limitTimeDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.nameLabel1 = new System.Windows.Forms.Label();
+            this.ActivityData = new System.Windows.Forms.Label();
+            this.ActivityDetailsPanel = new System.Windows.Forms.Panel();
+            this.AddSportActivityPanel = new System.Windows.Forms.Panel();
+            this.sportActivityBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            checkedLabel = new System.Windows.Forms.Label();
+            limitTimeLabel1 = new System.Windows.Forms.Label();
+            nameLabel = new System.Windows.Forms.Label();
             this.FeedGroupBox.SuspendLayout();
             this.PanelDropDown.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SearchBtn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DropDownPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.UserNamePictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FacebookIcon)).BeginInit();
+            this.ActivityDetailsPanel.SuspendLayout();
+            this.AddSportActivityPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.sportActivityBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // WelcomeUserNameLable
@@ -86,7 +102,7 @@
             this.BlueTopBar.ForeColor = System.Drawing.Color.White;
             this.BlueTopBar.Location = new System.Drawing.Point(0, 0);
             this.BlueTopBar.Name = "BlueTopBar";
-            this.BlueTopBar.Size = new System.Drawing.Size(1682, 75);
+            this.BlueTopBar.Size = new System.Drawing.Size(1708, 75);
             this.BlueTopBar.TabIndex = 1;
             // 
             // FetchaAlbumsBtn
@@ -168,19 +184,13 @@
             // 
             this.FeedGroupBox.AutoSize = true;
             this.FeedGroupBox.BackColor = System.Drawing.Color.White;
-            this.FeedGroupBox.Controls.Add(this.LimitTimeLabel);
-            this.FeedGroupBox.Controls.Add(this.ActivityNameLabel);
-            this.FeedGroupBox.Controls.Add(this.AddSportLabel);
+            this.FeedGroupBox.Controls.Add(this.AddSportActivityPanel);
             this.FeedGroupBox.Controls.Add(this.SportListActivitiesLabel);
-            this.FeedGroupBox.Controls.Add(this.ActivityIsCheckedCheckBox);
-            this.FeedGroupBox.Controls.Add(this.dateTimePickerForSport);
-            this.FeedGroupBox.Controls.Add(this.AddBth);
-            this.FeedGroupBox.Controls.Add(this.NewActivityNameTextBox);
             this.FeedGroupBox.Controls.Add(this.SportCheckedListBox);
             this.FeedGroupBox.Font = new System.Drawing.Font("Berlin Sans FB", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FeedGroupBox.Location = new System.Drawing.Point(276, 256);
             this.FeedGroupBox.Name = "FeedGroupBox";
-            this.FeedGroupBox.Size = new System.Drawing.Size(693, 1013);
+            this.FeedGroupBox.Size = new System.Drawing.Size(704, 1013);
             this.FeedGroupBox.TabIndex = 20;
             this.FeedGroupBox.TabStop = false;
             // 
@@ -188,7 +198,7 @@
             // 
             this.LimitTimeLabel.AutoSize = true;
             this.LimitTimeLabel.BackColor = System.Drawing.Color.Transparent;
-            this.LimitTimeLabel.Location = new System.Drawing.Point(34, 116);
+            this.LimitTimeLabel.Location = new System.Drawing.Point(28, 86);
             this.LimitTimeLabel.Name = "LimitTimeLabel";
             this.LimitTimeLabel.Size = new System.Drawing.Size(111, 26);
             this.LimitTimeLabel.TabIndex = 33;
@@ -198,7 +208,7 @@
             // 
             this.ActivityNameLabel.AutoSize = true;
             this.ActivityNameLabel.BackColor = System.Drawing.Color.Transparent;
-            this.ActivityNameLabel.Location = new System.Drawing.Point(34, 69);
+            this.ActivityNameLabel.Location = new System.Drawing.Point(28, 39);
             this.ActivityNameLabel.Name = "ActivityNameLabel";
             this.ActivityNameLabel.Size = new System.Drawing.Size(152, 26);
             this.ActivityNameLabel.TabIndex = 32;
@@ -208,7 +218,7 @@
             // 
             this.AddSportLabel.AutoSize = true;
             this.AddSportLabel.BackColor = System.Drawing.Color.Transparent;
-            this.AddSportLabel.Location = new System.Drawing.Point(247, 30);
+            this.AddSportLabel.Location = new System.Drawing.Point(241, 0);
             this.AddSportLabel.Name = "AddSportLabel";
             this.AddSportLabel.Size = new System.Drawing.Size(195, 26);
             this.AddSportLabel.TabIndex = 31;
@@ -220,15 +230,15 @@
             this.SportListActivitiesLabel.BackColor = System.Drawing.Color.Transparent;
             this.SportListActivitiesLabel.Location = new System.Drawing.Point(247, 239);
             this.SportListActivitiesLabel.Name = "SportListActivitiesLabel";
-            this.SportListActivitiesLabel.Size = new System.Drawing.Size(149, 26);
+            this.SportListActivitiesLabel.Size = new System.Drawing.Size(161, 26);
             this.SportListActivitiesLabel.TabIndex = 30;
-            this.SportListActivitiesLabel.Text = "Sprt Activities";
+            this.SportListActivitiesLabel.Text = "Sport Activities";
             // 
             // ActivityIsCheckedCheckBox
             // 
             this.ActivityIsCheckedCheckBox.AutoSize = true;
             this.ActivityIsCheckedCheckBox.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.ActivityIsCheckedCheckBox.Location = new System.Drawing.Point(39, 154);
+            this.ActivityIsCheckedCheckBox.Location = new System.Drawing.Point(33, 124);
             this.ActivityIsCheckedCheckBox.Name = "ActivityIsCheckedCheckBox";
             this.ActivityIsCheckedCheckBox.Size = new System.Drawing.Size(91, 30);
             this.ActivityIsCheckedCheckBox.TabIndex = 29;
@@ -244,7 +254,7 @@
             this.dateTimePickerForSport.CalendarTitleForeColor = System.Drawing.Color.RoyalBlue;
             this.dateTimePickerForSport.Cursor = System.Windows.Forms.Cursors.SizeNESW;
             this.dateTimePickerForSport.Font = new System.Drawing.Font("Britannic Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePickerForSport.Location = new System.Drawing.Point(192, 109);
+            this.dateTimePickerForSport.Location = new System.Drawing.Point(186, 79);
             this.dateTimePickerForSport.Name = "dateTimePickerForSport";
             this.dateTimePickerForSport.Size = new System.Drawing.Size(382, 34);
             this.dateTimePickerForSport.TabIndex = 28;
@@ -256,7 +266,7 @@
             this.AddBth.BackColor = System.Drawing.Color.White;
             this.AddBth.Font = new System.Drawing.Font("Britannic Bold", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AddBth.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.AddBth.Location = new System.Drawing.Point(277, 188);
+            this.AddBth.Location = new System.Drawing.Point(271, 158);
             this.AddBth.Name = "AddBth";
             this.AddBth.Size = new System.Drawing.Size(91, 35);
             this.AddBth.TabIndex = 27;
@@ -270,7 +280,7 @@
             this.NewActivityNameTextBox.BackColor = System.Drawing.Color.White;
             this.NewActivityNameTextBox.Font = new System.Drawing.Font("Britannic Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NewActivityNameTextBox.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.NewActivityNameTextBox.Location = new System.Drawing.Point(192, 65);
+            this.NewActivityNameTextBox.Location = new System.Drawing.Point(186, 35);
             this.NewActivityNameTextBox.Name = "NewActivityNameTextBox";
             this.NewActivityNameTextBox.Size = new System.Drawing.Size(294, 34);
             this.NewActivityNameTextBox.TabIndex = 1;
@@ -289,6 +299,7 @@
             this.SportCheckedListBox.TabIndex = 0;
             this.SportCheckedListBox.Visible = false;
             this.SportCheckedListBox.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.SportList_ActivityChecked);
+            this.SportCheckedListBox.SelectedValueChanged += new System.EventHandler(this.SportCheckedListBox_SelectedValueChanged);
             // 
             // posted
             // 
@@ -426,6 +437,102 @@
             this.SportBth.UseVisualStyleBackColor = false;
             this.SportBth.Click += new System.EventHandler(this.SportBtn_Click);
             // 
+            // checkedLabel
+            // 
+            checkedLabel.AutoSize = true;
+            checkedLabel.Location = new System.Drawing.Point(48, 85);
+            checkedLabel.Name = "checkedLabel";
+            checkedLabel.Size = new System.Drawing.Size(76, 20);
+            checkedLabel.TabIndex = 27;
+            checkedLabel.Text = "Checked:";
+            // 
+            // checkedCheckBox
+            // 
+            this.checkedCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.sportActivityBindingSource, "Checked", true));
+            this.checkedCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.sportActivityBindingSource, "Checked", true));
+            this.checkedCheckBox.Location = new System.Drawing.Point(130, 85);
+            this.checkedCheckBox.Name = "checkedCheckBox";
+            this.checkedCheckBox.Size = new System.Drawing.Size(339, 24);
+            this.checkedCheckBox.TabIndex = 28;
+            this.checkedCheckBox.Text = "checkBox1";
+            this.checkedCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // limitTimeLabel1
+            // 
+            limitTimeLabel1.AutoSize = true;
+            limitTimeLabel1.Location = new System.Drawing.Point(46, 120);
+            limitTimeLabel1.Name = "limitTimeLabel1";
+            limitTimeLabel1.Size = new System.Drawing.Size(78, 20);
+            limitTimeLabel1.TabIndex = 29;
+            limitTimeLabel1.Text = "limit Time:";
+            // 
+            // limitTimeDateTimePicker
+            // 
+            this.limitTimeDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.sportActivityBindingSource, "limitTime", true));
+            this.limitTimeDateTimePicker.Location = new System.Drawing.Point(130, 116);
+            this.limitTimeDateTimePicker.Name = "limitTimeDateTimePicker";
+            this.limitTimeDateTimePicker.Size = new System.Drawing.Size(291, 26);
+            this.limitTimeDateTimePicker.TabIndex = 30;
+            // 
+            // nameLabel
+            // 
+            nameLabel.AutoSize = true;
+            nameLabel.Location = new System.Drawing.Point(46, 145);
+            nameLabel.Name = "nameLabel";
+            nameLabel.Size = new System.Drawing.Size(55, 20);
+            nameLabel.TabIndex = 31;
+            nameLabel.Text = "Name:";
+            // 
+            // nameLabel1
+            // 
+            this.nameLabel1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.sportActivityBindingSource, "Name", true));
+            this.nameLabel1.Location = new System.Drawing.Point(130, 145);
+            this.nameLabel1.Name = "nameLabel1";
+            this.nameLabel1.Size = new System.Drawing.Size(339, 23);
+            this.nameLabel1.TabIndex = 32;
+            this.nameLabel1.Text = "label1";
+            // 
+            // ActivityData
+            // 
+            this.ActivityData.AutoSize = true;
+            this.ActivityData.Location = new System.Drawing.Point(186, 44);
+            this.ActivityData.Name = "ActivityData";
+            this.ActivityData.Size = new System.Drawing.Size(117, 20);
+            this.ActivityData.TabIndex = 34;
+            this.ActivityData.Text = "Activity detailes";
+            // 
+            // ActivityDetailsPanel
+            // 
+            this.ActivityDetailsPanel.Controls.Add(this.limitTimeDateTimePicker);
+            this.ActivityDetailsPanel.Controls.Add(this.ActivityData);
+            this.ActivityDetailsPanel.Controls.Add(this.nameLabel1);
+            this.ActivityDetailsPanel.Controls.Add(checkedLabel);
+            this.ActivityDetailsPanel.Controls.Add(nameLabel);
+            this.ActivityDetailsPanel.Controls.Add(this.checkedCheckBox);
+            this.ActivityDetailsPanel.Controls.Add(limitTimeLabel1);
+            this.ActivityDetailsPanel.Location = new System.Drawing.Point(1106, 524);
+            this.ActivityDetailsPanel.Name = "ActivityDetailsPanel";
+            this.ActivityDetailsPanel.Size = new System.Drawing.Size(478, 227);
+            this.ActivityDetailsPanel.TabIndex = 35;
+            // 
+            // AddSportActivityPanel
+            // 
+            this.AddSportActivityPanel.Controls.Add(this.LimitTimeLabel);
+            this.AddSportActivityPanel.Controls.Add(this.ActivityNameLabel);
+            this.AddSportActivityPanel.Controls.Add(this.AddSportLabel);
+            this.AddSportActivityPanel.Controls.Add(this.ActivityIsCheckedCheckBox);
+            this.AddSportActivityPanel.Controls.Add(this.dateTimePickerForSport);
+            this.AddSportActivityPanel.Controls.Add(this.AddBth);
+            this.AddSportActivityPanel.Controls.Add(this.NewActivityNameTextBox);
+            this.AddSportActivityPanel.Location = new System.Drawing.Point(12, 20);
+            this.AddSportActivityPanel.Name = "AddSportActivityPanel";
+            this.AddSportActivityPanel.Size = new System.Drawing.Size(686, 206);
+            this.AddSportActivityPanel.TabIndex = 34;
+            // 
+            // sportActivityBindingSource
+            // 
+            this.sportActivityBindingSource.DataSource = typeof(A21_Ex02_Omer_206126128_Stav_205816705.SportActivity);
+            // 
             // MainFeed
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
@@ -433,7 +540,8 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ClientSize = new System.Drawing.Size(1708, 1030);
+            this.ClientSize = new System.Drawing.Size(1708, 1289);
+            this.Controls.Add(this.ActivityDetailsPanel);
             this.Controls.Add(this.SportBth);
             this.Controls.Add(this.SearchBtn);
             this.Controls.Add(this.SearchTextBox);
@@ -467,6 +575,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.DropDownPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.UserNamePictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.FacebookIcon)).EndInit();
+            this.ActivityDetailsPanel.ResumeLayout(false);
+            this.ActivityDetailsPanel.PerformLayout();
+            this.AddSportActivityPanel.ResumeLayout(false);
+            this.AddSportActivityPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.sportActivityBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -504,5 +617,12 @@
         private System.Windows.Forms.Label AddSportLabel;
         private System.Windows.Forms.Label LimitTimeLabel;
         private System.Windows.Forms.Label ActivityNameLabel;
+        private System.Windows.Forms.BindingSource sportActivityBindingSource;
+        private System.Windows.Forms.CheckBox checkedCheckBox;
+        private System.Windows.Forms.DateTimePicker limitTimeDateTimePicker;
+        private System.Windows.Forms.Label nameLabel1;
+        private System.Windows.Forms.Label ActivityData;
+        private System.Windows.Forms.Panel ActivityDetailsPanel;
+        private System.Windows.Forms.Panel AddSportActivityPanel;
     }
 }
