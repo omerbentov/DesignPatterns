@@ -134,7 +134,7 @@
             this.BlueTopBar.ForeColor = System.Drawing.Color.White;
             this.BlueTopBar.Location = new System.Drawing.Point(0, 0);
             this.BlueTopBar.Name = "BlueTopBar";
-            this.BlueTopBar.Size = new System.Drawing.Size(1682, 75);
+            this.BlueTopBar.Size = new System.Drawing.Size(1708, 75);
             this.BlueTopBar.TabIndex = 1;
             // 
             // FetchaAlbumsBtn
@@ -258,10 +258,6 @@
             this.limitTimeDateTimePicker.Name = "limitTimeDateTimePicker";
             this.limitTimeDateTimePicker.Size = new System.Drawing.Size(478, 39);
             this.limitTimeDateTimePicker.TabIndex = 30;
-            // 
-            // sportActivityBindingSource
-            // 
-            this.sportActivityBindingSource.DataSource = typeof(A21_Ex02_Omer_206126128_Stav_205816705.SportActivity);
             // 
             // ActivityData
             // 
@@ -553,7 +549,7 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ClientSize = new System.Drawing.Size(1708, 1050);
+            this.ClientSize = new System.Drawing.Size(1734, 1050);
             this.Controls.Add(this.SportBth);
             this.Controls.Add(this.SearchBtn);
             this.Controls.Add(this.SearchTextBox);
