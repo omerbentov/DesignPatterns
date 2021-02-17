@@ -71,6 +71,7 @@
       <DependentUpon>MainFeed.cs</DependentUpon>
     </Compile>
     <Compile Include="MainOps.cs" />
+    <Compile Include="BroadcastMessage.cs" />
     <Compile Include="SportList.cs" />
     <Compile Include="IActivityList.cs" />
     <Compile Include="PostsOps.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="ProxySportList.cs" />
     <Compile Include="SearchOps.cs" />
     <Compile Include="SportActivity.cs" />
+    <Compile Include="SportListEnumarable.cs" />
     <EmbeddedResource Include="LogInForm.resx">
       <DependentUpon>LogInForm.cs</DependentUpon>
     </EmbeddedResource>

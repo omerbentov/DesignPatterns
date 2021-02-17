@@ -69,6 +69,8 @@
             this.UserNamePictureBox = new System.Windows.Forms.PictureBox();
             this.FacebookIcon = new System.Windows.Forms.PictureBox();
             this.SportBth = new System.Windows.Forms.Button();
+            this.SportIteratorBtn = new System.Windows.Forms.Button();
+            this.ElectionsBtn = new System.Windows.Forms.Button();
             checkedLabel = new System.Windows.Forms.Label();
             limitTimeLabel1 = new System.Windows.Forms.Label();
             nameLabel = new System.Windows.Forms.Label();
@@ -546,6 +548,33 @@
             this.SportBth.UseVisualStyleBackColor = false;
             this.SportBth.Click += new System.EventHandler(this.sportBtn_Click);
             // 
+            // SportIteratorBtn
+            // 
+            this.SportIteratorBtn.BackColor = System.Drawing.Color.RoyalBlue;
+            this.SportIteratorBtn.Font = new System.Drawing.Font("Britannic Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SportIteratorBtn.ForeColor = System.Drawing.Color.White;
+            this.SportIteratorBtn.Location = new System.Drawing.Point(22, 414);
+            this.SportIteratorBtn.Name = "SportIteratorBtn";
+            this.SportIteratorBtn.Size = new System.Drawing.Size(238, 47);
+            this.SportIteratorBtn.TabIndex = 27;
+            this.SportIteratorBtn.Text = "Sport Iterator";
+            this.SportIteratorBtn.UseVisualStyleBackColor = false;
+            this.SportIteratorBtn.Click += new System.EventHandler(this.SportIteratorBtn_Click);
+            // 
+            // ElectionsBtn
+            // 
+            this.ElectionsBtn.BackColor = System.Drawing.Color.RoyalBlue;
+            this.ElectionsBtn.Font = new System.Drawing.Font("Britannic Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ElectionsBtn.ForeColor = System.Drawing.Color.White;
+            this.ElectionsBtn.Location = new System.Drawing.Point(22, 467);
+            this.ElectionsBtn.Name = "ElectionsBtn";
+            this.ElectionsBtn.Size = new System.Drawing.Size(238, 47);
+            this.ElectionsBtn.TabIndex = 28;
+            this.ElectionsBtn.Text = "Elections message";
+            this.ElectionsBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.ElectionsBtn.UseVisualStyleBackColor = false;
+            this.ElectionsBtn.Click += new System.EventHandler(this.ElectionsBtn_Click);
+            // 
             // MainFeed
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
@@ -554,6 +583,8 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(1708, 1050);
+            this.Controls.Add(this.ElectionsBtn);
+            this.Controls.Add(this.SportIteratorBtn);
             this.Controls.Add(this.SportBth);
             this.Controls.Add(this.SearchBtn);
             this.Controls.Add(this.SearchTextBox);
@@ -633,5 +664,7 @@
         private System.Windows.Forms.Label ActivityData;
         private System.Windows.Forms.Panel ActivityDetailsPanel;
         private System.Windows.Forms.ListBox SportCheckedListBox;
+        private System.Windows.Forms.Button SportIteratorBtn;
+        private System.Windows.Forms.Button ElectionsBtn;
     }
 }

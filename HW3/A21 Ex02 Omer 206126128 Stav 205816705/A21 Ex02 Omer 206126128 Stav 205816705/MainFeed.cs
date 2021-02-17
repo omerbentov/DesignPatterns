@@ -2,6 +2,8 @@
 using System.Windows.Forms;
 using System.Drawing;
 using System.Threading;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace A21_Ex02_Omer_206126128_Stav_205816705
 {
@@ -21,11 +23,12 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
         private string m_ActivityName;
         private bool m_ActivityIsChecked;
         private DateTime m_dateTime;
+        private IEnumerator m_Iterator = null;
 
         private bool m_IsCollapsed = false;
 
         private Label m_GameHeader;
-        private ProxySportList m_MySportListProxy = new ProxySportList();
+        public static ProxySportList m_MySportListProxy = new ProxySportList();
 
         // Prop
         public static Point s_PostProfilePicturePointSize
@@ -278,6 +281,7 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
             MainOps.ResetFeedGroupBox(FeedGroupBox, DefaultCenterWidth);
             GamesOps.RemoveAllGuessingGameControls(Controls);
             ActivityDetailsPanel.Visible = false;
+            m_Iterator = null;
         }
 
         private void setControlsLocations()
@@ -301,6 +305,8 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
             FetchEventsBtn.Location = new Point((NewPost.Location.X - (k_PostsMargin + FetchEventsBtn.Width)) / 2, FetchaAlbumsBtn.Location.Y + FetchaAlbumsBtn.Height + 5);
             GamesBtn.Location = new Point((NewPost.Location.X - (k_PostsMargin + GamesBtn.Width)) / 2, FetchEventsBtn.Location.Y + FetchEventsBtn.Height + 5);
             SportBth.Location = new Point((NewPost.Location.X - (k_PostsMargin + SportBth.Width)) / 2, GamesBtn.Location.Y + GamesBtn.Height + 5);
+            SportIteratorBtn.Location = new Point((NewPost.Location.X - (k_PostsMargin + SportIteratorBtn.Width)) / 2, SportBth.Location.Y + SportBth.Height + 5);
+            ElectionsBtn.Location = new Point((NewPost.Location.X - (k_PostsMargin + ElectionsBtn.Width)) / 2, SportIteratorBtn.Location.Y + SportIteratorBtn.Height + 5);
         }
 
         private void setControlsSizes()
@@ -418,6 +424,78 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
         private void sportCheckedListBox_SelectedValueChanged(object sender, EventArgs e)
         {
              sportActivityBindingSource.DataSource = SportCheckedListBox.SelectedItem as SportActivity;
+        }
+
+        private void SportIteratorBtn_Click(object sender, EventArgs e)
+        {
+            Transition();
+            FeedGroupBox.Visible = true;
+            FeedGroupBox.BackColor = Color.White;
+
+            Label header = MainOps.CreateNewDefaultLabel("Iterate all of your sport acticity", new Point(0,50), FeedGroupBox);
+            header.Location = new Point(FeedGroupBox.Width / 2 - header.Width / 2, header.Location.Y);
+            FeedGroupBox.Controls.Add(header);
+
+            if(m_Iterator == null)
+            {
+                m_Iterator = (new SportListEnumarable() as IEnumerable).GetEnumerator();
+            }
+
+            string currectActivity = (m_Iterator.Current as SportActivity).Name;
+            Label label = MainOps.CreateNewDefaultLabel(currectActivity, new Point(), FeedGroupBox);
+            label.Location = new Point(FeedGroupBox.Width / 2 - label.Width / 2, header.Location.Y + k_LabelMargin);
+            FeedGroupBox.Controls.Add(label);
+
+            Button nextBtn = new Button();
+            nextBtn.Text = "Next";
+            nextBtn.Location = new Point(FeedGroupBox.Width / 2 - nextBtn.Width / 2, label.Location.Y + k_LabelMargin);
+            nextBtn.Click += NextClickedHandler;
+            FeedGroupBox.Controls.Add(nextBtn);
+        }
+
+        private void NextClickedHandler(object sender, EventArgs e)
+        {
+            if (!m_Iterator.MoveNext())
+            {
+                m_Iterator.Reset();
+            }
+
+            SportIteratorBtn_Click(sender, e);
+        }
+
+        private void ElectionsBtn_Click(object sender, EventArgs e)
+        {
+            Transition();
+            FeedGroupBox.Visible = true;
+            FeedGroupBox.BackColor = Color.White;
+
+            Label header = MainOps.CreateNewDefaultLabel("Broadcast message to all of your friends by political point of view", new Point(0,50), FeedGroupBox);
+            header.Location = new Point(FeedGroupBox.Width / 2 - header.Width / 2 - 100, header.Location.Y);
+            FeedGroupBox.Controls.Add(header);
+
+            Button rightBroadcastBtn = new Button();
+            rightBroadcastBtn.Text = "Right message to all";
+            rightBroadcastBtn.Click += RightClickedHandler;
+            rightBroadcastBtn.Location = new Point(300, 100);
+            FeedGroupBox.Controls.Add(rightBroadcastBtn);
+
+            Button leftBroadcastBtn = new Button();
+            leftBroadcastBtn.Text = "Left message to all";
+            leftBroadcastBtn.Location = new Point(200,100);
+            leftBroadcastBtn.Click += LeftClickedHandler;
+            FeedGroupBox.Controls.Add(leftBroadcastBtn);
+        }
+
+        private void RightClickedHandler(object sender, EventArgs e)
+        {
+            BroadcastMessage rightMessage = new RightMessageBroadcast();
+            rightMessage.Broadcast();
+        }
+
+        private void LeftClickedHandler(object sender, EventArgs e)
+        {
+            BroadcastMessage leftMessage = new LeftMessageBroadcast();
+            leftMessage.Broadcast();
         }
     }
 }

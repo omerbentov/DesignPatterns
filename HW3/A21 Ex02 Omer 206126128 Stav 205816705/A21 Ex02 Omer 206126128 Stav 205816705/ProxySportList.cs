@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
 {
     public class ProxySportList : IActivityList
     {
-        private SprotList m_SportList;
+        public SprotList m_SportList;
 
         public ProxySportList()
         {
