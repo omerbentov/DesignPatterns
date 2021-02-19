@@ -57,6 +57,7 @@
     <Compile Include="EventsOps.cs" />
     <Compile Include="FormsFactoryMethods.cs" />
     <Compile Include="GamesOps.cs" />
+    <Compile Include="Isrategy.cs" />
     <Compile Include="LoggedInUserData.cs" />
     <Compile Include="LogInForm.cs">
       <SubType>Form</SubType>
@@ -72,6 +73,8 @@
     </Compile>
     <Compile Include="MainOps.cs" />
     <Compile Include="BroadcastMessage.cs" />
+    <Compile Include="SortAlbums.cs" />
+    <Compile Include="SortAlbumsByNumberOfPhotos.cs" />
     <Compile Include="SportList.cs" />
     <Compile Include="IActivityList.cs" />
     <Compile Include="PostsOps.cs" />

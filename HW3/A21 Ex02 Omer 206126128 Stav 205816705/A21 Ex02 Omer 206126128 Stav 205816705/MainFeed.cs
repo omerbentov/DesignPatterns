@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Threading;
 using System.Collections;
 using System.Collections.Generic;
+using FacebookWrapper.ObjectModel;
 
 namespace A21_Ex02_Omer_206126128_Stav_205816705
 {
@@ -57,10 +58,10 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
 
         public bool NewPostVisabilty
         {
-           set
-           {
+            set
+            {
                 NewPost.Visible = value;
-           }
+            }
         }
 
         // Main
@@ -96,10 +97,10 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
             Point baseLocation = new Point(20, 10);
 
             Point nextPosition = new Point();
-            nextPosition = PostsOps.addPosts(groupBoxLocation, baseLocation, k_NumOfPostsInHomePage, FeedGroupBox); 
+            nextPosition = PostsOps.addPosts(groupBoxLocation, baseLocation, k_NumOfPostsInHomePage, FeedGroupBox);
             nextPosition.Y += k_PostsMargin;
 
-            AlbumsOps.AddAlbums(nextPosition, k_NumOfAlbumsInHomePage, FeedGroupBox);
+            AlbumsOps.AddAlbums(nextPosition, k_NumOfAlbumsInHomePage, FeedGroupBox, null);
         }
 
         // Albums
@@ -107,8 +108,15 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
         {
             Transition();
 
+            Button Sort = new Button();
+            Sort.Text = "Sort Albums";
+            Sort.Click += SortAlbums_Click;
+            Sort.Location = new Point(450, 50);
+            Sort.BackColor = Color.RoyalBlue;
+            FeedGroupBox.Controls.Add(Sort);
+
             Point picLocation = new Point(20, 50);
-            AlbumsOps.AddAlbums(picLocation, int.MaxValue, FeedGroupBox);
+            AlbumsOps.AddAlbums(picLocation, int.MaxValue, FeedGroupBox, null);
         }
 
         // Posts
@@ -118,7 +126,7 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
 
             Point groupBoxLocation = new Point();
             Point baseLocation = new Point(20, 10);
-            PostsOps.addPosts(groupBoxLocation, baseLocation, k_NumOfPostsInHomePage, FeedGroupBox); 
+            PostsOps.addPosts(groupBoxLocation, baseLocation, k_NumOfPostsInHomePage, FeedGroupBox);
         }
 
         // Account 
@@ -251,7 +259,7 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
             if (!string.IsNullOrEmpty(s_TextToFind))
             {
                 Transition();
-                Thread addEventSearch= new Thread(() => SearchOps.SetEventsSearch(s_TextToFind, FeedGroupBox));
+                Thread addEventSearch = new Thread(() => SearchOps.SetEventsSearch(s_TextToFind, FeedGroupBox));
                 addEventSearch.Start();
 
                 Thread addFriendSearch = new Thread(() => SearchOps.SetFriendPosts(s_TextToFind, FeedGroupBox));
@@ -281,7 +289,6 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
             MainOps.ResetFeedGroupBox(FeedGroupBox, DefaultCenterWidth);
             GamesOps.RemoveAllGuessingGameControls(Controls);
             ActivityDetailsPanel.Visible = false;
-            m_Iterator = null;
         }
 
         private void setControlsLocations()
@@ -395,7 +402,7 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
                     ActivityIsCheckedCheckBox.Checked = false;
                     MessageBox.Show("New activity just added :)");
                 }
-                catch(Exception err) 
+                catch (Exception err)
                 {
                     MessageBox.Show(err.Message.ToString());
                 }
@@ -423,7 +430,7 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
 
         private void sportCheckedListBox_SelectedValueChanged(object sender, EventArgs e)
         {
-             sportActivityBindingSource.DataSource = SportCheckedListBox.SelectedItem as SportActivity;
+            sportActivityBindingSource.DataSource = SportCheckedListBox.SelectedItem as SportActivity;
         }
 
         private void SportIteratorBtn_Click(object sender, EventArgs e)
@@ -432,11 +439,11 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
             FeedGroupBox.Visible = true;
             FeedGroupBox.BackColor = Color.White;
 
-            Label header = MainOps.CreateNewDefaultLabel("Iterate all of your sport acticity", new Point(0,50), FeedGroupBox);
+            Label header = MainOps.CreateNewDefaultLabel("Iterate all of your sport acticity", new Point(0, 50), FeedGroupBox);
             header.Location = new Point(FeedGroupBox.Width / 2 - header.Width / 2, header.Location.Y);
             FeedGroupBox.Controls.Add(header);
 
-            if(m_Iterator == null)
+            if (m_Iterator == null)
             {
                 m_Iterator = (new SportListEnumarable() as IEnumerable).GetEnumerator();
             }
@@ -446,9 +453,19 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
             label.Location = new Point(FeedGroupBox.Width / 2 - label.Width / 2, header.Location.Y + k_LabelMargin);
             FeedGroupBox.Controls.Add(label);
 
+            string currectDate = (m_Iterator.Current as SportActivity).LimitTime.ToString();
+            Label labelDate = MainOps.CreateNewDefaultLabel(currectDate, new Point(), FeedGroupBox);
+            labelDate.Location = new Point(label.Location.X, label.Location.Y + k_LabelMargin);
+            FeedGroupBox.Controls.Add(labelDate);
+
+            string currectCheckedf = (m_Iterator.Current as SportActivity).Checked.ToString();
+            Label labelChecked = MainOps.CreateNewDefaultLabel(currectCheckedf, new Point(), FeedGroupBox);
+            labelChecked.Location = new Point(labelDate.Location.X, labelDate.Location.Y + k_LabelMargin);
+            FeedGroupBox.Controls.Add(labelChecked);
+
             Button nextBtn = new Button();
             nextBtn.Text = "Next";
-            nextBtn.Location = new Point(FeedGroupBox.Width / 2 - nextBtn.Width / 2, label.Location.Y + k_LabelMargin);
+            nextBtn.Location = new Point(labelChecked.Location.X, labelChecked.Location.Y + k_LabelMargin);
             nextBtn.Click += NextClickedHandler;
             FeedGroupBox.Controls.Add(nextBtn);
         }
@@ -469,7 +486,7 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
             FeedGroupBox.Visible = true;
             FeedGroupBox.BackColor = Color.White;
 
-            Label header = MainOps.CreateNewDefaultLabel("Broadcast message to all of your friends by political point of view", new Point(0,50), FeedGroupBox);
+            Label header = MainOps.CreateNewDefaultLabel("Broadcast message to all of your friends by political point of view", new Point(0, 50), FeedGroupBox);
             header.Location = new Point(FeedGroupBox.Width / 2 - header.Width / 2 - 100, header.Location.Y);
             FeedGroupBox.Controls.Add(header);
 
@@ -481,7 +498,7 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
 
             Button leftBroadcastBtn = new Button();
             leftBroadcastBtn.Text = "Left message to all";
-            leftBroadcastBtn.Location = new Point(200,100);
+            leftBroadcastBtn.Location = new Point(200, 100);
             leftBroadcastBtn.Click += LeftClickedHandler;
             FeedGroupBox.Controls.Add(leftBroadcastBtn);
         }
@@ -496,6 +513,22 @@ namespace A21_Ex02_Omer_206126128_Stav_205816705
         {
             BroadcastMessage leftMessage = new LeftMessageBroadcast();
             leftMessage.Broadcast();
+        }
+
+        private void SortAlbums_Click(object sender, EventArgs e)
+        {
+            Transition();
+            try
+            {
+                Point picLocation = new Point(20, 50);
+                Dictionary<int, Album> sortedAlbums = AlbumsOps.SortAlbumsBy();
+
+                AlbumsOps.AddAlbums(picLocation, int.MaxValue, FeedGroupBox, sortedAlbums);
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message.ToString());
+            }
         }
     }
 }
